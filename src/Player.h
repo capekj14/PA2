@@ -27,6 +27,7 @@ public:
     unsigned int getScore() const;
     std::string getName();
     void setScore(unsigned int num);
+    bool operator < (const Player& other);
 };
 
 

@@ -16,12 +16,15 @@ class Quiz
     std::vector<Page> pages;
     Player player;
     std::string name;
+    int falseStreak = 0;
 public:
     void run();
     void printPlayerResult();
     size_t getQuestionCount();
     std::string getName();
     int getScore();
+    void incrementStreak();
+    int getStreak();
 
 };
 

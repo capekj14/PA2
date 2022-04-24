@@ -22,7 +22,8 @@ bool Application::loadQuiz()
 
 void Application::showMenu()
 {
-    std::cout << "Vítejte v aplikaci Marast v2\n\n" << "\t1) Vytvořit nový kvíz\n" << "\t2) Načíst kvíz a hrát\n";
+    std::cout << "Vítejte v aplikaci Marast v2\n\n" << "\t1) Vytvořit nový kvíz\n" << "\t2) Načíst kvíz a hrát\n"
+              << "\t3) Konec\n";
 }
 
 int Application::getAction()
@@ -31,7 +32,7 @@ int Application::getAction()
     while(true)
     {
         std::cin >> ret;
-        if (ret != 1 and ret != 2)
+        if (ret != 1 and ret != 2 and ret != 3)
         {
             std::cout << "Zadali jste neplatnou možnost, zkuste to znovu " << std::endl;
         }
@@ -58,5 +59,7 @@ void Application::run()
     {
         createQuiz();
     }
+    else if(result == 3)
+        return;
     return;
 }

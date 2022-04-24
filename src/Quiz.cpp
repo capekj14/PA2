@@ -46,3 +46,13 @@ int Quiz::getScore()
     player.setScore(score);
     return score;
 }
+
+void Quiz::incrementStreak()
+{
+    falseStreak++;
+}
+
+int Quiz::getStreak()
+{
+    return falseStreak;
+}

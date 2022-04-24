@@ -16,7 +16,9 @@ void LeaderBoard::save()
 
 void LeaderBoard::addPlayerResult(const Player& player)
 {
-    //insert
+    std::pair<std::string, unsigned int> actual;
+    auto it = std::lower_bound(records.begin(), records.end(), actual);
+    records.insert(it, actual);
 }
 
 void LeaderBoard::printRecords()

@@ -39,6 +39,7 @@ bool QuestionYesNo::evaluate()
     else
     {
         correctlyAnswered = false;
+
         return false;
     }
 }
