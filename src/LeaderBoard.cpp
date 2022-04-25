@@ -30,3 +30,8 @@ void LeaderBoard::printRecords()
         std::cout << "\t" << standing++ << "hráč: " << record.first << "skóre: " << record.second << std::endl;
     }
 }
+
+void LeaderBoard::pushBackPlayer(std::pair<std::string, unsigned int> record)
+{
+    records.push_back(record);
+}

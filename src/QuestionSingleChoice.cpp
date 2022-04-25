@@ -37,11 +37,13 @@ bool QuestionSingleChoice::evaluate()
     if( correctAnswer == playerAnswer)
     {
         correctlyAnswered = true;
+        std::cout << "\nSprávná odpověď!" << std::endl;
         return true;
     }
     else
     {
         correctlyAnswered = false;
+        std::cout << "\nŠpatná odpověď!" << std::endl;
         return false;
     }
 }

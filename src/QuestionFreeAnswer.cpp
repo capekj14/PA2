@@ -29,12 +29,27 @@ std::string QuestionFreeAnswer::getAnswer()
 bool QuestionFreeAnswer::evaluate()
 {
     if(playerAnswer == correctAnswer)
+    {
+        std::cout << "\nSprávná odpověď!" << std::endl;
+        correctlyAnswered = true;
         return true;
+    }
     for (const auto& str: correctAnswerSet)
         if (str == playerAnswer)
+        {
+            std::cout << "\nSprávná odpověď!" << std::endl;
+            correctlyAnswered = true;
             return true;
-
-    return checkByRegex(playerAnswer);
+        }
+    if(checkByRegex(playerAnswer))
+    {
+        std::cout << "\nSprávná odpověď!" << std::endl;
+        correctlyAnswered = true;
+        return true;
+    }
+    std::cout << "\nŠpatná odpověď\n";
+    correctlyAnswered = false;
+    return false;
 }
 //nyni vyhledava jestli playerAnswer obsahuje regex jako substring
 bool QuestionFreeAnswer::checkByRegex(const std::string &str)

@@ -54,7 +54,14 @@ bool QuestionMultiChoice::evaluate()
         correctlyAnswered = false;
         return false;
     }
-    bool ok = correctSet == playerSet;
-    return ok;
+    if(correctSet == playerSet)
+    {
+        std::cout << "\nSprávná odpověď!" << std::endl;
+        correctlyAnswered = true;
+        return true;
+    }
+    std::cout << "\nŠpatná odpověď!" << std::endl;
+    correctlyAnswered = false;
+    return false;
 }
 

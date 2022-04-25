@@ -3,21 +3,39 @@
 //
 
 #include "Quiz.h"
+#include "IOUnitLeaderBoard.h"
 
 void Quiz::run()
 {
-    //pro kazdou stranku a kazdou otazku proved metody
-    //na konci print vysledky
+    int falseStreak = 0;
+    std::queue<Page> pageQueue;
+    pushToQueue(pageQueue);
+    while(!pageQueue.empty())
+    {
+        auto& page = pageQueue.front();
+        pageQueue.pop();
+        int result = page.run(falseStreak);//odpovezena dobre, spatne, skip
+        if(result == 2)
+            pageQueue.push(page);
+        else if(result == 1)
+            break;
+        else if(result == 0)
+        {
+            page.setIsAnswered(true);
+        }
+    }
+    getScore();
+    printPlayerResult();
 }
 
 void Quiz::printPlayerResult()
 {
     std::cout << "Vaše skóre je " << player.getScore() << "/" << getQuestionCount() << "\n" << std::endl;
-    LeaderBoard leaderBoard;
-    leaderBoard.load();
-    leaderBoard.addPlayerResult(player);
-    leaderBoard.printRecords();
-    leaderBoard.save();
+    IOUnitLeaderBoard ioboard;
+    ioboard.load(name);
+    ioboard.leaderBoard.addPlayerResult(player);
+    ioboard.leaderBoard.printRecords();
+    ioboard.leaderBoard.save();
 }
 
 size_t Quiz::getQuestionCount()
@@ -47,12 +65,9 @@ int Quiz::getScore()
     return score;
 }
 
-void Quiz::incrementStreak()
+void Quiz::pushToQueue(std::queue<Page> &Q)
 {
-    falseStreak++;
+    for(auto& page : pages)
+        Q.push(page);
 }
 
-int Quiz::getStreak()
-{
-    return falseStreak;
-}

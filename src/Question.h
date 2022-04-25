@@ -20,8 +20,8 @@ public:
     virtual void showQuestion() = 0;
     virtual std::string getAnswer() = 0;
     virtual bool evaluate() = 0;
-    void run();
-    bool getCorrectlyAnswered();
+    bool run();
+    bool getCorrectlyAnswered() const;
 };
 
 

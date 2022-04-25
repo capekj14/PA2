@@ -33,13 +33,14 @@ bool QuestionYesNo::evaluate()
 {
     if( correctAnswer == playerAnswer)
     {
+        std::cout << "\nSprávná odpověď!" << std::endl;
         correctlyAnswered = true;
         return true;
     }
     else
     {
         correctlyAnswered = false;
-
+        std::cout << "\nŠpatná odpověď!" << std::endl;
         return false;
     }
 }

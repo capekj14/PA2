@@ -4,12 +4,3 @@
 
 #include "IOUnit.h"
 
-bool IOUnit::loadQuiz()
-{
-    return false;
-}
-
-bool IOUnit::saveQuiz()
-{
-    return false;
-}

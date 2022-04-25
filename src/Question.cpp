@@ -5,14 +5,13 @@
 #include "Question.h"
 
 
-void Question::run()
+bool Question::run()
 {
-    showQuestion();
     getAnswer();
-    evaluate();
+    return evaluate();
 }
 
-bool Question::getCorrectlyAnswered()
+bool Question::getCorrectlyAnswered() const
 {
     return correctlyAnswered;
 }

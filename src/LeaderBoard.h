@@ -19,6 +19,7 @@ public:
     void save();
     void addPlayerResult(const Player& player);
     void printRecords();
+    void pushBackPlayer(std::pair<std::string, unsigned int> record);
 };
 
 

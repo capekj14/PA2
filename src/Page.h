@@ -17,6 +17,9 @@ public:
     void showPage();
     size_t getQuestionCount();
     int getScore();
+    void setIsAnswered(bool b);
+
+    int run(int& falseStreak);
 };
 
 

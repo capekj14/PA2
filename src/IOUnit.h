@@ -4,16 +4,17 @@
 
 #ifndef SEMESTRALKA_IOUNIT_H
 #define SEMESTRALKA_IOUNIT_H
-
-
+#include "LeaderBoard.h"
 #include "Quiz.h"
+#include <fstream>
+#include <istream>
 
 class IOUnit
 {
-    Quiz quiz;
+
 public:
-    bool loadQuiz();
-    bool saveQuiz();
+    virtual bool load(const std::string& fileName) = 0;
+    virtual bool save(const std::string& fileName) = 0;
 };
 
 
