@@ -6,7 +6,7 @@
 
 bool IOUnitLeaderBoard::load(const std::string &fileName)
 {
-    std::fstream input(fileName + ".txt");
+    std::ifstream input(fileName + ".txt");
     int count;
     input >> count;
     for(int i = 0; i < count; i++)
@@ -20,5 +20,11 @@ bool IOUnitLeaderBoard::load(const std::string &fileName)
 
 bool IOUnitLeaderBoard::save(const std::string &fileName)
 {
-    return false;
+    std::ofstream output(fileName + ".txt");
+    output << leaderBoard.getRecordCount() << std::endl;
+    for(int i = 0; i < leaderBoard.getRecordCount(); i++)
+    {
+        output << leaderBoard.getNameOnIndex(i) << " " << leaderBoard.getScoreInIndex(i) << std::endl;
+    }
+    return true;
 }

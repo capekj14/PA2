@@ -76,3 +76,7 @@ bool QuestionFreeAnswer::checkByRegex(const std::string &str)
     return false;
 }
 
+QuestionType QuestionFreeAnswer::getType() {
+    return QuestionType::Free;
+}
+

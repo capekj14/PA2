@@ -19,6 +19,7 @@ public:
     void showQuestion() override;
     std::string getAnswer() override;
     bool evaluate() override;
+    QuestionType getType() override;
 };
 
 

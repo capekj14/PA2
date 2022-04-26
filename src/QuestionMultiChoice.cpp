@@ -65,3 +65,7 @@ bool QuestionMultiChoice::evaluate()
     return false;
 }
 
+QuestionType QuestionMultiChoice::getType() {
+    return QuestionType::MultiChoice;
+}
+

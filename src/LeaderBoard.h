@@ -15,11 +15,12 @@ class LeaderBoard
 {
     std::vector<std::pair<std::string, unsigned int>> records;
 public:
-    void load();
-    void save();
     void addPlayerResult(const Player& player);
     void printRecords();
     void pushBackPlayer(std::pair<std::string, unsigned int> record);
+    int getRecordCount();
+    std::string getNameOnIndex(size_t index);
+    unsigned int getScoreInIndex(size_t index);
 };
 
 

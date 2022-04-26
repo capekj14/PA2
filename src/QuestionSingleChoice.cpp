@@ -47,3 +47,7 @@ bool QuestionSingleChoice::evaluate()
         return false;
     }
 }
+
+QuestionType QuestionSingleChoice::getType() {
+    return QuestionType::SingleChoice;
+}

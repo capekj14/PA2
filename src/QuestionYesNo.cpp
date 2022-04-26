@@ -44,3 +44,7 @@ bool QuestionYesNo::evaluate()
         return false;
     }
 }
+
+QuestionType QuestionYesNo::getType() {
+    return QuestionType::YesNo;
+}

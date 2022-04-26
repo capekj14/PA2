@@ -4,16 +4,6 @@
 
 #include "LeaderBoard.h"
 
-void LeaderBoard::load()
-{
-
-}
-
-void LeaderBoard::save()
-{
-
-}
-
 void LeaderBoard::addPlayerResult(const Player& player)
 {
     std::pair<std::string, unsigned int> actual;
@@ -34,4 +24,18 @@ void LeaderBoard::printRecords()
 void LeaderBoard::pushBackPlayer(std::pair<std::string, unsigned int> record)
 {
     records.push_back(record);
+}
+
+int LeaderBoard::getRecordCount() {
+    return records.size();
+}
+
+std::string LeaderBoard::getNameOnIndex(size_t index)
+{
+    return records[index].first;
+}
+
+unsigned int LeaderBoard::getScoreInIndex(size_t index)
+{
+    return records[index].second;
 }

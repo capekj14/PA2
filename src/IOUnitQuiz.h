@@ -10,6 +10,8 @@
 
 class IOUnitQuiz : public IOUnit
 {
+    Quiz quiz;
+public:
     bool load(const std::string& fileName) override;
     bool save(const std::string& fileName) override;
 };

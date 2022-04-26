@@ -8,7 +8,7 @@
 
 #include <string>
 #include <iostream>
-
+#include "QuestionType.cpp"
 class Question
 {
 protected:
@@ -22,6 +22,7 @@ public:
     virtual bool evaluate() = 0;
     bool run();
     bool getCorrectlyAnswered() const;
+    virtual QuestionType getType() = 0;
 };
 
 

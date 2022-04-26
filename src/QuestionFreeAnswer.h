@@ -20,6 +20,7 @@ public:
     std::string getAnswer() override;
     bool evaluate() override;
     bool checkByRegex(const std::string& str);
+    QuestionType getType() override;
 };
 
 

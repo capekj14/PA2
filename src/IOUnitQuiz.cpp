@@ -6,7 +6,7 @@
 
 bool IOUnitQuiz::load(const std::string &fileName)
 {
-    FILE* input;
+
 
     return false;
 }

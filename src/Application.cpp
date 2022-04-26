@@ -3,21 +3,25 @@
 //
 
 #include "Application.h"
+#include "IOUnitQuiz.h"
 
 void Application::createQuiz()
 {
     QuizMaker quizMaker;
     quizMaker.run();
+    //save
 }
 
 bool Application::loadQuiz()
 {
-    IOUnit ioUnit;
+    IOUnitQuiz ioUnit;
+    std::cout << "Vyberte název kvízu z nabídky:" << std::endl;
     //printAll possible quizez
-    //select one
+    std::string name;
+    std::cin >> name;
     std::string quizName;
-    ioUnit.loadQuiz();
-    return false;
+    ioUnit.load(name);
+    return true;
 }
 
 void Application::showMenu()

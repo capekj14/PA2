@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <vector>
+#include <set>
 #include "Page.h"
 #include "Quiz.h"
 
@@ -14,17 +15,23 @@
 class QuizMaker
 {
     Quiz quiz;
+    //QUIZFORMAT
 public:
     void run();
-    void askPageCount();
-    void askName();
-    void askQuestionCount();
-    void askQuestionType();
-    void askQuestionText();
-    void askCorrectAnswer(int type);
-    void askOptions(int type);
-    std::string getString();
-    int getNumber();
+    void askPageCount(int&);
+    void askName(std::string&);
+    void askQuestionCount(int&);
+    void askQuestionType(QuestionType&);
+    void askQuestionText(std::string&);
+    void askCorrectAnswer(QuestionType& type, std::string&);
+    void askOptions(QuestionType& type, std::vector<std::string>&);
+    bool getString(std::string&);
+    bool getNumber(int&);
+
+    void askCorrectAnswer(QuestionType &type, std::string &correctAnswer, std::string& patern,
+                          std::set<std::string>& correctSet);
+
+    bool checkABCDset(std::string&);
 };
 
 

@@ -12,9 +12,9 @@ void Quiz::run()
     pushToQueue(pageQueue);
     while(!pageQueue.empty())
     {
-        auto& page = pageQueue.front();
+        auto page = pageQueue.front();
         pageQueue.pop();
-        int result = page.run(falseStreak);//odpovezena dobre, spatne, skip
+        int result = page.run(falseStreak);
         if(result == 2)
             pageQueue.push(page);
         else if(result == 1)
@@ -35,7 +35,7 @@ void Quiz::printPlayerResult()
     ioboard.load(name);
     ioboard.leaderBoard.addPlayerResult(player);
     ioboard.leaderBoard.printRecords();
-    ioboard.leaderBoard.save();
+    ioboard.save(name);
 }
 
 size_t Quiz::getQuestionCount()
