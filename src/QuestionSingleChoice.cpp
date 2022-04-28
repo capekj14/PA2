@@ -51,3 +51,11 @@ bool QuestionSingleChoice::evaluate()
 QuestionType QuestionSingleChoice::getType() {
     return QuestionType::SingleChoice;
 }
+
+void QuestionSingleChoice::createQuestion()
+{
+    QuizMaker::askQuestionText(text);
+    QuizMaker::askOptions(options);
+    QuizMaker::askCorrectAnswerSingle(correctAnswer);
+
+}

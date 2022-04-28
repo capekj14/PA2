@@ -9,6 +9,8 @@
 #include <string>
 #include <iostream>
 #include "QuestionType.cpp"
+#include "QuizMaker.h"
+
 class Question
 {
 protected:
@@ -23,6 +25,7 @@ public:
     bool run();
     bool getCorrectlyAnswered() const;
     virtual QuestionType getType() = 0;
+    virtual void createQuestion() = 0;
 };
 
 

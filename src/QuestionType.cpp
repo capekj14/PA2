@@ -1,5 +1,5 @@
 //
-// Created by notebookHP on 26.04.2022.
+// Created by Jakub Čapek on 26.04.2022.
 //
 
 enum class QuestionType{

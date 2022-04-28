@@ -14,13 +14,14 @@ class QuestionFreeAnswer : public Question
     std::set<std::string> correctAnswerSet;
     std::string correctAnswer;
     std::string playerAnswer;
-    std::string correctPattern;
+    std::string pattern;
 public:
     void showQuestion() override;
     std::string getAnswer() override;
     bool evaluate() override;
     bool checkByRegex(const std::string& str);
     QuestionType getType() override;
+    void createQuestion() override;
 };
 
 

@@ -11,7 +11,7 @@ void LeaderBoard::addPlayerResult(const Player& player)
     records.insert(it, actual);
 }
 
-void LeaderBoard::printRecords()
+void LeaderBoard::showLeaderBoard()
 {
     std::cout << "Seznam hráčů " << std::endl;
     int standing = 1;
@@ -21,13 +21,9 @@ void LeaderBoard::printRecords()
     }
 }
 
-void LeaderBoard::pushBackPlayer(std::pair<std::string, unsigned int> record)
+void LeaderBoard::pushBackPlayer(const std::pair<std::string, unsigned int>& record)
 {
     records.push_back(record);
-}
-
-int LeaderBoard::getRecordCount() {
-    return records.size();
 }
 
 std::string LeaderBoard::getNameOnIndex(size_t index)
@@ -38,4 +34,27 @@ std::string LeaderBoard::getNameOnIndex(size_t index)
 unsigned int LeaderBoard::getScoreInIndex(size_t index)
 {
     return records[index].second;
+}
+
+void LeaderBoard::save(const std::string& fileName)
+{
+    std::ofstream output(fileName + ".txt");
+    output << records.size() << std::endl;
+    for(int i = 0; i < records.size(); i++)
+    {
+        output << i+1 << " " <<getNameOnIndex(i) << " " << getScoreInIndex(i) << std::endl;
+    }
+}
+
+void LeaderBoard::load(const std::string& fileName)
+{
+    std::ifstream input(fileName + ".txt");
+    int count;
+    input >> count;
+    for(int i = 0; i < count; i++)
+    {
+        std::pair<std::string, unsigned int> record;
+        input >> record.first >> record.second;
+        pushBackPlayer(record);
+    }
 }

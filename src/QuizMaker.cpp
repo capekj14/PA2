@@ -4,41 +4,6 @@
 
 #include "QuizMaker.h"
 
-void QuizMaker::run()
-{
-    std::cout << "VÍTEJTE V MARAST V2 ULTIMÁTNÍM NÁSTROJI PRO VYTVÁŘENÍ KVÍZŮ\n";
-    std::string name;
-    askName(name);
-    int pageCount;
-    askPageCount(pageCount);
-    for(int i = 0; i < pageCount; i++)
-    {
-        int questionCount;
-        askQuestionCount(questionCount);
-        for(int i = 0; i < questionCount; i++)
-        {
-            QuestionType type;
-            askQuestionType(type);
-            std::string text;
-            askQuestionText(text);
-            std::vector<std::string> options;
-            askOptions(type, options);
-            std::string correctAnswer;
-            if(type == QuestionType::Free)
-            {
-                std::string patern;
-                std::set<std::string> correctSet;
-                askCorrectAnswer(type, correctAnswer, patern, correctSet);
-            }
-            else
-            {
-                askCorrectAnswer(type, correctAnswer);
-            }
-        }
-
-    }
-}
-
 void QuizMaker::askPageCount(int& pageCount)
 {
     std::cout << "Zadejte počet stránek nového kvízu (nezadávejte více než 10) :" << std::endl;
@@ -107,43 +72,39 @@ void QuizMaker::askQuestionText(std::string& text)
         std::cout << "Zadejte text otázky znovu\n";
     }
 }
-
-void QuizMaker::askCorrectAnswer(QuestionType& type, std::string& correctAnswer)
+void QuizMaker::askCorrectAnswerMulti(std::string& correctAnswer)
 {
-    if(type == QuestionType::SingleChoice)
+    std::cout << "Zadejte správné odpovědi (např. abc):" << std::endl;
+    while(true)
     {
-        std::cout << "Zadejte správnou odpověď (např. b):" << std::endl;
-        while(true)
-        {
-            if(getString(correctAnswer) and (correctAnswer == "a" or correctAnswer == "b"
-                                        or   correctAnswer == "c" or correctAnswer == "d"))
-                break;
-            std::cout << "Zadejte správnou odpověď znovu\n";
-        }
+        if(getString(correctAnswer) and checkABCDset(correctAnswer))
+            break;
+        std::cout << "Zadejte správnou odpověď znovu\n";
     }
-    else if(type == QuestionType::MultiChoice)
+}
+void QuizMaker::askCorrectAnswerYesNo(std::string& correctAnswer)
+{
+    std::cout << "Zadejte správnou odpověď (např. ano):" << std::endl;
+    while(true)
     {
-        std::cout << "Zadejte správné odpovědi (např. abc):" << std::endl;
-        while(true)
-        {
-            if(getString(correctAnswer) and checkABCDset(correctAnswer))
-                break;
-            std::cout << "Zadejte správnou odpověď znovu\n";
-        }
+        if(getString(correctAnswer) and (correctAnswer == "ne" or correctAnswer == "ano"))
+            break;
+        std::cout << "Zadejte správnou odpověď znovu\n";
     }
-    else if(type == QuestionType::YesNo)
+}
+void QuizMaker::askCorrectAnswerSingle(std::string& correctAnswer)
+{
+    std::cout << "Zadejte správnou odpověď (např. b):" << std::endl;
+    while(true)
     {
-        std::cout << "Zadejte správnou odpověď (např. ano):" << std::endl;
-        while(true)
-        {
-            if(getString(correctAnswer) and (correctAnswer == "ne" or correctAnswer == "ano"))
-                break;
-            std::cout << "Zadejte správnou odpověď znovu\n";
-        }
+        if(getString(correctAnswer) and (correctAnswer == "a" or correctAnswer == "b"
+                                    or   correctAnswer == "c" or correctAnswer == "d"))
+            break;
+        std::cout << "Zadejte správnou odpověď znovu\n";
     }
 
 }
-void QuizMaker::askCorrectAnswer(QuestionType& type, std::string& correctAnswer, std::string& patern, std::set<std::string>& correctSet)
+void QuizMaker::askCorrectAnswerFree(std::string& correctAnswer, std::string& patern, std::set<std::string>& correctSet)
 {
     std::cout << "Zadejte přesnou správnou odpověď (např. karel)\n"
               << "Poté zadejte pattern který musí odpověď nutně obsahovat (např. kar)\n"
@@ -183,43 +144,24 @@ void QuizMaker::askCorrectAnswer(QuestionType& type, std::string& correctAnswer,
     }
 }
 
-void QuizMaker::askOptions(QuestionType& type, std::vector<std::string>& options)
+void QuizMaker::askOptions(std::vector<std::string>& options)
 {
-    if(type == QuestionType::MultiChoice)
+    std::cout << "Zadejte 4 možnosti (např. bílá modrá zelená růžová):" << std::endl;
+    for(int i = 0; i < 4; i++)
     {
-        std::cout << "Zadejte 4 možnosti (např. bílá modrá zelená růžová):" << std::endl;
-        for(int i = 0; i < 4; i++)
+        while(true)
         {
-            while(true)
+            std::string str;
+            if(getString(str) and !str.empty())
             {
-                std::string str;
-                if(getString(str) and !str.empty())
-                {
-                    options.push_back(str);
-                    break;
-                }
-                std::cout <<"Zadejte možnost znovu\n";
+                options.push_back(str);
+                break;
             }
-        }
-    }
-    else if(type == QuestionType::SingleChoice)
-    {
-        std::cout << "Zadejte 4 možnosti (např. bílá modrá zelená růžová):" << std::endl;
-        for(int i = 0; i < 4; i++)
-        {
-            while(true)
-            {
-                std::string str;
-                if(getString(str) and !str.empty())
-                {
-                    options.push_back(str);
-                    break;
-                }
-                std::cout <<"Zadejte možnost znovu\n";
-            }
+            std::cout <<"Zadejte možnost znovu\n";
         }
     }
 }
+
 
 bool QuizMaker::getString(std::string& str)
 {

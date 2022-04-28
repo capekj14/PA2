@@ -9,6 +9,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <fstream>
 #include "Player.h"
 
 class LeaderBoard
@@ -16,11 +17,12 @@ class LeaderBoard
     std::vector<std::pair<std::string, unsigned int>> records;
 public:
     void addPlayerResult(const Player& player);
-    void printRecords();
-    void pushBackPlayer(std::pair<std::string, unsigned int> record);
-    int getRecordCount();
+    void showLeaderBoard();
+    void pushBackPlayer(const std::pair<std::string, unsigned int>& record);
     std::string getNameOnIndex(size_t index);
     unsigned int getScoreInIndex(size_t index);
+    void save(const std::string&);
+    void load(const std::string&);
 };
 
 

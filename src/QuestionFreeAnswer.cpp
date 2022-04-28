@@ -76,7 +76,14 @@ bool QuestionFreeAnswer::checkByRegex(const std::string &str)
     return false;
 }
 
-QuestionType QuestionFreeAnswer::getType() {
+QuestionType QuestionFreeAnswer::getType()
+{
     return QuestionType::Free;
+}
+
+void QuestionFreeAnswer::createQuestion()
+{
+    QuizMaker::askQuestionText(text);
+    QuizMaker::askCorrectAnswerFree(correctAnswer, pattern, correctAnswerSet);
 }
 

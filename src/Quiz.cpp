@@ -31,11 +31,11 @@ void Quiz::run()
 void Quiz::printPlayerResult()
 {
     std::cout << "Vaše skóre je " << player.getScore() << "/" << getQuestionCount() << "\n" << std::endl;
-    IOUnitLeaderBoard ioboard;
-    ioboard.load(name);
-    ioboard.leaderBoard.addPlayerResult(player);
-    ioboard.leaderBoard.printRecords();
-    ioboard.save(name);
+    LeaderBoard leaderBoard;
+    leaderBoard.load(name);
+    leaderBoard.addPlayerResult(player);
+    leaderBoard.showLeaderBoard();
+    leaderBoard.save(name);
 }
 
 size_t Quiz::getQuestionCount()
@@ -65,9 +65,42 @@ int Quiz::getScore()
     return score;
 }
 
-void Quiz::pushToQueue(std::queue<Page> &Q)
+void Quiz::pushToQueue(std::queue<Page>& Q)
 {
     for(auto& page : pages)
         Q.push(page);
 }
 
+void Quiz::addPage(const Page& page)
+{
+    pages.push_back(page);
+}
+
+void Quiz::createQuiz()
+{
+    std::cout << "VÍTEJTE V ULTIMÁTNÍM NÁSTROJI PRO VYTVOŘENÍ KVÍZU\n";
+    QuizMaker::askName(name);
+    QuizMaker::askPageCount(pageCount);
+    for(int i = 0; i < pageCount; i++)
+    {
+        Page page;
+        page.createPage();
+        pages.push_back(page);
+    }
+    saveQuiz();
+}
+
+void Quiz::saveQuiz()
+{
+
+}
+
+void Quiz::loadQuiz()
+{
+
+}
+
+void Quiz::setName(const std::string & str)
+{
+    name = str;
+}

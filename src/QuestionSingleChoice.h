@@ -19,6 +19,7 @@ public:
     std::string getAnswer() override;
     bool evaluate() override;
     QuestionType getType() override;
+    void createQuestion() override;
 };
 
 

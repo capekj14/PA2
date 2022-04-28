@@ -49,9 +49,9 @@ int Page::run(int& falseStreak) //0 odpovezeno | 1 falseStreak >= 3 | 2 skip
             std::cout << "Nezvolili jste žádnou validní možnost, zkuste to znovu\n";
         }
     }
-    for(auto& que : questions)
+    for(auto& question : questions)
     {
-        bool goodAnswer = que->run();
+        bool goodAnswer = question->run();
         if(goodAnswer)
         {
             falseStreak = 0;
@@ -61,4 +61,46 @@ int Page::run(int& falseStreak) //0 odpovezeno | 1 falseStreak >= 3 | 2 skip
             return 2;
     }
     return 0;
+}
+
+void Page::addQuestion(const std::shared_ptr<Question>& question)
+{
+    questions.push_back(question);
+}
+
+void Page::createPage()
+{
+    QuizMaker::askQuestionCount(questionCount);
+    for(int i = 0; i < questionCount; i++)
+    {
+        QuestionType type;
+        QuizMaker::askQuestionType(type);
+        switch (type)
+        {
+            case QuestionType::Free:
+            {
+                QuestionFreeAnswer question;
+                question.createQuestion();
+                questions.push_back(std::make_shared<QuestionFreeAnswer>(question));
+            }
+            case QuestionType::SingleChoice:
+            {
+                QuestionSingleChoice question;
+                question.createQuestion();
+                questions.push_back(std::make_shared<QuestionSingleChoice>(question));
+            }
+            case QuestionType::MultiChoice:
+            {
+                QuestionMultiChoice question;
+                question.createQuestion();
+                questions.push_back(std::make_shared<QuestionMultiChoice>(question));
+            }
+            case QuestionType::YesNo:
+            {
+                QuestionYesNo question;
+                question.createQuestion();
+                questions.push_back(std::make_shared<QuestionYesNo>(question));
+            }
+        }
+    }
 }

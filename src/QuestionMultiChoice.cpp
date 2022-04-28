@@ -69,3 +69,10 @@ QuestionType QuestionMultiChoice::getType() {
     return QuestionType::MultiChoice;
 }
 
+void QuestionMultiChoice::createQuestion()
+{
+    QuizMaker::askQuestionText(text);
+    QuizMaker::askOptions(options);
+    QuizMaker::askCorrectAnswerMulti(correctAnswer);
+}
+

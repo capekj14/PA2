@@ -48,3 +48,9 @@ bool QuestionYesNo::evaluate()
 QuestionType QuestionYesNo::getType() {
     return QuestionType::YesNo;
 }
+
+void QuestionYesNo::createQuestion()
+{
+    QuizMaker::askQuestionText(text);
+    QuizMaker::askCorrectAnswerYesNo(correctAnswer);
+}
