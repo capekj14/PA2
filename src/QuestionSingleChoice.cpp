@@ -2,11 +2,12 @@
 // Created by Jakub Čapek on 23.04.2022.
 //
 
+#include <limits>
 #include "QuestionSingleChoice.h"
 
 void QuestionSingleChoice::showQuestion()
 {
-    std::cout << text << "\n" << "\todpovídejte \"a\", \"b\", \"c\" nebo \"d\" " << "\n"
+    std::cout << text << "\n" << "\todpovidejte \"a\", \"b\", \"c\" nebo \"d\" " << "\n"
               << "a\t" << options[0]
               << "b\t" << options[1]
               << "c\t" << options[2]
@@ -22,7 +23,9 @@ std::string QuestionSingleChoice::getAnswer()
         std::cin >> answer;
         if(answer != "a" and answer != "b" and answer != "c" and answer != "d")
         {
-            std::cout << "Odpověděli jste ve špatném formátu zkuste to znovu" << std::endl;
+            std::cout << "Odpovedeli jste ve spatnem formatu zkuste to znovu" << std::endl;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
         }
         else
             break;
@@ -37,18 +40,19 @@ bool QuestionSingleChoice::evaluate()
     if( correctAnswer == playerAnswer)
     {
         correctlyAnswered = true;
-        std::cout << "\nSprávná odpověď!" << std::endl;
+        std::cout << "\nSpravna odpoved!" << std::endl;
         return true;
     }
     else
     {
         correctlyAnswered = false;
-        std::cout << "\nŠpatná odpověď!" << std::endl;
+        std::cout << "\nSpatna odpoved!" << std::endl;
         return false;
     }
 }
 
-QuestionType QuestionSingleChoice::getType() {
+QuestionType QuestionSingleChoice::getType()
+{
     return QuestionType::SingleChoice;
 }
 

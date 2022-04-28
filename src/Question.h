@@ -1,14 +1,14 @@
 //
 // Created by Jakub Čapek on 22.04.2022.
 //
-
+#pragma once
 #ifndef SEMESTRALKA_QUESTION_H
 #define SEMESTRALKA_QUESTION_H
 
 
 #include <string>
 #include <iostream>
-#include "QuestionType.cpp"
+#include "QuestionType.h"
 #include "QuizMaker.h"
 
 class Question

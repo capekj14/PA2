@@ -2,11 +2,12 @@
 // Created by Jakub Čapek on 23.04.2022.
 //
 
+#include <limits>
 #include "QuestionMultiChoice.h"
 
 void QuestionMultiChoice::showQuestion()
 {
-    std::cout << text << "\n" << "\todpovídejte v libovolné kombinaci písmen abcd" << "\n"
+    std::cout << text << "\n" << "\todpovidejte v libovolne kombinaci pismen abcd" << "\n"
               << "a\t" << options[0]
               << "b\t" << options[1]
               << "c\t" << options[2]
@@ -26,7 +27,9 @@ std::string QuestionMultiChoice::getAnswer()
             if (character != 'a' and character != 'b' and character != 'c' and character != 'd')
             {
                 ok = false;
-                std::cout << "Odpověděli jste ve špatném formátu zkuste to znovu" << std::endl;
+                std::cout << "Odpovedeli jste ve spatnem formatu zkuste to znovu" << std::endl;
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
             }
         }
         if(ok)
@@ -56,11 +59,11 @@ bool QuestionMultiChoice::evaluate()
     }
     if(correctSet == playerSet)
     {
-        std::cout << "\nSprávná odpověď!" << std::endl;
+        std::cout << "\nSpravna odpoved!!" << std::endl;
         correctlyAnswered = true;
         return true;
     }
-    std::cout << "\nŠpatná odpověď!" << std::endl;
+    std::cout << "\nSpatna odpoved!" << std::endl;
     correctlyAnswered = false;
     return false;
 }

@@ -2,11 +2,12 @@
 // Created by Jakub Čapek on 23.04.2022.
 //
 
+#include <limits>
 #include "QuestionYesNo.h"
 
 void QuestionYesNo::showQuestion()
 {
-    std::cout << text << "\n" << "\todpovídejte \"ano\" nebo \"ne\" " << "\n"
+    std::cout << text << "\n" << "\todpovidejte \"ano\" nebo \"ne\" " << "\n"
               << "ano\n"
               << "ne\n" << std::endl;
 }
@@ -19,7 +20,9 @@ std::string QuestionYesNo::getAnswer()
         std::cin >> answer;
         if(answer != "ano" and answer != "ne")
         {
-            std::cout << "Odpověděli jste ve špatném formátu zkuste to znovu" << std::endl;
+            std::cout << "Odpovedeli jste ve spatnem formatu zkuste to znovu" << std::endl;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
         }
         else
             break;
@@ -33,14 +36,14 @@ bool QuestionYesNo::evaluate()
 {
     if( correctAnswer == playerAnswer)
     {
-        std::cout << "\nSprávná odpověď!" << std::endl;
+        std::cout << "\nSpravna odpoved!" << std::endl;
         correctlyAnswered = true;
         return true;
     }
     else
     {
         correctlyAnswered = false;
-        std::cout << "\nŠpatná odpověď!" << std::endl;
+        std::cout << "\nSpatna odpoved!" << std::endl;
         return false;
     }
 }

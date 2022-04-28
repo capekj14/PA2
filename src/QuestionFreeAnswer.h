@@ -1,7 +1,7 @@
 //
 // Created by Jakub Čapek on 23.04.2022.
 //
-
+#pragma once
 #ifndef SEMESTRALKA_QUESTIONFREEANSWER_H
 #define SEMESTRALKA_QUESTIONFREEANSWER_H
 

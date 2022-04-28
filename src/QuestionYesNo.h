@@ -1,7 +1,7 @@
 //
 // Created by Jakub Čapek on 23.04.2022.
 //
-
+#pragma once
 #ifndef SEMESTRALKA_QUESTIONYESNO_H
 #define SEMESTRALKA_QUESTIONYESNO_H
 

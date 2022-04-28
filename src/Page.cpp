@@ -2,6 +2,7 @@
 // Created by Jakub Čapek on 22.04.2022.
 //
 
+#include <limits>
 #include "Page.h"
 
 void Page::showPage()
@@ -35,7 +36,7 @@ void Page::setIsAnswered(bool b)
 int Page::run(int& falseStreak) //0 odpovezeno | 1 falseStreak >= 3 | 2 skip
 {
     showPage();
-    std::cout << "Pokud chcete na otázky odpovídat zadejte \"go\" pokud chcete stránku přeskočit zadejte \"skip\"\n";
+    std::cout << "Pokud chcete na otazky odpovidat zadejte \"go\" pokud chcete stranku preskocit zadejte \"skip\"\n";
     while(true)
     {
         std::string input;
@@ -46,7 +47,9 @@ int Page::run(int& falseStreak) //0 odpovezeno | 1 falseStreak >= 3 | 2 skip
             return 2;
         else
         {
-            std::cout << "Nezvolili jste žádnou validní možnost, zkuste to znovu\n";
+            std::cout << "Nezvolili jste zadnou validni moznost, zkuste to znovu\n";
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
         }
     }
     for(auto& question : questions)

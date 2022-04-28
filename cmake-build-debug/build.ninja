@@ -51,97 +51,73 @@ build cmake_object_order_depends_target_semestralka: phony || CMakeFiles/semestr
 
 build CMakeFiles/semestralka.dir/src/main.cpp.obj: CXX_COMPILER__semestralka_Debug D$:/progtest/C++/2pokus/semestralka/src/main.cpp || cmake_object_order_depends_target_semestralka
   DEP_FILE = CMakeFiles\semestralka.dir\src\main.cpp.obj.d
-  FLAGS = -g -std=gnu++14
+  FLAGS = -g -std=gnu++17
   OBJECT_DIR = CMakeFiles\semestralka.dir
   OBJECT_FILE_DIR = CMakeFiles\semestralka.dir\src
 
 build CMakeFiles/semestralka.dir/src/Application.cpp.obj: CXX_COMPILER__semestralka_Debug D$:/progtest/C++/2pokus/semestralka/src/Application.cpp || cmake_object_order_depends_target_semestralka
   DEP_FILE = CMakeFiles\semestralka.dir\src\Application.cpp.obj.d
-  FLAGS = -g -std=gnu++14
+  FLAGS = -g -std=gnu++17
   OBJECT_DIR = CMakeFiles\semestralka.dir
   OBJECT_FILE_DIR = CMakeFiles\semestralka.dir\src
 
 build CMakeFiles/semestralka.dir/src/Quiz.cpp.obj: CXX_COMPILER__semestralka_Debug D$:/progtest/C++/2pokus/semestralka/src/Quiz.cpp || cmake_object_order_depends_target_semestralka
   DEP_FILE = CMakeFiles\semestralka.dir\src\Quiz.cpp.obj.d
-  FLAGS = -g -std=gnu++14
+  FLAGS = -g -std=gnu++17
   OBJECT_DIR = CMakeFiles\semestralka.dir
   OBJECT_FILE_DIR = CMakeFiles\semestralka.dir\src
 
 build CMakeFiles/semestralka.dir/src/Page.cpp.obj: CXX_COMPILER__semestralka_Debug D$:/progtest/C++/2pokus/semestralka/src/Page.cpp || cmake_object_order_depends_target_semestralka
   DEP_FILE = CMakeFiles\semestralka.dir\src\Page.cpp.obj.d
-  FLAGS = -g -std=gnu++14
+  FLAGS = -g -std=gnu++17
   OBJECT_DIR = CMakeFiles\semestralka.dir
   OBJECT_FILE_DIR = CMakeFiles\semestralka.dir\src
 
 build CMakeFiles/semestralka.dir/src/Question.cpp.obj: CXX_COMPILER__semestralka_Debug D$:/progtest/C++/2pokus/semestralka/src/Question.cpp || cmake_object_order_depends_target_semestralka
   DEP_FILE = CMakeFiles\semestralka.dir\src\Question.cpp.obj.d
-  FLAGS = -g -std=gnu++14
+  FLAGS = -g -std=gnu++17
   OBJECT_DIR = CMakeFiles\semestralka.dir
   OBJECT_FILE_DIR = CMakeFiles\semestralka.dir\src
 
 build CMakeFiles/semestralka.dir/src/QuizMaker.cpp.obj: CXX_COMPILER__semestralka_Debug D$:/progtest/C++/2pokus/semestralka/src/QuizMaker.cpp || cmake_object_order_depends_target_semestralka
   DEP_FILE = CMakeFiles\semestralka.dir\src\QuizMaker.cpp.obj.d
-  FLAGS = -g -std=gnu++14
+  FLAGS = -g -std=gnu++17
   OBJECT_DIR = CMakeFiles\semestralka.dir
   OBJECT_FILE_DIR = CMakeFiles\semestralka.dir\src
 
 build CMakeFiles/semestralka.dir/src/QuestionMultiChoice.cpp.obj: CXX_COMPILER__semestralka_Debug D$:/progtest/C++/2pokus/semestralka/src/QuestionMultiChoice.cpp || cmake_object_order_depends_target_semestralka
   DEP_FILE = CMakeFiles\semestralka.dir\src\QuestionMultiChoice.cpp.obj.d
-  FLAGS = -g -std=gnu++14
+  FLAGS = -g -std=gnu++17
   OBJECT_DIR = CMakeFiles\semestralka.dir
   OBJECT_FILE_DIR = CMakeFiles\semestralka.dir\src
 
 build CMakeFiles/semestralka.dir/src/QuestionSingleChoice.cpp.obj: CXX_COMPILER__semestralka_Debug D$:/progtest/C++/2pokus/semestralka/src/QuestionSingleChoice.cpp || cmake_object_order_depends_target_semestralka
   DEP_FILE = CMakeFiles\semestralka.dir\src\QuestionSingleChoice.cpp.obj.d
-  FLAGS = -g -std=gnu++14
+  FLAGS = -g -std=gnu++17
   OBJECT_DIR = CMakeFiles\semestralka.dir
   OBJECT_FILE_DIR = CMakeFiles\semestralka.dir\src
 
 build CMakeFiles/semestralka.dir/src/QuestionYesNo.cpp.obj: CXX_COMPILER__semestralka_Debug D$:/progtest/C++/2pokus/semestralka/src/QuestionYesNo.cpp || cmake_object_order_depends_target_semestralka
   DEP_FILE = CMakeFiles\semestralka.dir\src\QuestionYesNo.cpp.obj.d
-  FLAGS = -g -std=gnu++14
+  FLAGS = -g -std=gnu++17
   OBJECT_DIR = CMakeFiles\semestralka.dir
   OBJECT_FILE_DIR = CMakeFiles\semestralka.dir\src
 
 build CMakeFiles/semestralka.dir/src/QuestionFreeAnswer.cpp.obj: CXX_COMPILER__semestralka_Debug D$:/progtest/C++/2pokus/semestralka/src/QuestionFreeAnswer.cpp || cmake_object_order_depends_target_semestralka
   DEP_FILE = CMakeFiles\semestralka.dir\src\QuestionFreeAnswer.cpp.obj.d
-  FLAGS = -g -std=gnu++14
-  OBJECT_DIR = CMakeFiles\semestralka.dir
-  OBJECT_FILE_DIR = CMakeFiles\semestralka.dir\src
-
-build CMakeFiles/semestralka.dir/src/IOUnit.cpp.obj: CXX_COMPILER__semestralka_Debug D$:/progtest/C++/2pokus/semestralka/src/IOUnit.cpp || cmake_object_order_depends_target_semestralka
-  DEP_FILE = CMakeFiles\semestralka.dir\src\IOUnit.cpp.obj.d
-  FLAGS = -g -std=gnu++14
+  FLAGS = -g -std=gnu++17
   OBJECT_DIR = CMakeFiles\semestralka.dir
   OBJECT_FILE_DIR = CMakeFiles\semestralka.dir\src
 
 build CMakeFiles/semestralka.dir/src/Player.cpp.obj: CXX_COMPILER__semestralka_Debug D$:/progtest/C++/2pokus/semestralka/src/Player.cpp || cmake_object_order_depends_target_semestralka
   DEP_FILE = CMakeFiles\semestralka.dir\src\Player.cpp.obj.d
-  FLAGS = -g -std=gnu++14
+  FLAGS = -g -std=gnu++17
   OBJECT_DIR = CMakeFiles\semestralka.dir
   OBJECT_FILE_DIR = CMakeFiles\semestralka.dir\src
 
 build CMakeFiles/semestralka.dir/src/LeaderBoard.cpp.obj: CXX_COMPILER__semestralka_Debug D$:/progtest/C++/2pokus/semestralka/src/LeaderBoard.cpp || cmake_object_order_depends_target_semestralka
   DEP_FILE = CMakeFiles\semestralka.dir\src\LeaderBoard.cpp.obj.d
-  FLAGS = -g -std=gnu++14
-  OBJECT_DIR = CMakeFiles\semestralka.dir
-  OBJECT_FILE_DIR = CMakeFiles\semestralka.dir\src
-
-build CMakeFiles/semestralka.dir/src/IOUnitQuiz.cpp.obj: CXX_COMPILER__semestralka_Debug D$:/progtest/C++/2pokus/semestralka/src/IOUnitQuiz.cpp || cmake_object_order_depends_target_semestralka
-  DEP_FILE = CMakeFiles\semestralka.dir\src\IOUnitQuiz.cpp.obj.d
-  FLAGS = -g -std=gnu++14
-  OBJECT_DIR = CMakeFiles\semestralka.dir
-  OBJECT_FILE_DIR = CMakeFiles\semestralka.dir\src
-
-build CMakeFiles/semestralka.dir/src/IOUnitLeaderBoard.cpp.obj: CXX_COMPILER__semestralka_Debug D$:/progtest/C++/2pokus/semestralka/src/IOUnitLeaderBoard.cpp || cmake_object_order_depends_target_semestralka
-  DEP_FILE = CMakeFiles\semestralka.dir\src\IOUnitLeaderBoard.cpp.obj.d
-  FLAGS = -g -std=gnu++14
-  OBJECT_DIR = CMakeFiles\semestralka.dir
-  OBJECT_FILE_DIR = CMakeFiles\semestralka.dir\src
-
-build CMakeFiles/semestralka.dir/src/QuestionType.cpp.obj: CXX_COMPILER__semestralka_Debug D$:/progtest/C++/2pokus/semestralka/src/QuestionType.cpp || cmake_object_order_depends_target_semestralka
-  DEP_FILE = CMakeFiles\semestralka.dir\src\QuestionType.cpp.obj.d
-  FLAGS = -g -std=gnu++14
+  FLAGS = -g -std=gnu++17
   OBJECT_DIR = CMakeFiles\semestralka.dir
   OBJECT_FILE_DIR = CMakeFiles\semestralka.dir\src
 
@@ -153,7 +129,7 @@ build CMakeFiles/semestralka.dir/src/QuestionType.cpp.obj: CXX_COMPILER__semestr
 #############################################
 # Link the executable semestralka.exe
 
-build semestralka.exe: CXX_EXECUTABLE_LINKER__semestralka_Debug CMakeFiles/semestralka.dir/src/main.cpp.obj CMakeFiles/semestralka.dir/src/Application.cpp.obj CMakeFiles/semestralka.dir/src/Quiz.cpp.obj CMakeFiles/semestralka.dir/src/Page.cpp.obj CMakeFiles/semestralka.dir/src/Question.cpp.obj CMakeFiles/semestralka.dir/src/QuizMaker.cpp.obj CMakeFiles/semestralka.dir/src/QuestionMultiChoice.cpp.obj CMakeFiles/semestralka.dir/src/QuestionSingleChoice.cpp.obj CMakeFiles/semestralka.dir/src/QuestionYesNo.cpp.obj CMakeFiles/semestralka.dir/src/QuestionFreeAnswer.cpp.obj CMakeFiles/semestralka.dir/src/IOUnit.cpp.obj CMakeFiles/semestralka.dir/src/Player.cpp.obj CMakeFiles/semestralka.dir/src/LeaderBoard.cpp.obj CMakeFiles/semestralka.dir/src/IOUnitQuiz.cpp.obj CMakeFiles/semestralka.dir/src/IOUnitLeaderBoard.cpp.obj CMakeFiles/semestralka.dir/src/QuestionType.cpp.obj
+build semestralka.exe: CXX_EXECUTABLE_LINKER__semestralka_Debug CMakeFiles/semestralka.dir/src/main.cpp.obj CMakeFiles/semestralka.dir/src/Application.cpp.obj CMakeFiles/semestralka.dir/src/Quiz.cpp.obj CMakeFiles/semestralka.dir/src/Page.cpp.obj CMakeFiles/semestralka.dir/src/Question.cpp.obj CMakeFiles/semestralka.dir/src/QuizMaker.cpp.obj CMakeFiles/semestralka.dir/src/QuestionMultiChoice.cpp.obj CMakeFiles/semestralka.dir/src/QuestionSingleChoice.cpp.obj CMakeFiles/semestralka.dir/src/QuestionYesNo.cpp.obj CMakeFiles/semestralka.dir/src/QuestionFreeAnswer.cpp.obj CMakeFiles/semestralka.dir/src/Player.cpp.obj CMakeFiles/semestralka.dir/src/LeaderBoard.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\semestralka.dir

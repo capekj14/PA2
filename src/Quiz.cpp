@@ -3,7 +3,6 @@
 //
 
 #include "Quiz.h"
-#include "IOUnitLeaderBoard.h"
 
 void Quiz::run()
 {
@@ -30,7 +29,7 @@ void Quiz::run()
 
 void Quiz::printPlayerResult()
 {
-    std::cout << "Vaše skóre je " << player.getScore() << "/" << getQuestionCount() << "\n" << std::endl;
+    std::cout << "Vase skore je " << player.getScore() << "/" << getQuestionCount() << "\n" << std::endl;
     LeaderBoard leaderBoard;
     leaderBoard.load(name);
     leaderBoard.addPlayerResult(player);
@@ -78,7 +77,7 @@ void Quiz::addPage(const Page& page)
 
 void Quiz::createQuiz()
 {
-    std::cout << "VÍTEJTE V ULTIMÁTNÍM NÁSTROJI PRO VYTVOŘENÍ KVÍZU\n";
+    std::cout << "VITEJTE V ULTIMATNIM NASTROJI PRO VYTVORENI KVIZU\n";
     QuizMaker::askName(name);
     QuizMaker::askPageCount(pageCount);
     for(int i = 0; i < pageCount; i++)

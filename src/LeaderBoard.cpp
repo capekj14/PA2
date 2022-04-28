@@ -13,11 +13,11 @@ void LeaderBoard::addPlayerResult(const Player& player)
 
 void LeaderBoard::showLeaderBoard()
 {
-    std::cout << "Seznam hráčů " << std::endl;
+    std::cout << "Seznam hrácu " << std::endl;
     int standing = 1;
     for(auto & record : records)
     {
-        std::cout << "\t" << standing++ << "hráč: " << record.first << "skóre: " << record.second << std::endl;
+        std::cout << "\t" << standing++ << "hrac: " << record.first << "skore: " << record.second << std::endl;
     }
 }
 

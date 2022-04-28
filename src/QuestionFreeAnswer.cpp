@@ -2,12 +2,13 @@
 // Created by Jakub Čapek on 23.04.2022.
 //
 
+#include <limits>
 #include "QuestionFreeAnswer.h"
 
 void QuestionFreeAnswer::showQuestion()
 {
-    std::cout << text << "\n" << "\todpovídejte slovem či větou, neukončujte tečkou ani žádným jiným znakem "
-                                 "(bude hodnoceno jako špatná odpověď)" << "\n"
+    std::cout << text << "\n" << "\todpovidejte slovem ci vetou, neukoncujte teckou ani zadnym jinym znakem "
+                                 "(bude hodnoceno jako spatna odpoved)" << "\n"
               << std::endl;
 }
 
@@ -18,7 +19,11 @@ std::string QuestionFreeAnswer::getAnswer()
     {
         std::cin >> answer;
         if (answer.empty())
-            std::cout << "Neodpověděli jste, zkuste to znovu" << std::endl;
+        {
+            std::cout << "Neodpovedeli jste, zkuste to znovu" << std::endl;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+        }
         else
             break;
     }
@@ -30,24 +35,24 @@ bool QuestionFreeAnswer::evaluate()
 {
     if(playerAnswer == correctAnswer)
     {
-        std::cout << "\nSprávná odpověď!" << std::endl;
+        std::cout << "\nSpravna odpoved!" << std::endl;
         correctlyAnswered = true;
         return true;
     }
     for (const auto& str: correctAnswerSet)
         if (str == playerAnswer)
         {
-            std::cout << "\nSprávná odpověď!" << std::endl;
+            std::cout << "\nSpravna odpoved!!" << std::endl;
             correctlyAnswered = true;
             return true;
         }
     if(checkByRegex(playerAnswer))
     {
-        std::cout << "\nSprávná odpověď!" << std::endl;
+        std::cout << "\nSpravna odpoved!!" << std::endl;
         correctlyAnswered = true;
         return true;
     }
-    std::cout << "\nŠpatná odpověď\n";
+    std::cout << "\nSpatna odpoved!\n";
     correctlyAnswered = false;
     return false;
 }

@@ -1,6 +1,7 @@
 //
 // Created by Jakub Čapek on 22.04.2022.
 //
+#pragma once
 #include <vector>
 #include <string>
 #include <queue>

@@ -12,8 +12,8 @@ void Application::createQuiz()
 
 bool Application::loadQuiz()
 {
-    std::cout << "Vyberte název kvízu z nabídky:" << std::endl;
-    //printAll possible quizez
+    std::cout << "Vyberte nazev kvizu z nabidky:" << std::endl;
+    findQuizes();
     std::string str;
     std::cin >> str;
     quiz.setName(str);
@@ -23,24 +23,25 @@ bool Application::loadQuiz()
 
 void Application::showMenu()
 {
-    std::cout << "Vítejte v aplikaci Marast v2\n\n" << "\t1) Vytvořit nový kvíz\n" << "\t2) Načíst kvíz a hrát\n"
+    std::cout << "Vitejte v aplikaci Marast v2\n\n" << "\t1) Vytvorit novy kviz\n" << "\t2) Nacist kviz a hrat\n"
               << "\t3) Konec\n";
 }
 
 int Application::getAction()
 {
-    int ret;
     while(true)
     {
+        int ret;
         std::cin >> ret;
         if (ret != 1 and ret != 2 and ret != 3)
         {
-            std::cout << "Zadali jste neplatnou možnost, zkuste to znovu " << std::endl;
+            std::cout << "Zadali jste neplatnou moznost, zkuste to znovu" << std::endl;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
         }
         else
-            break;
+            return ret;
     }
-    return ret;
 }
 
 void Application::run()
@@ -60,5 +61,13 @@ void Application::run()
         }
         else if(result == 3)
             break;
+    }
+}
+
+void Application::findQuizes()
+{
+    for(const auto& item : std::filesystem::directory_iterator("/semestralka/quizes"))
+    {
+        std::cout << item << std::endl;
     }
 }

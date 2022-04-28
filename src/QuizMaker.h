@@ -1,18 +1,15 @@
 //
 // Created by Jakub Čapek on 22.04.2022.
 //
-
+#pragma once
 #include <iostream>
 #include <vector>
 #include <set>
-#include "QuestionType.cpp"
+#include "QuestionType.h"
 
 #ifndef SEMESTRALKA_QUIZMAKER_H
 #define SEMESTRALKA_QUIZMAKER_H
 
-//KAZDY OBJEKT UMI SAVNOUT SVOJE DATA BERE FSTREAM
-//KAZDY OBJEKT SE UMI ZEPTAT NA VSECHNY DATA CO POTREBUJE Z CINU
-//NA KONCU RUN SE ZAVOLA IOUNITQUIZ KTERA PRO CELY KVIZ VYPISE VSE 
 class QuizMaker
 {
 
