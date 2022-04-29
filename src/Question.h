@@ -8,6 +8,7 @@
 
 #include <string>
 #include <iostream>
+#include <fstream>
 #include "QuestionType.h"
 #include "QuizMaker.h"
 
@@ -26,6 +27,8 @@ public:
     bool getCorrectlyAnswered() const;
     virtual QuestionType getType() = 0;
     virtual void createQuestion() = 0;
+    virtual void saveQuestion(std::ofstream&) = 0;
+    virtual void loadQuestion(std::ifstream&) = 0;
 };
 
 

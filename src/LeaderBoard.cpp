@@ -38,7 +38,7 @@ unsigned int LeaderBoard::getScoreInIndex(size_t index)
 
 void LeaderBoard::save(const std::string& fileName)
 {
-    std::ofstream output(fileName + ".txt");
+    std::ofstream output("leaderboards/" + fileName + "_leaderboard.txt");
     output << records.size() << std::endl;
     for(int i = 0; i < records.size(); i++)
     {
@@ -48,7 +48,7 @@ void LeaderBoard::save(const std::string& fileName)
 
 void LeaderBoard::load(const std::string& fileName)
 {
-    std::ifstream input(fileName + ".txt");
+    std::ifstream input("leaderboards/" + fileName + "_leaderboard.txt");
     int count;
     input >> count;
     for(int i = 0; i < count; i++)

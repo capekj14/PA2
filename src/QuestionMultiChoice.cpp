@@ -59,7 +59,7 @@ bool QuestionMultiChoice::evaluate()
     }
     if(correctSet == playerSet)
     {
-        std::cout << "\nSpravna odpoved!!" << std::endl;
+        std::cout << "\nSpravna odpoved!" << std::endl;
         correctlyAnswered = true;
         return true;
     }
@@ -77,5 +77,20 @@ void QuestionMultiChoice::createQuestion()
     QuizMaker::askQuestionText(text);
     QuizMaker::askOptions(options);
     QuizMaker::askCorrectAnswerMulti(correctAnswer);
+}
+
+void QuestionMultiChoice::saveQuestion(std::ofstream& out)
+{
+    out << "\t{\n";
+    out << "\t\t\"typ\" : \"" << "2" << "\"" << std::endl;
+    out << "\t\t\"text\" : \"" << text << "\"" << std::endl;
+    out << "\t\t\"spravna odpoved\" : \"" << correctAnswer << "\"" << std::endl;
+    for(int i = 0; i < 4; i++)
+        out << "\t\t\"moznost\" : \"" << options[i] << "\"" << std::endl;
+    out << "\t}\n";
+}
+
+void QuestionMultiChoice::loadQuestion(std::ifstream &) {
+
 }
 

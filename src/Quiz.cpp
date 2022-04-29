@@ -87,15 +87,34 @@ void Quiz::createQuiz()
         pages.push_back(page);
     }
     saveQuiz();
+    std::cout << "VAS KVIZ BYL USPESNE ULOZEN\n";
 }
 
 void Quiz::saveQuiz()
 {
-
+    std::ofstream out("quizes"+ name + ".txt");
+    out << "\"nazev : \"" << name << "\"" << std::endl;
+    out << "\"pocet stran : \"" << pageCount << "\"" << std::endl;
+    for(auto& page : pages)
+        page.savePage(out);
 }
 
-void Quiz::loadQuiz()
+void Quiz::loadQuiz(const std::string& fileName)
 {
+    std::ifstream in("quizes"+ name + ".txt");
+    std::string input;
+    std::getline(in, input, '\n');
+    sscanf(input.c_str(), "\"name\" : \"%s\"", &name);
+    std::getline(in, input, '\n');
+    std::string pageCountStr;
+    sscanf(input.c_str(), "\"pocet stran\" : \"%s\"", &pageCountStr);
+    pageCount = stoi(pageCountStr);
+    for(int i = 0; i < pageCount; i++)
+    {
+        Page page;
+        page.loadPage(in);
+        pages.push_back(page);
+    }
 
 }
 

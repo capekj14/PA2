@@ -85,25 +85,91 @@ void Page::createPage()
                 QuestionFreeAnswer question;
                 question.createQuestion();
                 questions.push_back(std::make_shared<QuestionFreeAnswer>(question));
+                break;
             }
             case QuestionType::SingleChoice:
             {
                 QuestionSingleChoice question;
                 question.createQuestion();
                 questions.push_back(std::make_shared<QuestionSingleChoice>(question));
+                break;
             }
             case QuestionType::MultiChoice:
             {
                 QuestionMultiChoice question;
                 question.createQuestion();
                 questions.push_back(std::make_shared<QuestionMultiChoice>(question));
+                break;
             }
             case QuestionType::YesNo:
             {
                 QuestionYesNo question;
                 question.createQuestion();
                 questions.push_back(std::make_shared<QuestionYesNo>(question));
+                break;
             }
         }
     }
+}
+
+void Page::savePage(std::ofstream& out)
+{
+    out << "{\n";
+    out << "\t\"pocet otazek\" : \"" << questionCount << "\"" << std::endl;
+    for(auto& question : questions)
+        question->saveQuestion(out);
+    out << "}\n";
+}
+
+void Page::loadPage(std::ifstream& in)
+{
+    std::string input;
+    std::getline(in, input, '\n');
+    sscanf(input.c_str(), "{");
+    std::getline(in, input, '\n');
+    std::string questionCountGetted;
+    sscanf(input.c_str(), "\t\"pocet otazek\" : \"%s\"", &questionCountGetted);
+    questionCount = stoi(questionCountGetted);
+    for(int i = 0; i < questionCount; i++)
+    {
+        std::getline(in, input, '\n');
+        sscanf(input.c_str(), "\t{");
+        std::string typeGetted;
+        sscanf(input.c_str(), "\t\t\"typ\" : \"%s\"", &typeGetted);
+        int typeInt = std::stoi(typeGetted);
+        auto type = (QuestionType) typeInt;
+        switch(type)
+        {
+            case QuestionType::Free :
+            {
+                QuestionFreeAnswer question;
+                question.loadQuestion(in);
+                questions.push_back(std::make_shared<QuestionFreeAnswer>(question));
+                break;
+            }
+            case QuestionType::SingleChoice :
+            {
+                QuestionSingleChoice question;
+                question.loadQuestion(in);
+                questions.push_back(std::make_shared<QuestionSingleChoice>(question));
+                break;
+            }
+            case QuestionType::MultiChoice :
+            {
+                QuestionMultiChoice question;
+                question.loadQuestion(in);
+                questions.push_back(std::make_shared<QuestionMultiChoice>(question));
+                break;
+            }
+            case QuestionType::YesNo :
+            {
+                QuestionYesNo question;
+                question.loadQuestion(in);
+                questions.push_back(std::make_shared<QuestionYesNo>(question));
+                break;
+            }
+        }
+    }
+    std::getline(in, input, '\n');
+    sscanf(input.c_str(), "}");
 }

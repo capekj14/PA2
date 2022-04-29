@@ -57,3 +57,16 @@ void QuestionYesNo::createQuestion()
     QuizMaker::askQuestionText(text);
     QuizMaker::askCorrectAnswerYesNo(correctAnswer);
 }
+
+void QuestionYesNo::saveQuestion(std::ofstream& out)
+{
+    out << "\t{\n";
+    out << "\t\t\"typ\" : \"" << "4" << "\"" << std::endl;
+    out << "\t\t\"text\" : \"" << text << "\"" << std::endl;
+    out << "\t\t\"spravna odpoved\" : \"" << correctAnswer << "\"" << std::endl;
+    out << "\t}\n";
+}
+
+void QuestionYesNo::loadQuestion(std::ifstream &) {
+
+}

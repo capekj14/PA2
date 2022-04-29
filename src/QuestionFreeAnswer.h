@@ -22,6 +22,8 @@ public:
     bool checkByRegex(const std::string& str);
     QuestionType getType() override;
     void createQuestion() override;
+    void saveQuestion(std::ofstream&) override;
+    void loadQuestion(std::ifstream&) override;
 };
 
 

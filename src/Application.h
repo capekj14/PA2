@@ -15,11 +15,9 @@ class Application
 
 public:
     void run();
-    bool loadQuiz();
-    void createQuiz();
     void showMenu();
     int getAction();
-    void findQuizes();
+    std::string findSelectQuizes();
 };
 
 

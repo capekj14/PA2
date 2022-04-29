@@ -76,7 +76,7 @@ void QuizMaker::askQuestionText(std::string& text)
     std::cout << "Zadejte text otazky:" << std::endl;
     while(true)
     {
-        if(getString(text) and !text.empty())
+        if(getText(text) and !text.empty())
             break;
         std::cout << "Zadejte text otazky znovu\n";
         std::cin.clear();
@@ -192,18 +192,12 @@ void QuizMaker::askOptions(std::vector<std::string>& options)
 
 bool QuizMaker::getString(std::string& str)
 {
-    std::cin >> str;
-    if(std::cin.fail())
-        return false;
-    return true;
+    return not not((std::cin >> str));
 }
 
 bool QuizMaker::getNumber(int& num)
 {
-    std::cin >> num;
-    if(std::cin.fail())
-        return false;
-    return true;
+    return not not(std::cin >> num);
 }
 
 bool QuizMaker::checkABCDset(std::string &str)
@@ -227,5 +221,13 @@ bool QuizMaker::checkABCDset(std::string &str)
     for(int count : counts)
         if(count > 1)
             return false;
+    return true;
+}
+
+bool QuizMaker::getText(std::string& text)
+{
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+    std::getline(std::cin, text, '\n');
     return true;
 }

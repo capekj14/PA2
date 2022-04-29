@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 #include <queue>
+#include <fstream>
 #include "Page.h"
 #include "Player.h"
 #include "LeaderBoard.h"
@@ -32,7 +33,7 @@ public:
     void addPage(const Page&);
     void createQuiz();
     void saveQuiz();
-    void loadQuiz();
+    void loadQuiz(const std::string& );
 
 };
 

@@ -63,3 +63,18 @@ void QuestionSingleChoice::createQuestion()
     QuizMaker::askCorrectAnswerSingle(correctAnswer);
 
 }
+
+void QuestionSingleChoice::saveQuestion(std::ofstream& out)
+{
+    out << "\t{\n";
+    out << "\t\t\"typ\" : \"" << "3" << "\"" << std::endl;
+    out << "\t\t\"text\" : \"" << text << "\"" << std::endl;
+    out << "\t\t\"spravna odpoved\" : \"" << correctAnswer << "\"" << std::endl;
+    for(int i = 0; i < 4; i++)
+        out << "\t\t\"moznost\" : \"" << options[i] << "\"" << std::endl;
+    out << "\t}\n";
+}
+
+void QuestionSingleChoice::loadQuestion(std::ifstream &) {
+
+}

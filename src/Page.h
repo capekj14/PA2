@@ -10,6 +10,7 @@
 #include "QuestionSingleChoice.h"
 #include "QuestionYesNo.h"
 #include <iostream>
+#include <fstream>
 #include "QuizMaker.h"
 
 #ifndef SEMESTRALKA_PAGE_H
@@ -28,6 +29,8 @@ public:
     void addQuestion(const std::shared_ptr<Question>&);
     int run(int& falseStreak);
     void createPage();
+    void savePage(std::ofstream &);
+    void loadPage(std::ifstream &);
 };
 
 

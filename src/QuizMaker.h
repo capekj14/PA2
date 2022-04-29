@@ -22,8 +22,8 @@ public:
     static void askOptions(std::vector<std::string>&);
     static bool getString(std::string&);
     static bool getNumber(int&);
-    static void askCorrectAnswerFree(std::string &correctAnswer, std::string& patern,
-                                     std::set<std::string>& correctSet);
+    static bool getText(std::string&);
+    static void askCorrectAnswerFree(std::string &correctAnswer, std::string& patern, std::set<std::string>& correctSet);
     static void askCorrectAnswerMulti(std::string &correctAnswer);
     static void askCorrectAnswerYesNo(std::string &correctAnswer);
     static void askCorrectAnswerSingle(std::string &correctAnswer);
