@@ -61,9 +61,9 @@ void QuestionYesNo::createQuestion()
 void QuestionYesNo::saveQuestion(std::ofstream& out)
 {
     out << "\t{\n";
-    out << "\t\t\"typ\" : <" << "4" << ">" << std::endl;
-    out << "\t\t\"text\" : <" << text << ">" << std::endl;
-    out << "\t\t\"spravna odpoved\" : <" << correctAnswer << ">" << std::endl;
+    out << "\t\t\"typ\" : <<" << "4" << ">>" << std::endl;
+    out << "\t\t\"text\" : <<" << text << ">>" << std::endl;
+    out << "\t\t\"spravna odpoved\" : <<" << correctAnswer << ">>" << std::endl;
     out << "\t}\n";
 }
 
@@ -71,13 +71,13 @@ void QuestionYesNo::loadQuestion(std::ifstream& in)
 {
     std::string input;
     std::getline(in, input, '\n');
-    size_t from = input.find_first_of('<');
-    size_t to = input.find_last_of('>');
-    text = std::string(input.data() + from, to-from);
+    size_t from = input.find_first_of("<<");
+    size_t to = input.find_first_of(">>");
+    text = std::string(input.data() + from + 1, to-from);
 
     std::getline(in, input, '\n');
     std::string setCount;
-    sscanf(input.c_str(), "\t\t\"spravna odpoved\" : <%s>", &correctAnswer);
+    sscanf(input.c_str(), "\t\t\"spravna odpoved\" : <<%s>>", &correctAnswer);
 
     std::getline(in, input, '\n');
     sscanf(input.c_str(), "\t}");

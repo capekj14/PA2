@@ -67,11 +67,11 @@ void QuestionSingleChoice::createQuestion()
 void QuestionSingleChoice::saveQuestion(std::ofstream& out)
 {
     out << "\t{\n";
-    out << "\t\t\"typ\" : <" << "3" << ">" << std::endl;
-    out << "\t\t\"text\" : <" << text << ">" << std::endl;
-    out << "\t\t\"spravna odpoved\" : <" << correctAnswer << ">" << std::endl;
+    out << "\t\t\"typ\" : <<" << "3" << ">>" << std::endl;
+    out << "\t\t\"text\" : <<" << text << ">>" << std::endl;
+    out << "\t\t\"spravna odpoved\" : <<" << correctAnswer << ">>" << std::endl;
     for(int i = 0; i < 4; i++)
-        out << "\t\t\"moznost\" : <" << options[i] << ">" << std::endl;
+        out << "\t\t\"moznost\" : <<" << options[i] << ">>" << std::endl;
     out << "\t}\n";
 }
 
@@ -79,21 +79,21 @@ void QuestionSingleChoice::loadQuestion(std::ifstream& in)
 {
     std::string input;
     std::getline(in, input, '\n');
-    size_t from = input.find_first_of('<');
-    size_t to = input.find_last_of('>');
-    text = std::string(input.data() + from, to-from);
+    size_t from = input.find_first_of("<<");
+    size_t to = input.find_first_of(">>");
+    text = std::string(input.data() + from + 1, to-from);
 
     std::getline(in, input, '\n');
-    from = input.find_first_of('<');
-    to = input.find_last_of('>');
-    correctAnswer = std::string(input.data() + from, to-from);
+    from = input.find_first_of("<<");
+    to = input.find_first_of(">>");
+    correctAnswer = std::string(input.data() + from + 1, to-from);
 
     for(int i = 0; i < 4; i++)
     {
         std::getline(in, input, '\n');
-        from = input.find_first_of('<');
-        to = input.find_last_of('>');
-        options[i] = std::string(input.data() + from, to-from);
+        from = input.find_first_of("<<");
+        to = input.find_first_of(">>");
+        options[i] = std::string(input.data() + from + 1, to-from);
     }
     std::getline(in, input, '\n');
     sscanf(input.c_str(), "\t}");

@@ -93,8 +93,8 @@ void Quiz::createQuiz()
 void Quiz::saveQuiz()
 {
     std::ofstream out("quizes"+ name + ".txt");
-    out << "\"nazev : <" << name << ">" << std::endl;
-    out << "\"pocet stran : <" << pageCount << ">" << std::endl;
+    out << "\"nazev : <<" << name << ">>" << std::endl;
+    out << "\"pocet stran : <<" << pageCount << ">>" << std::endl;
     for(auto& page : pages)
         page.savePage(out);
 }
@@ -104,10 +104,10 @@ void Quiz::loadQuiz(const std::string& fileName)
     std::ifstream in("quizes"+ name + ".txt");
     std::string input;
     std::getline(in, input, '\n');
-    sscanf(input.c_str(), "\"name\" : <%s>", &name);
+    sscanf(input.c_str(), "\"name\" : <<%s>>", &name);
     std::getline(in, input, '\n');
     std::string pageCountStr;
-    sscanf(input.c_str(), "\"pocet stran\" : <%s>", &pageCountStr);
+    sscanf(input.c_str(), "\"pocet stran\" : <<%s>>", &pageCountStr);
     pageCount = stoi(pageCountStr);
     for(int i = 0; i < pageCount; i++)
     {

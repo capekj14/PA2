@@ -115,7 +115,7 @@ void Page::createPage()
 void Page::savePage(std::ofstream& out)
 {
     out << "{\n";
-    out << "\t\"pocet otazek\" : <" << questionCount << ">" << std::endl;
+    out << "\t\"pocet otazek\" : <<" << questionCount << ">>" << std::endl;
     for(auto& question : questions)
         question->saveQuestion(out);
     out << "}\n";
@@ -128,14 +128,14 @@ void Page::loadPage(std::ifstream& in)
     sscanf(input.c_str(), "{");
     std::getline(in, input, '\n');
     std::string questionCountGetted;
-    sscanf(input.c_str(), "\t\"pocet otazek\" : <%s>", &questionCountGetted);
+    sscanf(input.c_str(), "\t\"pocet otazek\" : <<%s>>", &questionCountGetted);
     questionCount = stoi(questionCountGetted);
     for(int i = 0; i < questionCount; i++)
     {
         std::getline(in, input, '\n');
         sscanf(input.c_str(), "\t{");
         std::string typeGetted;
-        sscanf(input.c_str(), "\t\t\"typ\" : <%s>", &typeGetted);
+        sscanf(input.c_str(), "\t\t\"typ\" : <<%s>>", &typeGetted);
         int typeInt = std::stoi(typeGetted);
         auto type = (QuestionType) typeInt;
         switch(type)
