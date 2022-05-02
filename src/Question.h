@@ -11,6 +11,7 @@
 #include <fstream>
 #include "QuestionType.h"
 #include "QuizMaker.h"
+#include "Common.h"
 
 class Question
 {

@@ -21,18 +21,13 @@ std::string QuestionMultiChoice::getAnswer()
     while (true)
     {
         bool ok = true;
-        std::cin >> answer;
-        for(auto & character : answer)
+        Common::getString(playerAnswer);
+        if(not Common::checkABCDset(playerAnswer))
         {
-            if (character != 'a' and character != 'b' and character != 'c' and character != 'd')
-            {
-                ok = false;
-                std::cout << "Odpovedeli jste ve spatnem formatu zkuste to znovu" << std::endl;
-                std::cin.clear();
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
-            }
+            std::cout << "Odpovedeli jste ve spatnem formatu zkuste to znovu" << std::endl;
+            Common::clearConsole();
         }
-        if(ok)
+        else
             break;
     }
     playerAnswer = answer;
@@ -82,11 +77,11 @@ void QuestionMultiChoice::createQuestion()
 void QuestionMultiChoice::saveQuestion(std::ofstream& out)
 {
     out << "\t{\n";
-    out << "\t\t\"typ\" : <<" << "2" << ">>" << std::endl;
-    out << "\t\t\"text\" : <<" << text << ">>" << std::endl;
-    out << "\t\t\"spravna odpoved\" : <<" << correctAnswer << ">>" << std::endl;
+    out << "\t\t\"typ\" : << " << "2" << " >>" << std::endl;
+    out << "\t\t\"text\" : << " << text << " >>" << std::endl;
+    out << "\t\t\"spravna odpoved\" : << " << correctAnswer << " >>" << std::endl;
     for(int i = 0; i < 4; i++)
-        out << "\t\t\"moznost\" : <<" << options[i] << ">>" << std::endl;
+        out << "\t\t\"moznost\" : << " << options[i] << " >>" << std::endl;
     out << "\t}\n";
 }
 

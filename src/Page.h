@@ -12,6 +12,7 @@
 #include <iostream>
 #include <fstream>
 #include "QuizMaker.h"
+#include "Common.h"
 
 #ifndef SEMESTRALKA_PAGE_H
 #define SEMESTRALKA_PAGE_H

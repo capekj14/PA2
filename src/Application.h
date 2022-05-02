@@ -9,6 +9,7 @@
 #include "Quiz.h"
 #include "QuizMaker.h"
 #include <filesystem>
+#include "Common.h"
 class Application
 {
     Quiz quiz;

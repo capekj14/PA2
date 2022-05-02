@@ -20,17 +20,15 @@ std::string QuestionSingleChoice::getAnswer()
     std::string answer;
     while (true)
     {
-        std::cin >> answer;
-        if(answer != "a" and answer != "b" and answer != "c" and answer != "d")
+        Common::getString(playerAnswer);
+        if(playerAnswer != "a" and playerAnswer != "b" and playerAnswer != "c" and playerAnswer != "d")
         {
             std::cout << "Odpovedeli jste ve spatnem formatu zkuste to znovu" << std::endl;
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+            Common::clearConsole();
         }
         else
             break;
     }
-    playerAnswer = answer;
     answered = true;
     return answer;
 }
@@ -67,11 +65,11 @@ void QuestionSingleChoice::createQuestion()
 void QuestionSingleChoice::saveQuestion(std::ofstream& out)
 {
     out << "\t{\n";
-    out << "\t\t\"typ\" : <<" << "3" << ">>" << std::endl;
-    out << "\t\t\"text\" : <<" << text << ">>" << std::endl;
-    out << "\t\t\"spravna odpoved\" : <<" << correctAnswer << ">>" << std::endl;
+    out << "\t\t\"typ\" : << " << "3" << " >>" << std::endl;
+    out << "\t\t\"text\" : << " << text << " >>" << std::endl;
+    out << "\t\t\"spravna odpoved\" : << " << correctAnswer << " >>" << std::endl;
     for(int i = 0; i < 4; i++)
-        out << "\t\t\"moznost\" : <<" << options[i] << ">>" << std::endl;
+        out << "\t\t\"moznost\" : << " << options[i] << " >>" << std::endl;
     out << "\t}\n";
 }
 

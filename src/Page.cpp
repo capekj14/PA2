@@ -48,8 +48,7 @@ int Page::run(int& falseStreak) //0 odpovezeno | 1 falseStreak >= 3 | 2 skip
         else
         {
             std::cout << "Nezvolili jste zadnou validni moznost, zkuste to znovu\n";
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+            Common::clearConsole();
         }
     }
     for(auto& question : questions)
@@ -115,7 +114,7 @@ void Page::createPage()
 void Page::savePage(std::ofstream& out)
 {
     out << "{\n";
-    out << "\t\"pocet otazek\" : <<" << questionCount << ">>" << std::endl;
+    out << "\t\"pocet otazek\" : << " << questionCount << " >>" << std::endl;
     for(auto& question : questions)
         question->saveQuestion(out);
     out << "}\n";

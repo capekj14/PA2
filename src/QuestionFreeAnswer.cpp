@@ -17,17 +17,16 @@ std::string QuestionFreeAnswer::getAnswer()
     std::string answer;
     while(true)
     {
-        std::cin >> answer;
+        Common::getText(playerAnswer);
         if (answer.empty())
         {
             std::cout << "Neodpovedeli jste, zkuste to znovu" << std::endl;
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+            Common::clearConsole();
         }
         else
             break;
     }
-    playerAnswer = answer;
+    answered = true;
     return answer;
 }
 
@@ -95,13 +94,13 @@ void QuestionFreeAnswer::createQuestion()
 void QuestionFreeAnswer::saveQuestion(std::ofstream& out)
 {
     out << "\t{\n";
-    out << "\t\t\"typ\" : <<" << "1" << ">>" << std::endl;
-    out << "\t\t\"text\" : <<" << text << ">>" << std::endl;
-    out << "\t\t\"spravna odpoved\" : <<" << correctAnswer << ">>" << std::endl;
-    out << "\t\t\"regularni vyraz\" : <<" << pattern << ">>" << std::endl;
-    out << "\t\t\"pocet odpovedi v setu\" : <<" << correctAnswerSet.size() << ">>" << std::endl;
+    out << "\t\t\"typ\" : << " << "1" << " >>" << std::endl;
+    out << "\t\t\"text\" : << " << text << " >>" << std::endl;
+    out << "\t\t\"spravna odpoved\" : << " << correctAnswer << " >>" << std::endl;
+    out << "\t\t\"regularni vyraz\" : << " << pattern << " >>" << std::endl;
+    out << "\t\t\"pocet odpovedi v setu\" : << " << correctAnswerSet.size() << " >>" << std::endl;
     for(const auto& setAnswer : correctAnswerSet)
-        out << "\t\t\"uznavana odpoved\" : <<" << setAnswer << ">>" << std::endl;
+        out << "\t\t\"uznavana odpoved\" : << " << setAnswer << " >>" << std::endl;
     out << "\t}\n";
 }
 

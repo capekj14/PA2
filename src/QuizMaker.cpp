@@ -10,11 +10,10 @@ void QuizMaker::askPageCount(int& pageCount)
     std::cout << "Zadejte pocet stranek noveho kvizu (nezadavejte vice nez 10) :" << std::endl;
     while(true)
     {
-        if(getNumber(pageCount) and pageCount <= 10 and pageCount > 0)
+        if(Common::getNumber(pageCount) and pageCount <= 10 and pageCount > 0)
             break;
         std::cout << "Zadejte pocet znovu\n";
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+        Common::clearConsole();
     }
 }
 
@@ -23,11 +22,10 @@ void QuizMaker::askName(std::string& name)
     std::cout << "Zadejte jmeno noveho kvizu (bez mezer a jinych bilych znaku) :" << std::endl;
     while(true)
     {
-        if(getString(name))
+        if(Common::getString(name))
             break;
         std::cout << "Zadejte nazev znovu\n";
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+        Common::clearConsole();
     }
 }
 
@@ -36,11 +34,10 @@ void QuizMaker::askQuestionCount(int& questionCount)
     std::cout << "Zadejte pocet otazek na teto strance (maximalne 3):" << std::endl;
     while(true)
     {
-        if(getNumber(questionCount) and questionCount <= 3 and questionCount > 0)
+        if(Common::getNumber(questionCount) and questionCount <= 3 and questionCount > 0)
             break;
         std::cout << "Zadejte pocet znovu\n";
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+        Common::clearConsole();
     }
 }
 
@@ -54,7 +51,7 @@ void QuizMaker::askQuestionType(QuestionType& type)
     int num;
     while(true)
     {
-        if(getNumber(num) and (num == 1 or num == 2 or num == 3 or num == 4))
+        if(Common::getNumber(num) and (num == 1 or num == 2 or num == 3 or num == 4))
         {
             switch (num)
             {
@@ -66,8 +63,7 @@ void QuizMaker::askQuestionType(QuestionType& type)
             break;
         }
         std::cout << "Vyberte typ otazky znovu\n";
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+        Common::clearConsole();
     }
 }
 
@@ -76,11 +72,10 @@ void QuizMaker::askQuestionText(std::string& text)
     std::cout << "Zadejte text otazky:" << std::endl;
     while(true)
     {
-        if(getText(text) and !text.empty())
+        if(Common::getText(text) and !text.empty())
             break;
         std::cout << "Zadejte text otazky znovu\n";
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+        Common::clearConsole();
     }
 }
 void QuizMaker::askCorrectAnswerMulti(std::string& correctAnswer)
@@ -88,11 +83,10 @@ void QuizMaker::askCorrectAnswerMulti(std::string& correctAnswer)
     std::cout << "Zadejte spravne odpovedi (napr. abc):" << std::endl;
     while(true)
     {
-        if(getString(correctAnswer) and checkABCDset(correctAnswer))
+        if(Common::getString(correctAnswer) and checkABCDset(correctAnswer))
             break;
         std::cout << "Zadejte spravnou odpoved znovu\n";
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+        Common::clearConsole();
     }
 }
 void QuizMaker::askCorrectAnswerYesNo(std::string& correctAnswer)
@@ -100,11 +94,10 @@ void QuizMaker::askCorrectAnswerYesNo(std::string& correctAnswer)
     std::cout << "Zadejte spravnou odpoved (napr. ano):" << std::endl;
     while(true)
     {
-        if(getString(correctAnswer) and (correctAnswer == "ne" or correctAnswer == "ano"))
+        if(Common::getString(correctAnswer) and (correctAnswer == "ne" or correctAnswer == "ano"))
             break;
         std::cout << "Zadejte spravnou odpoved znovu\n";
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+        Common::clearConsole();
     }
 }
 void QuizMaker::askCorrectAnswerSingle(std::string& correctAnswer)
@@ -112,14 +105,12 @@ void QuizMaker::askCorrectAnswerSingle(std::string& correctAnswer)
     std::cout << "Zadejte spravnou odpoved (napr. b):" << std::endl;
     while(true)
     {
-        if(getString(correctAnswer) and (correctAnswer == "a" or correctAnswer == "b"
+        if(Common::getString(correctAnswer) and (correctAnswer == "a" or correctAnswer == "b"
                                     or   correctAnswer == "c" or correctAnswer == "d"))
             break;
         std::cout << "Zadejte spravnou odpoved znovu\n";
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+        Common::clearConsole();
     }
-
 }
 void QuizMaker::askCorrectAnswerFree(std::string& correctAnswer, std::string& patern, std::set<std::string>& correctSet)
 {
@@ -129,42 +120,38 @@ void QuizMaker::askCorrectAnswerFree(std::string& correctAnswer, std::string& pa
               << std::endl;
     while(true)
     {
-        if(getString(correctAnswer) and !correctAnswer.empty())
+        if(Common::getText(correctAnswer) and !correctAnswer.empty())
             break;
         std::cout << "Zadejte spravnou odpoved znovu\n";
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+        Common::clearConsole();
     }
     while(true)
     {
-        if(getString(patern) and !patern.empty())
+        if(Common::getText(patern) and !patern.empty())
             break;
         std::cout << "Zadejte spravnou odpoved znovu\n";
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+        Common::clearConsole();
     }
     int setAnswerCount;
     while(true)
     {
-        if(getNumber(setAnswerCount))
+        if(Common::getNumber(setAnswerCount))
             break;
         std::cout << "Zadejte pocet znovu\n";
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+        Common::clearConsole();
     }
     for(int i = 0; i < setAnswerCount; i++)
     {
         while(true)
         {
             std::string str;
-            if(getString(str) and !str.empty())
+            if(Common::getText(str) and !str.empty())
             {
                 correctSet.insert(str);
                 break;
             }
             std::cout << "Zadejte text znovu\n";
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+            Common::clearConsole();
         }
     }
 }
@@ -177,57 +164,15 @@ void QuizMaker::askOptions(std::vector<std::string>& options)
         while(true)
         {
             std::string str;
-            if(getString(str) and !str.empty())
+            if(Common::getText(str) and !str.empty())
             {
                 options.push_back(str);
                 break;
             }
             std::cout <<"Zadejte moznost znovu\n";
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+            Common::clearConsole();
         }
     }
 }
 
 
-bool QuizMaker::getString(std::string& str)
-{
-    return not not((std::cin >> str));
-}
-
-bool QuizMaker::getNumber(int& num)
-{
-    return not not(std::cin >> num);
-}
-
-bool QuizMaker::checkABCDset(std::string &str)
-{
-    int counts[] = {0,0,0,0};
-    if(str.size() >= 4 or str.empty())
-        return false;
-    for(auto c : str)
-    {
-        if(c != 'a' and c != 'b' and c != 'c' and c != 'd')
-            return false;
-        switch(c)
-        {
-            case 'a': counts[0]++; break;
-            case 'b': counts[1]++; break;
-            case 'c': counts[2]++; break;
-            case 'd': counts[3]++; break;
-            default: break;
-        }
-    }
-    for(int count : counts)
-        if(count > 1)
-            return false;
-    return true;
-}
-
-bool QuizMaker::getText(std::string& text)
-{
-    std::cin.clear();
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
-    std::getline(std::cin, text, '\n');
-    return true;
-}

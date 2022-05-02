@@ -4,18 +4,6 @@
 
 #include "Application.h"
 
-/*
-bool Application::loadQuiz()
-{
-    std::cout << "Vyberte nazev kvizu z nabidky:" << std::endl;
-    findQuizes();
-    std::string str;
-    std::cin >> str;
-    quiz.setName(str);
-    quiz.loadQuiz();
-    return true;
-}
-*/
 void Application::showMenu()
 {
     std::cout << "Vitejte v aplikaci Marast v2\n\n" << "\t1) Vytvorit novy kviz\n" << "\t2) Nacist kviz a hrat\n"
@@ -31,8 +19,7 @@ int Application::getAction()
         if (ret != 1 and ret != 2 and ret != 3)
         {
             std::cout << "Zadali jste neplatnou moznost, zkuste to znovu" << std::endl;
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+            Common::clearConsole();
         }
         else
             return ret;
@@ -64,11 +51,24 @@ std::string Application::findSelectQuizes()
 {
     std::string name;
     std::vector<std::string> availableQuizes;
-    for(const auto& item : std::filesystem::directory_iterator("quizes"))
+    for(const auto& item : std::filesystem::directory_iterator{"../quizes"})
     {
-        std::cout << item << std::endl;
-
+        std::string str = item.operator const std::filesystem::path &().filename().string();
+        std::string adding(str.data(), str.size() - 4);
+        availableQuizes.push_back(adding);
+        std::cout << adding << std::endl;
     }
     std::cout << "vyberte si kviz z nabidky\n";
+    while (true)
+    {
+        std::cin >> name;
+        if(std::find(availableQuizes.begin(), availableQuizes.end(), name) == availableQuizes.end())
+        {
+            std::cout << "nevybrali jste zadny dostupny kviz\n";
+            Common::clearConsole();
+        }
+        else
+            break;
+    }
     return name;
 }

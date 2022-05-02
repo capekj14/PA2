@@ -17,17 +17,15 @@ std::string QuestionYesNo::getAnswer()
     std::string answer;
     while (true)
     {
-        std::cin >> answer;
-        if(answer != "ano" and answer != "ne")
+        Common::getString(playerAnswer);
+        if(playerAnswer != "ano" and playerAnswer != "ne")
         {
             std::cout << "Odpovedeli jste ve spatnem formatu zkuste to znovu" << std::endl;
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+            Common::clearConsole();
         }
         else
             break;
     }
-    playerAnswer = answer;
     answered = true;
     return answer;
 }
@@ -61,9 +59,9 @@ void QuestionYesNo::createQuestion()
 void QuestionYesNo::saveQuestion(std::ofstream& out)
 {
     out << "\t{\n";
-    out << "\t\t\"typ\" : <<" << "4" << ">>" << std::endl;
-    out << "\t\t\"text\" : <<" << text << ">>" << std::endl;
-    out << "\t\t\"spravna odpoved\" : <<" << correctAnswer << ">>" << std::endl;
+    out << "\t\t\"typ\" : << " << "4" << " >>" << std::endl;
+    out << "\t\t\"text\" : << " << text << " >>" << std::endl;
+    out << "\t\t\"spravna odpoved\" : << " << correctAnswer << " >>" << std::endl;
     out << "\t}\n";
 }
 
