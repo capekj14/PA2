@@ -12,6 +12,7 @@
 #include "QuestionType.h"
 #include "QuizMaker.h"
 #include "Common.h"
+#include <memory>
 
 class Question
 {
@@ -30,6 +31,7 @@ public:
     virtual void createQuestion() = 0;
     virtual void saveQuestion(std::ofstream&) = 0;
     virtual void loadQuestion(std::ifstream&) = 0;
+    virtual std::shared_ptr<Question> clone() const = 0;
 };
 
 

@@ -1,8 +1,9 @@
+//
+// Created by Jakub Čapek on 02.05.2022.
+//
+
 #include "Common.h"
 
-//
-// Created by notebookHP on 02.05.2022.
-//
 bool Common::getString(std::string& str)
 {
     std::cin >> str;

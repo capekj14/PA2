@@ -5,7 +5,6 @@
 #ifndef SEMESTRALKA_QUESTIONMULTICHOICE_H
 #define SEMESTRALKA_QUESTIONMULTICHOICE_H
 
-#include <vector>
 #include "Question.h"
 #include <set>
 
@@ -20,8 +19,9 @@ public:
     bool evaluate() override;
     QuestionType getType() override;
     void createQuestion() override;
-    void saveQuestion(std::ofstream&) override;
-    void loadQuestion(std::ifstream&) override;
+    void saveQuestion(std::ofstream &) override;
+    void loadQuestion(std::ifstream &) override;
+    std::shared_ptr<Question> clone() const override;
 };
 
 

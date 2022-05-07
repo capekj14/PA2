@@ -49,8 +49,11 @@ void LeaderBoard::save(const std::string& fileName)
 void LeaderBoard::load(const std::string& fileName)
 {
     std::ifstream input("leaderboards/" + fileName + "_leaderboard.txt");
+
     int count;
     input >> count;
+    if (input.fail())
+        return;
     for(int i = 0; i < count; i++)
     {
         std::pair<std::string, unsigned int> record;

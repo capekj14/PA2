@@ -104,12 +104,12 @@ void Quiz::loadQuiz(const std::string& fileName)
     std::ifstream in("../quizes/"+ fileName + ".txt");
     std::string input;
     std::getline(in, input, '\n');
-    char const * fakeName;
-    sscanf(input.c_str(), "\"nazev\" : << %s >>", fakeName);
+    char fakeName [200] = {0};
+    sscanf(input.c_str(), "\"nazev\" : << %s.199 >>", fakeName);
     name = fakeName;
     std::getline(in, input, '\n');
-    char const * pageCountStr;
-    sscanf(input.c_str(), "\"pocet stran\" : << %s >>", pageCountStr);
+    char pageCountStr [10] = {0};
+    sscanf(input.c_str(), "\"pocet stran\" : << %s.9 >>", pageCountStr);
     pageCount = strtol(pageCountStr, nullptr, 10);
     for(int i = 0; i < pageCount; i++)
     {

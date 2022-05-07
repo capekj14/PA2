@@ -19,9 +19,9 @@
 
 class Page
 {
-    std::vector<std::shared_ptr<Question>> questions;
+    std::vector<std::shared_ptr<Question>> questions ;
     bool isAnswered = false;
-    int questionCount;
+    int questionCount = 0;
 public:
     void showPage();
     size_t getQuestionCount();

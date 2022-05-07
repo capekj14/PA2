@@ -7,6 +7,7 @@
 
 
 #include <set>
+#include <memory>
 #include "Question.h"
 
 class QuestionFreeAnswer : public Question
@@ -24,7 +25,7 @@ public:
     void createQuestion() override;
     void saveQuestion(std::ofstream&) override;
     void loadQuestion(std::ifstream&) override;
-};
+    std::shared_ptr<Question> clone() const override;};
 
 
 #endif //SEMESTRALKA_QUESTIONFREEANSWER_H

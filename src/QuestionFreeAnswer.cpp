@@ -94,7 +94,7 @@ void QuestionFreeAnswer::createQuestion()
 void QuestionFreeAnswer::saveQuestion(std::ofstream& out)
 {
     out << "\t{\n";
-    out << "\t\t\"typ\" : << " << "1" << " >>" << std::endl;
+    out << "\t\t\"typ\" : << " << "0" << " >>" << std::endl;
     out << "\t\t\"text\" : << " << text << " >>" << std::endl;
     out << "\t\t\"spravna odpoved\" : << " << correctAnswer << " >>" << std::endl;
     out << "\t\t\"regularni vyraz\" : << " << pattern << " >>" << std::endl;
@@ -108,33 +108,39 @@ void QuestionFreeAnswer::loadQuestion(std::ifstream& in)
 {
     std::string input;
     std::getline(in, input, '\n');
-    size_t from = input.find_first_of("<<");
+    size_t from = input.find_last_of("<<");
     size_t to = input.find_first_of(">>");
-    text = std::string(input.data() + from + 1, to-from);
+    text = std::string(input.data() + from + 2, to - from - 3);
 
     std::getline(in, input, '\n');
-    from = input.find_first_of("<<");
+    from = input.find_last_of("<<");
     to = input.find_first_of(">>");
-    correctAnswer = std::string(input.data() + from + 1, to-from);
+    correctAnswer = std::string(input.data() + from + 2, to - from - 3);
 
     std::getline(in, input, '\n');
-    from = input.find_first_of("<<");
+    from = input.find_last_of("<<");
     to = input.find_first_of(">>");
-    pattern = std::string(input.data() + from + 1, to-from);
+    pattern = std::string(input.data() + from + 2, to - from - 3);
 
     std::getline(in, input, '\n');
-    std::string setCount;
-    sscanf(input.c_str(), "\t\t\"pocet odpovedi v setu\" : <<%s>>", &setCount);
-    int iterateTo = stoi(setCount);
+    char setCount[10] = {0};
+    sscanf(input.c_str(), "\t\t\"pocet odpovedi v setu\" : <<%s.9>>", &setCount);
+    int iterateTo = strtol(setCount, nullptr, 10);
 
     for(int i = 0; i < iterateTo; i++)
     {
         std::getline(in, input, '\n');
-        from = input.find_first_of("<<");
+        from = input.find_last_of("<<");
         to = input.find_first_of(">>");
-        correctAnswerSet.insert(std::string(input.data() + from + 1, to-from));
+        correctAnswerSet.insert(std::string(input.data() + from + 2, to - from - 3));
     }
     std::getline(in, input, '\n');
     sscanf(input.c_str(), "\t}");
 }
+
+std::shared_ptr<Question> QuestionFreeAnswer::clone() const
+{
+    return std::make_shared<QuestionFreeAnswer>(*this);
+}
+
 

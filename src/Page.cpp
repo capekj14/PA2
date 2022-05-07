@@ -126,48 +126,51 @@ void Page::loadPage(std::ifstream& in)
     std::getline(in, input, '\n');
     sscanf(input.c_str(), "{");
     std::getline(in, input, '\n');
-    std::string questionCountGetted;
-    sscanf(input.c_str(), "\t\"pocet otazek\" : <<%s>>", &questionCountGetted);
-    questionCount = stoi(questionCountGetted);
+    char loading [10] = {0};
+    int readCount = sscanf(input.c_str(), "\t\"pocet otazek\" : << %s.9 >>", loading);
+    if(readCount != 1)
+        return;
+    questionCount = strtol(loading, nullptr, 10);
+
     for(int i = 0; i < questionCount; i++)
     {
         std::getline(in, input, '\n');
         sscanf(input.c_str(), "\t{");
-        std::string typeGetted;
-        sscanf(input.c_str(), "\t\t\"typ\" : <<%s>>", &typeGetted);
-        int typeInt = std::stoi(typeGetted);
-        auto type = (QuestionType) typeInt;
+        std::getline(in, input, '\n');
+        sscanf(input.c_str(), "\t\t\"typ\" : << %s >>", loading);
+
+        int typeInt = strtol(loading, nullptr, 10);
+        QuestionType type = (QuestionType) typeInt;
         switch(type)
         {
             case QuestionType::Free :
             {
                 QuestionFreeAnswer question;
-                question.loadQuestion(in);
-                questions.push_back(std::make_shared<QuestionFreeAnswer>(question));
+                questions.push_back(question.clone());//updated
                 break;
             }
             case QuestionType::SingleChoice :
             {
                 QuestionSingleChoice question;
-                question.loadQuestion(in);
-                questions.push_back(std::make_shared<QuestionSingleChoice>(question));
+                questions.push_back(question.clone());
                 break;
             }
             case QuestionType::MultiChoice :
             {
                 QuestionMultiChoice question;
-                question.loadQuestion(in);
-                questions.push_back(std::make_shared<QuestionMultiChoice>(question));
+                auto ptr = question.clone();
+                questions.push_back(ptr);
+                std::cout << "nespadlo" << std::endl;
                 break;
             }
             case QuestionType::YesNo :
             {
                 QuestionYesNo question;
-                question.loadQuestion(in);
-                questions.push_back(std::make_shared<QuestionYesNo>(question));
+                questions.push_back(question.clone());
                 break;
             }
         }
+        questions.back()->loadQuestion(in);
     }
     std::getline(in, input, '\n');
     sscanf(input.c_str(), "}");

@@ -22,6 +22,7 @@ public:
     void createQuestion() override;
     void saveQuestion(std::ofstream&) override;
     void loadQuestion(std::ifstream&) override;
+    std::shared_ptr<Question> clone() const override;
 };
 
 

@@ -1,5 +1,5 @@
 //
-// Created by notebookHP on 02.05.2022.
+// Created by Jakub Čapek on 02.05.2022.
 //
 #pragma once
 #ifndef SEMESTRALKA_COMMON_H
@@ -9,9 +9,8 @@
 #include <string>
 #include <limits>
 
-class Common
+struct Common
 {
-public:
     static bool getString(std::string&);
     static bool getNumber(int&);
     static bool getText(std::string&);
