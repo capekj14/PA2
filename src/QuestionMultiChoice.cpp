@@ -18,7 +18,6 @@ std::string QuestionMultiChoice::getAnswer()
 {
     while (true)
     {
-        bool ok = true;
         Common::getString(playerAnswer);
         if(not Common::checkABCDSet(playerAnswer))
         {

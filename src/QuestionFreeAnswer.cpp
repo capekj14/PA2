@@ -44,7 +44,7 @@ bool QuestionFreeAnswer::evaluate()
             correctlyAnswered = true;
             return true;
         }
-    if(checkByRegex(playerAnswer))
+    if(checkByRegex())
     {
         std::cout << "Spravna odpoved!!" << std::endl;
         correctlyAnswered = true;
@@ -55,16 +55,16 @@ bool QuestionFreeAnswer::evaluate()
     return false;
 }
 //nyni vyhledava jestli playerAnswer obsahuje regex jako substring
-bool QuestionFreeAnswer::checkByRegex(const std::string &str)
+bool QuestionFreeAnswer::checkByRegex()
 {
     size_t i = 0;
     for (auto contIt = playerAnswer.begin(); contIt != playerAnswer.end(); ++contIt, ++i)
     {
-        if(i + str.size() > str.size())
+        if(i + pattern.size() > playerAnswer.size())
             break;
         auto contCopy = contIt;
         bool flek = true;
-        for (auto valIt = str.begin(); valIt != str.end(); ++valIt, ++contCopy)
+        for (auto valIt = pattern.begin(); valIt != pattern.end(); ++valIt, ++contCopy)
         {
             bool is_equal = *contCopy == *valIt;
             if(!is_equal)

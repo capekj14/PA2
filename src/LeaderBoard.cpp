@@ -16,7 +16,10 @@ void LeaderBoard::showLeaderBoard()
     int standing = 1;
     for(auto & player : records)
     {
-        std::cout << "poradi: " << standing++ << "\thrac: " << player.getName() << "\tskore: " << player.getScore() << std::endl;
+        std::cout << "poradi: " << std::setw(3) << standing++ <<
+        "\thrac: " << std::setw(20) << player.getName() <<
+        "\tskore: " << std::setw(3) << player.getScore() <<
+        std::endl;
     }
 }
 

@@ -19,7 +19,10 @@ void Quiz::run()
         if(result == 2)
             pageQueue.push(page);
         else if(result == 1)
+        {
+            std::cout << "odpovedeli jste 3 po sobe spatne. Vase hra je ukoncena" << std::endl;
             break;
+        }
         else if(result == 0)
         {
             page.setIsAnswered(true);

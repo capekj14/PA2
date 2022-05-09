@@ -4,13 +4,13 @@
 #pragma once
 #include <vector>
 #include <memory>
+#include <iostream>
+#include <fstream>
 #include "Question.h"
 #include "QuestionFreeAnswer.h"
 #include "QuestionMultiChoice.h"
 #include "QuestionSingleChoice.h"
 #include "QuestionYesNo.h"
-#include <iostream>
-#include <fstream>
 #include "QuizMaker.h"
 #include "Common.h"
 
@@ -19,7 +19,7 @@
 
 class Page
 {
-    std::vector<std::shared_ptr<Question>> questions ;
+    std::vector<std::shared_ptr<Question>> questions;
     bool isAnswered = false;
     int questionCount = 0;
     size_t pageInOrder;

@@ -60,9 +60,12 @@ int Page::run(int& falseStreak) //0 odpovezeno | 1 falseStreak >= 3 | 2 skip
         {
             falseStreak = 0;
         }
-        falseStreak++;
+        else
+            falseStreak++;
         if(falseStreak >= 3)
-            return 2;
+        {
+            return 1;
+        }
     }
     return 0;
 }

@@ -90,7 +90,7 @@ void QuestionSingleChoice::loadQuestion(std::ifstream& in)
         std::getline(in, input, '\n');
         from = input.find_last_of("<<");
         to = input.find_first_of(">>");
-        options[i] = std::string(input.data() + from + 2, to - from - 3);
+        options.push_back(std::string(input.data() + from + 2, to - from - 3));
     }
     std::getline(in, input, '\n');
     sscanf(input.c_str(), "\t}");
