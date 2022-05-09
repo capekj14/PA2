@@ -18,7 +18,6 @@ public:
     void run();
     void showMenu();
     int getAction();
-    std::string findSelectQuizes();
 };
 
 

@@ -6,6 +6,8 @@
 
 void Quiz::run()
 {
+    std::cout << "Hrajete kviz " << name << std::endl;
+    player.askPlayerName();
     int falseStreak = 0;
     std::queue<Page> pageQueue;
     pushToQueue(pageQueue);
@@ -23,13 +25,13 @@ void Quiz::run()
             page.setIsAnswered(true);
         }
     }
-    getScore();
+    player.setScore(getScore());
     printPlayerResult();
 }
 
 void Quiz::printPlayerResult()
 {
-    std::cout << "Vase skore je " << player.getScore() << "/" << getQuestionCount() << "\n" << std::endl;
+    std::cout << "Vase skore je " << player.getScore() << "/" << getQuestionCount() << std::endl;
     LeaderBoard leaderBoard;
     leaderBoard.load(name);
     leaderBoard.addPlayerResult(player);
@@ -82,9 +84,11 @@ void Quiz::createQuiz()
     QuizMaker::askPageCount(pageCount);
     for(int i = 0; i < pageCount; i++)
     {
+        std::cout << "stranka " << i + 1 << "/" << pageCount << std::endl;
         Page page;
         page.createPage();
         pages.push_back(page);
+        page.setPageInOrder(i);
     }
     saveQuiz();
     std::cout << "VAS KVIZ BYL USPESNE ULOZEN\n";
@@ -114,6 +118,7 @@ void Quiz::loadQuiz(const std::string& fileName)
     for(int i = 0; i < pageCount; i++)
     {
         Page page;
+        page.setPageInOrder(i);
         page.loadPage(in);
         pages.push_back(page);
     }

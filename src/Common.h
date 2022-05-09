@@ -8,6 +8,9 @@
 #include <iostream>
 #include <string>
 #include <limits>
+#include <vector>
+#include <filesystem>
+
 
 struct Common
 {
@@ -15,7 +18,10 @@ struct Common
     static bool getNumber(int&);
     static bool getText(std::string&);
     static void clearConsole();
-    static bool checkABCDset(std::string&);
+    static bool checkABCDSet(std::string&);
+    static void findQuizes(std::vector<std::string>&);
+    static std::string selectQuiz(const std::vector<std::string>&);
+    static bool checkQuizName(const std::string &);
 };
 
 

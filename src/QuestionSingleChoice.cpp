@@ -7,17 +7,16 @@
 
 void QuestionSingleChoice::showQuestion()
 {
-    std::cout << text << "\n" << "\todpovidejte \"a\", \"b\", \"c\" nebo \"d\" " << "\n"
-              << "a\t" << options[0]
-              << "b\t" << options[1]
-              << "c\t" << options[2]
+    std::cout << text << "\t(odpovidejte \"a\", \"b\", \"c\" nebo \"d\")" << "\n"
+              << "a\t" << options[0] << "\n"
+              << "b\t" << options[1] << "\n"
+              << "c\t" << options[2] << "\n"
               << "d\t" << options[3]
               << std::endl;
 }
 
 std::string QuestionSingleChoice::getAnswer()
 {
-    std::string answer;
     while (true)
     {
         Common::getString(playerAnswer);
@@ -30,7 +29,7 @@ std::string QuestionSingleChoice::getAnswer()
             break;
     }
     answered = true;
-    return answer;
+    return playerAnswer;
 }
 
 bool QuestionSingleChoice::evaluate()
@@ -38,13 +37,13 @@ bool QuestionSingleChoice::evaluate()
     if( correctAnswer == playerAnswer)
     {
         correctlyAnswered = true;
-        std::cout << "\nSpravna odpoved!" << std::endl;
+        std::cout << "Spravna odpoved!" << std::endl;
         return true;
     }
     else
     {
         correctlyAnswered = false;
-        std::cout << "\nSpatna odpoved!" << std::endl;
+        std::cout << "Spatna odpoved!" << std::endl;
         return false;
     }
 }

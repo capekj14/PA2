@@ -14,11 +14,10 @@ void QuestionFreeAnswer::showQuestion()
 
 std::string QuestionFreeAnswer::getAnswer()
 {
-    std::string answer;
     while(true)
     {
         Common::getText(playerAnswer);
-        if (answer.empty())
+        if (playerAnswer.empty())
         {
             std::cout << "Neodpovedeli jste, zkuste to znovu" << std::endl;
             Common::clearConsole();
@@ -27,31 +26,31 @@ std::string QuestionFreeAnswer::getAnswer()
             break;
     }
     answered = true;
-    return answer;
+    return playerAnswer;
 }
 
 bool QuestionFreeAnswer::evaluate()
 {
     if(playerAnswer == correctAnswer)
     {
-        std::cout << "\nSpravna odpoved!" << std::endl;
+        std::cout << "Spravna odpoved!" << std::endl;
         correctlyAnswered = true;
         return true;
     }
     for (const auto& str: correctAnswerSet)
         if (str == playerAnswer)
         {
-            std::cout << "\nSpravna odpoved!!" << std::endl;
+            std::cout << "Spravna odpoved!!" << std::endl;
             correctlyAnswered = true;
             return true;
         }
     if(checkByRegex(playerAnswer))
     {
-        std::cout << "\nSpravna odpoved!!" << std::endl;
+        std::cout << "Spravna odpoved!!" << std::endl;
         correctlyAnswered = true;
         return true;
     }
-    std::cout << "\nSpatna odpoved!\n";
+    std::cout << "Spatna odpoved!\n";
     correctlyAnswered = false;
     return false;
 }

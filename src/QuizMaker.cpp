@@ -22,9 +22,9 @@ void QuizMaker::askName(std::string& name)
     std::cout << "Zadejte jmeno noveho kvizu (bez mezer a jinych bilych znaku) :" << std::endl;
     while(true)
     {
-        if(Common::getString(name))
+        if(Common::getString(name) and Common::checkQuizName(name))
             break;
-        std::cout << "Zadejte nazev znovu\n";
+        std::cout << "Zadejte nazev znovu, bud jste neodpovedeli nebo takovy kviz jiz existuje\n";
         //Common::clearConsole();
     }
 }
@@ -83,7 +83,7 @@ void QuizMaker::askCorrectAnswerMulti(std::string& correctAnswer)
     std::cout << "Zadejte spravne odpovedi (napr. abc):" << std::endl;
     while(true)
     {
-        if(Common::getString(correctAnswer) and Common::checkABCDset(correctAnswer))
+        if(Common::getString(correctAnswer) and Common::checkABCDSet(correctAnswer))
             break;
         std::cout << "Zadejte spravnou odpoved znovu\n";
         //Common::clearConsole();

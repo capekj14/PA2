@@ -7,6 +7,7 @@
 
 void Page::showPage()
 {
+    std::cout << "Stranka: " << pageInOrder + 1 << std::endl;
     for(auto& question : questions)
         question->showQuestion();
 }
@@ -40,7 +41,7 @@ int Page::run(int& falseStreak) //0 odpovezeno | 1 falseStreak >= 3 | 2 skip
     while(true)
     {
         std::string input;
-        std::cin >> input;
+        Common::getString(input);
         if(input == "go")
             break;
         if(input == "skip")
@@ -48,9 +49,10 @@ int Page::run(int& falseStreak) //0 odpovezeno | 1 falseStreak >= 3 | 2 skip
         else
         {
             std::cout << "Nezvolili jste zadnou validni moznost, zkuste to znovu\n";
-            Common::clearConsole();
+            //Common::clearConsole();
         }
     }
+    std::cout << "Muzete zacit odpovidat, postupujte shora dolu" << std::endl;
     for(auto& question : questions)
     {
         bool goodAnswer = question->run();
@@ -146,7 +148,7 @@ void Page::loadPage(std::ifstream& in)
             case QuestionType::Free :
             {
                 QuestionFreeAnswer question;
-                questions.push_back(question.clone());//updated
+                questions.push_back(question.clone());
                 break;
             }
             case QuestionType::SingleChoice :
@@ -158,9 +160,7 @@ void Page::loadPage(std::ifstream& in)
             case QuestionType::MultiChoice :
             {
                 QuestionMultiChoice question;
-                auto ptr = question.clone();
-                questions.push_back(ptr);
-                std::cout << "nespadlo" << std::endl;
+                questions.push_back(question.clone());
                 break;
             }
             case QuestionType::YesNo :
@@ -174,4 +174,9 @@ void Page::loadPage(std::ifstream& in)
     }
     std::getline(in, input, '\n');
     sscanf(input.c_str(), "}");
+}
+
+void Page::setPageInOrder(size_t num)
+{
+    pageInOrder = num;
 }

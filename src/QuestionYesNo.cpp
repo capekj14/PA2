@@ -7,14 +7,11 @@
 
 void QuestionYesNo::showQuestion()
 {
-    std::cout << text << "\n" << "\todpovidejte \"ano\" nebo \"ne\" " << "\n"
-              << "ano\n"
-              << "ne\n" << std::endl;
+    std::cout << text << "\t(odpovidejte \"ano\" nebo \"ne\")" << std::endl;
 }
 
 std::string QuestionYesNo::getAnswer()
 {
-    std::string answer;
     while (true)
     {
         Common::getString(playerAnswer);
@@ -27,21 +24,21 @@ std::string QuestionYesNo::getAnswer()
             break;
     }
     answered = true;
-    return answer;
+    return playerAnswer;
 }
 
 bool QuestionYesNo::evaluate()
 {
     if( correctAnswer == playerAnswer)
     {
-        std::cout << "\nSpravna odpoved!" << std::endl;
+        std::cout << "Spravna odpoved!" << std::endl;
         correctlyAnswered = true;
         return true;
     }
     else
     {
         correctlyAnswered = false;
-        std::cout << "\nSpatna odpoved!" << std::endl;
+        std::cout << "Spatna odpoved!" << std::endl;
         return false;
     }
 }

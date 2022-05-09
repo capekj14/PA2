@@ -28,47 +28,23 @@ int Application::getAction()
 
 void Application::run()
 {
-    while(true)
+
+    showMenu();
+    int result = getAction();
+    if(result == 1)
     {
-        showMenu();
-        int result = getAction();
-        if(result == 1)
-        {
-            quiz.createQuiz();
-        }
-        else if(result == 2)
-        {
-            std::string quizName = findSelectQuizes();
-            quiz.loadQuiz(quizName);
-            quiz.run();
-        }
-        else if(result == 3)
-            break;
+        quiz.createQuiz();
     }
+    else if(result == 2)
+    {
+        std::vector<std::string> availableQuizes;
+        Common::findQuizes(availableQuizes);
+        std::string quizName = Common::selectQuiz(availableQuizes);
+        quiz.loadQuiz(quizName);
+        quiz.run();
+    }
+    else if(result == 3)
+        return;
+    return;
 }
 
-std::string Application::findSelectQuizes()
-{
-    std::string name;
-    std::vector<std::string> availableQuizes;
-    for(const auto& item : std::filesystem::directory_iterator{"../quizes"})
-    {
-        std::string str = item.operator const std::filesystem::path &().filename().string();
-        std::string adding(str.data(), str.size() - 4);
-        availableQuizes.push_back(adding);
-        std::cout << adding << std::endl;
-    }
-    std::cout << "vyberte si kviz z nabidky\n";
-    while (true)
-    {
-        std::cin >> name;
-        if(std::find(availableQuizes.begin(), availableQuizes.end(), name) == availableQuizes.end())
-        {
-            std::cout << "nevybrali jste zadny dostupny kviz\n";
-            Common::clearConsole();
-        }
-        else
-            break;
-    }
-    return name;
-}

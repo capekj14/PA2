@@ -8,6 +8,8 @@
 
 #include <string>
 #include <utility>
+#include <iostream>
+#include "Common.h"
 
 class Player
 {
@@ -25,9 +27,10 @@ public:
         :name(std::move(str)), score(num){};
 
     unsigned int getScore() const;
-    std::string getName();
+    std::string getName() const;
     void setScore(unsigned int num);
     bool operator < (const Player& other);
+    void askPlayerName();
 };
 
 

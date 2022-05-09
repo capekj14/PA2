@@ -22,6 +22,7 @@ class Page
     std::vector<std::shared_ptr<Question>> questions ;
     bool isAnswered = false;
     int questionCount = 0;
+    size_t pageInOrder;
 public:
     void showPage();
     size_t getQuestionCount();
@@ -32,6 +33,7 @@ public:
     void createPage();
     void savePage(std::ofstream &);
     void loadPage(std::ifstream &);
+    void setPageInOrder(size_t);
 };
 
 
