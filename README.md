@@ -41,14 +41,17 @@ Ke každému kvízu se vytvoří leaderBoard do kterého se uloží výsledky hr
 Kvíz obsahuje stránky na kterých jsou otázky, kvíz může mít více stránek a stránka může mít více otázek,
 Po načtení každé stránky se hráč může rozhodnout stránku přeskočit pomocí příkazu "skip", příkaz "go" naopak spustí stránku.
 Hráč si nemusí pamatovat žádné příkazy ani jakým stylem má odpovídat, aplikace mu vždy napíše nápovědu.
-Příkazy :   "skip"      přeskočení stránky (hráč se ke stránce časem vrátí)
-            "go"        spuštění stránky
-            [1,2,...]   výběr z číselné nabídky
-            [a,b,c,d]   výběr z možností u otátek s možnostmi
-            [ano,ne]    odpověĎ na otázku typu  ano - ne
+Příkazy :   `"skip"`      přeskočení stránky (hráč se ke stránce časem vrátí)
+            `"go"`        spuštění stránky
+            `[1,2,...]`   výběr z číselné nabídky
+            `[a,b,c,d]`   výběr z možností u otátek s možnostmi
+            `[ano,ne]`    odpověĎ na otázku typu  ano - ne
 Pokud hráč odpoví 3x špatně v řadě bude jeho hra ukončena a do leaderBoardu se zapíše jeho aktuální skóre.
 Kvíz se načítá z určitého formátu proto je potřeba aby se do tohoto formátu i správně ukládal.
 
+Polymorfismus je implementován na typech otázek. Všechny typy dědí od abstraktní třídy Question.
+Podporované typy otázek jsou: MultiChoice, SingleChoice, ANO/NE a volná odpověď.
+Všechny typy přepisují virtuální metody třídy Question.
 
 krátká ukázka : 
 (řádky začínající > označují hráče)
@@ -58,30 +61,36 @@ b) Ruby
 c) C
 d) C++
 vyberte více možností např. "abc"
-
 >cd 
-Správná odpověď!
 
+Správná odpověď!
 krátká ukázka tvoření kvízu :
 Zadejte počet otázek na stránku (maximálně 3)
 >2
+
 Vyberte typ otázky
 1) volná odpověď
 2) multichoice
 3) singlechoice
 4) ano-ne
 >3
+
 Zadejte text otázky
 >kolik dní má Leden
+
 Zadejte možnosti
 a
 >10
+
 b
 >20
+
 c
 >31
+
 d
 >30
+
 Zadejte správnou odpověď (např a)
 >c
 
