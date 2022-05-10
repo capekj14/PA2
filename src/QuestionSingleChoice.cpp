@@ -5,7 +5,7 @@
 #include <limits>
 #include "QuestionSingleChoice.h"
 
-void QuestionSingleChoice::showQuestion()
+void QuestionSingleChoice::showQuestion() const
 {
     std::cout << text << "\t(odpovidejte \"a\", \"b\", \"c\" nebo \"d\")" << "\n"
               << "a)\t" << options[0] << "\n"
@@ -23,12 +23,10 @@ std::string QuestionSingleChoice::getAnswer()
         if(playerAnswer != "a" and playerAnswer != "b" and playerAnswer != "c" and playerAnswer != "d")
         {
             std::cout << "Odpovedeli jste ve spatnem formatu zkuste to znovu" << std::endl;
-            Common::clearConsole();
         }
         else
             break;
     }
-    answered = true;
     return playerAnswer;
 }
 
@@ -63,7 +61,7 @@ void QuestionSingleChoice::createQuestion()
 
 }
 
-void QuestionSingleChoice::saveQuestion(std::ofstream& out)
+void QuestionSingleChoice::saveQuestion(std::ofstream& out) const
 {
     out << "\t{\n";
     out << "\t\t\"typ\" : << " << "2" << " >>" << std::endl;

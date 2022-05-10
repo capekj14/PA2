@@ -8,18 +8,22 @@
 #include "Question.h"
 #include <set>
 
+/**
+ * class derived from Question
+ * represents multi choice question, player can choose from multiple options
+ */
 class QuestionMultiChoice : public Question
 {
     std::string correctAnswer;
     std::string playerAnswer;
     std::vector<std::string> options;
 public:
-    void showQuestion() override;
+    void showQuestion() const override;
     std::string getAnswer() override;
     bool evaluate() override;
     QuestionType getType() override;
     void createQuestion() override;
-    void saveQuestion(std::ofstream &) override;
+    void saveQuestion(std::ofstream &) const override;
     bool loadQuestion(std::ifstream &) override;
     std::shared_ptr<Question> clone() const override;
 };

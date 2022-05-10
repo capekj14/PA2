@@ -25,16 +25,12 @@ void Quiz::run()
             std::cout << "odpovedeli jste 3 po sobe spatne. Vase hra je ukoncena" << std::endl;
             break;
         }
-        else if(result == 0)
-        {
-            page.setIsAnswered(true);
-        }
     }
     player.setScore(getScore());
     printPlayerResult();
 }
 
-void Quiz::printPlayerResult()
+void Quiz::printPlayerResult() const
 {
     std::cout << "Vase skore je " << player.getScore() << "/" << getQuestionCount() << std::endl;
     LeaderBoard leaderBoard;
@@ -44,25 +40,20 @@ void Quiz::printPlayerResult()
     leaderBoard.save(name);
 }
 
-size_t Quiz::getQuestionCount()
+size_t Quiz::getQuestionCount() const
 {
     size_t ret = 0;
-    for(auto page : pages)
+    for(const auto& page : pages)
     {
         ret += page.getQuestionCount();
     }
     return ret;
 }
 
-std::string Quiz::getName()
-{
-    return name;
-}
-
 int Quiz::getScore()
 {
     int score = 0;
-    for(auto page : pages)
+    for(const auto& page : pages)
     {
         int pageScore = page.getScore();
         score += pageScore;
@@ -71,15 +62,10 @@ int Quiz::getScore()
     return score;
 }
 
-void Quiz::pushToQueue(std::queue<Page>& Q)
+void Quiz::pushToQueue(std::queue<Page>& Q) const
 {
     for(auto& page : pages)
         Q.push(page);
-}
-
-void Quiz::addPage(const Page& page)
-{
-    pages.push_back(page);
 }
 
 void Quiz::createQuiz()
@@ -89,6 +75,7 @@ void Quiz::createQuiz()
     QuizMaker::askPageCount(pageCount);
     for(int i = 0; i < pageCount; i++)
     {
+        Common::deleteConsole();
         std::cout << "stranka " << i + 1 << "/" << pageCount << std::endl;
         Page page;
         page.createPage();
@@ -100,7 +87,7 @@ void Quiz::createQuiz()
     std::cout << "VAS KVIZ BYL USPESNE ULOZEN\n";
 }
 
-void Quiz::saveQuiz()
+void Quiz::saveQuiz() const
 {
     std::ofstream out("quizes/"+ name + ".txt");
     out << "\"nazev\" : << " << name << " >>" << std::endl;
@@ -127,14 +114,9 @@ bool Quiz::loadQuiz(const std::string& fileName)
     {
         Page page;
         page.setPageInOrder(i);
-        if(page.loadPage(in) == false)
+        if(not page.loadPage(in))
             return false;
         pages.push_back(page);
     }
     return true;
-}
-
-void Quiz::setName(const std::string & str)
-{
-    name = str;
 }

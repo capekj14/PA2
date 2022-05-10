@@ -19,7 +19,7 @@ void Player::setScore(unsigned int num)
     score = num;
 }
 
-bool Player::operator<(const Player &other)
+bool Player::operator<(const Player &other) const
 {
     return score > other.score;
 }

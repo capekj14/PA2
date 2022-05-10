@@ -13,7 +13,6 @@ void QuizMaker::askPageCount(int& pageCount)
         if(Common::getNumber(pageCount) and pageCount <= 10 and pageCount > 0)
             break;
         std::cout << "Zadejte pocet znovu\n";
-        //Common::clearConsole();
     }
 }
 
@@ -25,7 +24,6 @@ void QuizMaker::askName(std::string& name)
         if(Common::getString(name) and Common::checkQuizName(name))
             break;
         std::cout << "Zadejte nazev znovu, bud jste neodpovedeli nebo takovy kviz jiz existuje\n";
-        //Common::clearConsole();
     }
 }
 
@@ -37,7 +35,6 @@ void QuizMaker::askQuestionCount(int& questionCount)
         if(Common::getNumber(questionCount) and questionCount <= 3 and questionCount > 0)
             break;
         std::cout << "Zadejte pocet znovu\n";
-        //Common::clearConsole();
     }
 }
 
@@ -63,7 +60,6 @@ void QuizMaker::askQuestionType(QuestionType& type)
             break;
         }
         std::cout << "Vyberte typ otazky znovu\n";
-        //Common::clearConsole();
     }
 }
 
@@ -75,7 +71,6 @@ void QuizMaker::askQuestionText(std::string& text)
         if(Common::getText(text) and !text.empty())
             break;
         std::cout << "Zadejte text otazky znovu\n";
-        //Common::clearConsole();
     }
 }
 void QuizMaker::askCorrectAnswerMulti(std::string& correctAnswer)
@@ -86,7 +81,6 @@ void QuizMaker::askCorrectAnswerMulti(std::string& correctAnswer)
         if(Common::getString(correctAnswer) and Common::checkABCDSet(correctAnswer))
             break;
         std::cout << "Zadejte spravnou odpoved znovu\n";
-        //Common::clearConsole();
     }
 }
 void QuizMaker::askCorrectAnswerYesNo(std::string& correctAnswer)
@@ -97,7 +91,6 @@ void QuizMaker::askCorrectAnswerYesNo(std::string& correctAnswer)
         if(Common::getString(correctAnswer) and (correctAnswer == "ne" or correctAnswer == "ano"))
             break;
         std::cout << "Zadejte spravnou odpoved znovu\n";
-        //Common::clearConsole();
     }
 }
 void QuizMaker::askCorrectAnswerSingle(std::string& correctAnswer)
@@ -109,7 +102,6 @@ void QuizMaker::askCorrectAnswerSingle(std::string& correctAnswer)
                                     or   correctAnswer == "c" or correctAnswer == "d"))
             break;
         std::cout << "Zadejte spravnou odpoved znovu\n";
-        //Common::clearConsole();
     }
 }
 void QuizMaker::askCorrectAnswerFree(std::string& correctAnswer, std::string& patern, std::set<std::string>& correctSet)
@@ -123,14 +115,12 @@ void QuizMaker::askCorrectAnswerFree(std::string& correctAnswer, std::string& pa
         if(Common::getText(correctAnswer) and !correctAnswer.empty())
             break;
         std::cout << "Zadejte spravnou odpoved znovu\n";
-        //Common::clearConsole();
     }
     while(true)
     {
         if(Common::getText(patern) and !patern.empty())
             break;
         std::cout << "Zadejte spravnou odpoved znovu\n";
-        //Common::clearConsole();
     }
     int setAnswerCount;
     while(true)
@@ -138,7 +128,6 @@ void QuizMaker::askCorrectAnswerFree(std::string& correctAnswer, std::string& pa
         if(Common::getNumber(setAnswerCount))
             break;
         std::cout << "Zadejte pocet znovu\n";
-        //Common::clearConsole();
     }
     for(int i = 0; i < setAnswerCount; i++)
     {
@@ -151,7 +140,6 @@ void QuizMaker::askCorrectAnswerFree(std::string& correctAnswer, std::string& pa
                 break;
             }
             std::cout << "Zadejte text znovu\n";
-            //Common::clearConsole();
         }
     }
 }
@@ -161,7 +149,7 @@ void QuizMaker::askOptions(std::vector<std::string>& options)
     std::cout << "Zadejte 4 moznosti (napr. bila modra zelena ruzova):" << std::endl;
     for(int i = 0; i < 4; i++)
     {
-        std::cout << char('a' + i);
+        std::cout << char('a' + i) << ") ";
         while(true)
         {
             std::string str;
@@ -171,7 +159,6 @@ void QuizMaker::askOptions(std::vector<std::string>& options)
                 break;
             }
             std::cout <<"Zadejte moznost znovu\n";
-            //Common::clearConsole();
         }
     }
 }

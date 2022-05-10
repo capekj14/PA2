@@ -5,7 +5,7 @@
 #include <limits>
 #include "QuestionYesNo.h"
 
-void QuestionYesNo::showQuestion()
+void QuestionYesNo::showQuestion() const
 {
     std::cout << text << "\t(odpovidejte \"ano\" nebo \"ne\")" << std::endl;
 }
@@ -18,12 +18,10 @@ std::string QuestionYesNo::getAnswer()
         if(playerAnswer != "ano" and playerAnswer != "ne")
         {
             std::cout << "Odpovedeli jste ve spatnem formatu zkuste to znovu" << std::endl;
-            Common::clearConsole();
         }
         else
             break;
     }
-    answered = true;
     return playerAnswer;
 }
 
@@ -55,7 +53,7 @@ void QuestionYesNo::createQuestion()
     QuizMaker::askCorrectAnswerYesNo(correctAnswer);
 }
 
-void QuestionYesNo::saveQuestion(std::ofstream& out)
+void QuestionYesNo::saveQuestion(std::ofstream& out) const
 {
     out << "\t{\n";
     out << "\t\t\"typ\" : << " << "3" << " >>" << std::endl;

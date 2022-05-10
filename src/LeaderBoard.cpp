@@ -10,7 +10,7 @@ void LeaderBoard::addPlayerResult(const Player& player)
     records.insert(it, player);
 }
 
-void LeaderBoard::showLeaderBoard()
+void LeaderBoard::showLeaderBoard() const
 {
     std::cout << "Seznam hracu " << std::endl;
     int standing = 1;
@@ -28,17 +28,17 @@ void LeaderBoard::pushBackPlayer(const Player& player)
     records.push_back(player);
 }
 
-std::string LeaderBoard::getNameOnIndex(size_t index)
+std::string LeaderBoard::getNameOnIndex(size_t index) const
 {
     return records[index].getName();
 }
 
-unsigned int LeaderBoard::getScoreInIndex(size_t index)
+unsigned int LeaderBoard::getScoreInIndex(size_t index) const
 {
     return records[index].getScore();
 }
 
-void LeaderBoard::save(const std::string& fileName)
+void LeaderBoard::save(const std::string& fileName) const
 {
     std::ofstream output("leaderboards/" + fileName + "_leaderboard.txt");
     output << records.size() << std::endl;

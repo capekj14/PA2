@@ -2,13 +2,12 @@
 // Created by Jakub Čapek on 23.04.2022.
 //
 
-#include <limits>
 #include "QuestionFreeAnswer.h"
 
-void QuestionFreeAnswer::showQuestion()
+void QuestionFreeAnswer::showQuestion() const
 {
-    std::cout << text << "\t(odpovidejte slovem ci vetou, neukoncujte teckou ani zadnym jinym znakem "
-                                 "(bude hodnoceno jako spatna odpoved) )" << "\n"
+    std::cout << text << "\n(odpovidejte slovem ci vetou, neukoncujte teckou ani zadnym jinym znakem "
+                                 "(bude hodnoceno jako spatna odpoved) )"
               << std::endl;
 }
 
@@ -25,12 +24,12 @@ std::string QuestionFreeAnswer::getAnswer()
         else
             break;
     }
-    answered = true;
     return playerAnswer;
 }
 
 bool QuestionFreeAnswer::evaluate()
 {
+    //tries player answer for exact match
     if(playerAnswer == correctAnswer)
     {
         std::cout << "Spravna odpoved!" << std::endl;
@@ -38,6 +37,7 @@ bool QuestionFreeAnswer::evaluate()
         Common::sleep();
         return true;
     }
+    //tries to match player answer with correct set answers
     for (const auto& str: correctAnswerSet)
         if (str == playerAnswer)
         {
@@ -46,6 +46,7 @@ bool QuestionFreeAnswer::evaluate()
             Common::sleep();
             return true;
         }
+    //tries to find substring in player answer
     if(checkBySubstring())
     {
         std::cout << "Spravna odpoved!!" << std::endl;
@@ -58,9 +59,10 @@ bool QuestionFreeAnswer::evaluate()
     Common::sleep();
     return false;
 }
-//nyni vyhledava jestli playerAnswer obsahuje regex jako substring
+
 bool QuestionFreeAnswer::checkBySubstring() {
     size_t i = 0;
+    //naive algorithm iterates through player answer and through correct substring
     for (auto contIt = playerAnswer.begin(); contIt != playerAnswer.end(); ++contIt, ++i)
     {
         if(i + pattern.size() > playerAnswer.size())
@@ -93,7 +95,7 @@ void QuestionFreeAnswer::createQuestion()
     QuizMaker::askCorrectAnswerFree(correctAnswer, pattern, correctAnswerSet);
 }
 
-void QuestionFreeAnswer::saveQuestion(std::ofstream& out)
+void QuestionFreeAnswer::saveQuestion(std::ofstream& out) const
 {
     out << "\t{\n";
     out << "\t\t\"typ\" : << " << "0" << " >>" << std::endl;

@@ -4,7 +4,7 @@
 
 #include "Application.h"
 
-void Application::showMenu()
+void Application::showMenu() const
 {
     std::cout << "Vitejte v aplikaci Marast v2\n\n" << "\t1) Vytvorit novy kviz\n" << "\t2) Nacist kviz a hrat\n"
               << "\t3) Konec\n";
@@ -48,6 +48,5 @@ void Application::run()
     }
     else if(result == 3)
         return;
-    return;
 }
 

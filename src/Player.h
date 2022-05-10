@@ -10,7 +10,10 @@
 #include <utility>
 #include <iostream>
 #include "Common.h"
-
+/**
+ * represents player of quiz
+ * storing his name and score
+ */
 class Player
 {
     std::string name;
@@ -26,10 +29,31 @@ public:
     Player(std::string str, unsigned int num)
         :name(std::move(str)), score(num){};
 
+    /**
+     * @return score from whole quiz
+     */
     unsigned int getScore() const;
+
+    /**
+     * @return name of player
+     */
     std::string getName() const;
+
+    /**
+     * sets class variable
+     * @param num inputted number
+     */
     void setScore(unsigned int num);
-    bool operator < (const Player& other);
+
+    /**
+     * @param other another player
+     * @return bool if this players score is lower than others player score
+     */
+    bool operator < (const Player& other) const;
+
+    /**
+     * asks player for his names, checks loaded data
+     */
     void askPlayerName();
 };
 

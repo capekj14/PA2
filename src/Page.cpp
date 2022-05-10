@@ -2,22 +2,21 @@
 // Created by Jakub Čapek on 22.04.2022.
 //
 
-#include <limits>
 #include "Page.h"
 
-void Page::showPage()
+void Page::showPage() const
 {
     std::cout << "Stranka: " << pageInOrder + 1 << std::endl;
     for(auto& question : questions)
         question->showQuestion();
 }
 
-size_t Page::getQuestionCount()
+size_t Page::getQuestionCount() const
 {
     return questions.size();
 }
 
-int Page::getScore()
+int Page::getScore() const
 {
     int ret = 0;
     for(const auto& question : questions)
@@ -29,12 +28,7 @@ int Page::getScore()
     return ret;
 }
 
-void Page::setIsAnswered(bool b)
-{
-    isAnswered = b;
-}
-
-int Page::run(int& falseStreak) //0 odpovezeno | 1 falseStreak >= 3 | 2 skip
+int Page::run(int& falseStreak)
 {
     Common::deleteConsole();
     showPage();
@@ -45,12 +39,11 @@ int Page::run(int& falseStreak) //0 odpovezeno | 1 falseStreak >= 3 | 2 skip
         Common::getString(input);
         if(input == "go")
             break;
-        if(input == "skip")
+        if(input == "skip") //2 is state of skipped page
             return 2;
         else
         {
             std::cout << "Nezvolili jste zadnou validni moznost, zkuste to znovu\n";
-            //Common::clearConsole();
         }
     }
     std::cout << "Muzete zacit odpovidat, postupujte shora dolu" << std::endl;
@@ -65,21 +58,15 @@ int Page::run(int& falseStreak) //0 odpovezeno | 1 falseStreak >= 3 | 2 skip
             falseStreak++;
         if(falseStreak >= 3)
         {
-            return 1;
+            return 1; //1 is state of exceeded failstreak
         }
     }
     Common::deleteConsole();
-    return 0;
-}
-
-void Page::addQuestion(const std::shared_ptr<Question>& question)
-{
-    questions.push_back(question);
+    return 0; //ok state
 }
 
 void Page::createPage()
 {
-    Common::deleteConsole();
     QuizMaker::askQuestionCount(questionCount);
     for(int i = 0; i < questionCount; i++)
     {
@@ -119,7 +106,7 @@ void Page::createPage()
     }
 }
 
-void Page::savePage(std::ofstream& out)
+void Page::savePage(std::ofstream& out) const
 {
     out << "{\n";
     out << "\t\"pocet otazek\" : << " << questionCount << " >>" << std::endl;

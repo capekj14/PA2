@@ -4,7 +4,7 @@
 
 #include "QuestionMultiChoice.h"
 
-void QuestionMultiChoice::showQuestion()
+void QuestionMultiChoice::showQuestion() const
 {
     std::cout << text << "\t(odpovidejte v libovolne kombinaci pismen abcd)" << "\n"
               << "a)\t" << options[0] << "\n"
@@ -19,20 +19,17 @@ std::string QuestionMultiChoice::getAnswer()
     while (true)
     {
         Common::getString(playerAnswer);
-        if(not Common::checkABCDSet(playerAnswer))
-        {
+        if (not Common::checkABCDSet(playerAnswer)) {
             std::cout << "Odpovedeli jste ve spatnem formatu zkuste to znovu" << std::endl;
-            //Common::clearConsole();
-        }
-        else
+        } else
             break;
     }
-    answered = true;
     return playerAnswer;
 }
 
 bool QuestionMultiChoice::evaluate()
 {
+    //checks if player answer contains same letters as correct answer
     std::set<char> correctSet;
     for(char c : correctAnswer)
     {
@@ -74,7 +71,7 @@ void QuestionMultiChoice::createQuestion()
     QuizMaker::askCorrectAnswerMulti(correctAnswer);
 }
 
-void QuestionMultiChoice::saveQuestion(std::ofstream& out)
+void QuestionMultiChoice::saveQuestion(std::ofstream& out) const
 {
     out << "\t{\n";
     out << "\t\t\"typ\" : << " << "1" << " >>" << std::endl;

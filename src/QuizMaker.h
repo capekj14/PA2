@@ -11,19 +11,74 @@
 #ifndef SEMESTRALKA_QUIZMAKER_H
 #define SEMESTRALKA_QUIZMAKER_H
 
+/**
+ * class for creating new quiz
+ * asks user for quiz data
+ */
 class QuizMaker
 {
 
 public:
-    static void askPageCount(int&);
-    static void askName(std::string&);
-    static void askQuestionCount(int&);
-    static void askQuestionType(QuestionType&);
-    static void askQuestionText(std::string&);
-    static void askOptions(std::vector<std::string>&);
+    /**
+     * asks user for numbers of pages in quiz
+     * @param[in,out] num stores inputted number
+     */
+    static void askPageCount(int& num);
+
+    /**
+     * asks player for quiz name
+     * @param[out] str stores inputted string
+     */
+    static void askName(std::string& str);
+
+    /**
+     * asks user for number of question on page
+     * @param[out] num stores inputted number
+     */
+    static void askQuestionCount(int& num);
+
+    /**
+     * asks user for question type
+     * @param[out] type stores inputted type
+     */
+    static void askQuestionType(QuestionType& type);
+
+    /**
+     * asks user for question text
+     * @param[out] str stores question text
+     */
+    static void askQuestionText(std::string& str);
+
+    /**
+     * asks user for all quiz options
+     * @param[out] vec stores options
+     */
+    static void askOptions(std::vector<std::string>& vec);
+
+    /**
+     * asks for all needed data to know correct answer of question free answer
+     * @param[out] correctAnswer exact correct answer
+     * @param[out] patern substring which answer must contain
+     * @param[out] correctSet set of all other possible answers
+     */
     static void askCorrectAnswerFree(std::string &correctAnswer, std::string& patern, std::set<std::string>& correctSet);
+
+    /**
+     * asks for correct option
+     * @param[out] correctAnswer correct option
+     */
     static void askCorrectAnswerMulti(std::string &correctAnswer);
+
+    /**
+     * asks for correct answer
+     * @param correctAnswer correct answer
+     */
     static void askCorrectAnswerYesNo(std::string &correctAnswer);
+
+    /**
+     * asks for correct option
+     * @param correctAnswer correct option
+     */
     static void askCorrectAnswerSingle(std::string &correctAnswer);
 
 };

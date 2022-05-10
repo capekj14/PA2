@@ -4,6 +4,9 @@ BIN = capekj14
 
 compile: $(BIN)
 
+dec: src/*.h README.md
+	doxygen Doxyfile
+
 run: compile
 	./$(BIN)
 

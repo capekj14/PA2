@@ -31,7 +31,7 @@ void Common::clearConsole()
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
 }
 
-bool Common::checkABCDSet(std::string& str)
+bool Common::checkABCDSet(const std::string& str)
 {
     int counts[] = {0,0,0,0};
     if(str.size() >= 4 or str.empty())
@@ -46,7 +46,6 @@ bool Common::checkABCDSet(std::string& str)
             case 'b': counts[1]++; break;
             case 'c': counts[2]++; break;
             case 'd': counts[3]++; break;
-            default: break;
         }
     }
     for(int count : counts)
@@ -67,7 +66,7 @@ void Common::findQuizes(std::vector<std::string>& availableQuizes, bool print)
     }
 }
 
-std::string Common::selectQuiz(std::vector<std::string>& availableQuizes)
+std::string Common::selectQuiz(const std::vector<std::string>& availableQuizes)
 {
     std::string name;
     while (true)
@@ -76,7 +75,6 @@ std::string Common::selectQuiz(std::vector<std::string>& availableQuizes)
         if(std::find(availableQuizes.begin(), availableQuizes.end(), name) == availableQuizes.end())
         {
             std::cout << "nevybrali jste zadny dostupny kviz\n";
-            //Common::clearConsole();
         }
         else
             break;
