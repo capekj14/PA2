@@ -10,7 +10,9 @@
 #include <limits>
 #include <vector>
 #include <filesystem>
-
+#include <algorithm>
+#include <chrono>
+#include <thread>
 
 struct Common
 {
@@ -19,9 +21,11 @@ struct Common
     static bool getText(std::string&);
     static void clearConsole();
     static bool checkABCDSet(std::string&);
-    static void findQuizes(std::vector<std::string>&);
-    static std::string selectQuiz(const std::vector<std::string>&);
+    static void findQuizes(std::vector<std::string>&, bool print);
+    static std::string selectQuiz(std::vector<std::string>&);
     static bool checkQuizName(const std::string &);
+    static void deleteConsole();
+    static void sleep();
 };
 
 

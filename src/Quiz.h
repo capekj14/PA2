@@ -33,7 +33,7 @@ public:
     void addPage(const Page&);
     void createQuiz();
     void saveQuiz();
-    void loadQuiz(const std::string& );
+    bool loadQuiz(const std::string& );
 
 };
 

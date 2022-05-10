@@ -26,6 +26,11 @@ bool Player::operator<(const Player &other)
 
 void Player::askPlayerName()
 {
-    std::cout << "Zadejte vas nickname: " << std::endl;
-    Common::getString(name);
+    std::cout << "Zadejte vas nickname (nejvice 19 znaku, bez mezer): " << std::endl;
+    while (true)
+    {
+        if(Common::getString(name) and !name.empty() and name.size() <= 19)
+            break;
+        std::cout << "Zadejte jmeno znovu!\n";
+    }
 }

@@ -6,7 +6,7 @@
 
 void QuestionMultiChoice::showQuestion()
 {
-    std::cout << text << "\t\t(odpovidejte v libovolne kombinaci pismen abcd)" << "\n"
+    std::cout << text << "\t(odpovidejte v libovolne kombinaci pismen abcd)" << "\n"
               << "a)\t" << options[0] << "\n"
               << "b)\t" << options[1] << "\n"
               << "c)\t" << options[2] << "\n"
@@ -47,16 +47,19 @@ bool QuestionMultiChoice::evaluate()
     {
         std::cout << "Spatna odpoved!" << std::endl;
         correctlyAnswered = false;
+        Common::sleep();
         return false;
     }
     if(correctSet == playerSet)
     {
         std::cout << "Spravna odpoved!" << std::endl;
         correctlyAnswered = true;
+        Common::sleep();
         return true;
     }
     std::cout << "Spatna odpoved!" << std::endl;
     correctlyAnswered = false;
+    Common::sleep();
     return false;
 }
 
@@ -82,27 +85,34 @@ void QuestionMultiChoice::saveQuestion(std::ofstream& out)
     out << "\t}\n";
 }
 
-void QuestionMultiChoice::loadQuestion(std::ifstream& in)
+bool QuestionMultiChoice::loadQuestion(std::ifstream& in)
 {
     std::string input;
     std::getline(in, input, '\n');
     size_t from = input.find_last_of("<<");
     size_t to = input.find_first_of(">>");
+    if(from == input.size() or to == input.size() )
+        return false;
     text = std::string(input.data() + from + 2, to - from - 3);
     std::getline(in, input, '\n');
     from = input.find_last_of("<<");
     to = input.find_first_of(">>");
+    if(from == input.size() or to == input.size() )
+        return false;
     correctAnswer = std::string(input.data() + from + 2, to - from - 3);
     for(int i = 0; i < 4; i++)
     {
         std::getline(in, input, '\n');
         from = input.find_last_of("<<");
         to = input.find_first_of(">>");
+        if(from == input.size() or to == input.size() )
+            return false;
         std::string option = std::string(input.data() + from + 2, to - from - 3);
         options.push_back(std::move(option));
     }
     std::getline(in, input, '\n');
     sscanf(input.c_str(), "\t}");
+    return true;
 }
 
 std::shared_ptr<Question> QuestionMultiChoice::clone() const

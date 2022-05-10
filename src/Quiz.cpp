@@ -6,6 +6,7 @@
 
 void Quiz::run()
 {
+    Common::deleteConsole();
     std::cout << "Hrajete kviz " << name << std::endl;
     player.askPlayerName();
     int falseStreak = 0;
@@ -20,6 +21,7 @@ void Quiz::run()
             pageQueue.push(page);
         else if(result == 1)
         {
+            Common::deleteConsole();
             std::cout << "odpovedeli jste 3 po sobe spatne. Vase hra je ukoncena" << std::endl;
             break;
         }
@@ -94,38 +96,42 @@ void Quiz::createQuiz()
         page.setPageInOrder(i);
     }
     saveQuiz();
+    Common::deleteConsole();
     std::cout << "VAS KVIZ BYL USPESNE ULOZEN\n";
 }
 
 void Quiz::saveQuiz()
 {
-    std::ofstream out("../quizes/"+ name + ".txt");
+    std::ofstream out("quizes/"+ name + ".txt");
     out << "\"nazev\" : << " << name << " >>" << std::endl;
     out << "\"pocet stran\" : << " << pageCount << " >>" << std::endl;
     for(auto& page : pages)
         page.savePage(out);
 }
 
-void Quiz::loadQuiz(const std::string& fileName)
+bool Quiz::loadQuiz(const std::string& fileName)
 {
-    std::ifstream in("../quizes/"+ fileName + ".txt");
+    std::ifstream in("quizes/"+ fileName + ".txt");
     std::string input;
     std::getline(in, input, '\n');
     char fakeName [200] = {0};
-    sscanf(input.c_str(), "\"nazev\" : << %s.199 >>", fakeName);
+    if(sscanf(input.c_str(), "\"nazev\" : << %s.199 >>", fakeName) not_eq 1)
+        return false;
     name = fakeName;
     std::getline(in, input, '\n');
     char pageCountStr [10] = {0};
-    sscanf(input.c_str(), "\"pocet stran\" : << %s.9 >>", pageCountStr);
+    if(sscanf(input.c_str(), "\"pocet stran\" : << %s.9 >>", pageCountStr) not_eq 1)
+        return false;
     pageCount = strtol(pageCountStr, nullptr, 10);
     for(int i = 0; i < pageCount; i++)
     {
         Page page;
         page.setPageInOrder(i);
-        page.loadPage(in);
+        if(page.loadPage(in) == false)
+            return false;
         pages.push_back(page);
     }
-
+    return true;
 }
 
 void Quiz::setName(const std::string & str)

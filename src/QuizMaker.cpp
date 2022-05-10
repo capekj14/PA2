@@ -161,6 +161,7 @@ void QuizMaker::askOptions(std::vector<std::string>& options)
     std::cout << "Zadejte 4 moznosti (napr. bila modra zelena ruzova):" << std::endl;
     for(int i = 0; i < 4; i++)
     {
+        std::cout << char('a' + i);
         while(true)
         {
             std::string str;

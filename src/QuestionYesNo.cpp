@@ -33,12 +33,14 @@ bool QuestionYesNo::evaluate()
     {
         std::cout << "Spravna odpoved!" << std::endl;
         correctlyAnswered = true;
+        Common::sleep();
         return true;
     }
     else
     {
         correctlyAnswered = false;
         std::cout << "Spatna odpoved!" << std::endl;
+        Common::sleep();
         return false;
     }
 }
@@ -62,21 +64,25 @@ void QuestionYesNo::saveQuestion(std::ofstream& out)
     out << "\t}\n";
 }
 
-void QuestionYesNo::loadQuestion(std::ifstream& in)
+bool QuestionYesNo::loadQuestion(std::ifstream& in)
 {
     std::string input;
     std::getline(in, input, '\n');
     size_t from = input.find_last_of("<<");
     size_t to = input.find_first_of(">>");
+    if(from == input.size() or to == input.size() )
+        return false;
     text = std::string(input.data() + from + 2, to - from - 3);
 
     std::getline(in, input, '\n');
     char corrAnswer [5] = {0};
-    sscanf(input.c_str(), "\t\t\"spravna odpoved\" : <<%s.4>>", corrAnswer);
+    if(sscanf(input.c_str(), "\t\t\"spravna odpoved\" : <<%s.4>>", corrAnswer) not_eq 1)
+        return false;
     correctAnswer = corrAnswer;
 
     std::getline(in, input, '\n');
     sscanf(input.c_str(), "\t}");
+    return true;
 }
 
 std::shared_ptr<Question> QuestionYesNo::clone() const

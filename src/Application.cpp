@@ -28,17 +28,20 @@ int Application::getAction()
 
 void Application::run()
 {
-
+    Common::deleteConsole();
     showMenu();
     int result = getAction();
     if(result == 1)
     {
+        Common::deleteConsole();
         quiz.createQuiz();
     }
     else if(result == 2)
     {
+        Common::deleteConsole();
         std::vector<std::string> availableQuizes;
-        Common::findQuizes(availableQuizes);
+        std::cout << "vyberte si kviz z nabidky\n";
+        Common::findQuizes(availableQuizes, true);
         std::string quizName = Common::selectQuiz(availableQuizes);
         quiz.loadQuiz(quizName);
         quiz.run();

@@ -32,7 +32,7 @@ public:
     int run(int& falseStreak);
     void createPage();
     void savePage(std::ofstream &);
-    void loadPage(std::ifstream &);
+    bool loadPage(std::ifstream &);
     void setPageInOrder(size_t);
 };
 

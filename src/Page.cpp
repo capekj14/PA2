@@ -36,6 +36,7 @@ void Page::setIsAnswered(bool b)
 
 int Page::run(int& falseStreak) //0 odpovezeno | 1 falseStreak >= 3 | 2 skip
 {
+    Common::deleteConsole();
     showPage();
     std::cout << "Pokud chcete na otazky odpovidat zadejte \"go\" pokud chcete stranku preskocit zadejte \"skip\"\n";
     while(true)
@@ -67,6 +68,7 @@ int Page::run(int& falseStreak) //0 odpovezeno | 1 falseStreak >= 3 | 2 skip
             return 1;
         }
     }
+    Common::deleteConsole();
     return 0;
 }
 
@@ -77,6 +79,7 @@ void Page::addQuestion(const std::shared_ptr<Question>& question)
 
 void Page::createPage()
 {
+    Common::deleteConsole();
     QuizMaker::askQuestionCount(questionCount);
     for(int i = 0; i < questionCount; i++)
     {
@@ -125,7 +128,7 @@ void Page::savePage(std::ofstream& out)
     out << "}\n";
 }
 
-void Page::loadPage(std::ifstream& in)
+bool Page::loadPage(std::ifstream& in)
 {
     std::string input;
     std::getline(in, input, '\n');
@@ -133,8 +136,8 @@ void Page::loadPage(std::ifstream& in)
     std::getline(in, input, '\n');
     char loading [10] = {0};
     int readCount = sscanf(input.c_str(), "\t\"pocet otazek\" : << %s.9 >>", loading);
-    if(readCount != 1)
-        return;
+    if(readCount not_eq 1)
+        return false;
     questionCount = strtol(loading, nullptr, 10);
 
     for(int i = 0; i < questionCount; i++)
@@ -142,9 +145,11 @@ void Page::loadPage(std::ifstream& in)
         std::getline(in, input, '\n');
         sscanf(input.c_str(), "\t{");
         std::getline(in, input, '\n');
-        sscanf(input.c_str(), "\t\t\"typ\" : << %s >>", loading);
-
+        if(sscanf(input.c_str(), "\t\t\"typ\" : << %s >>", loading) not_eq 1)
+            return false;
         int typeInt = strtol(loading, nullptr, 10);
+        if(typeInt < 0 or typeInt > 3)
+            return false;
         QuestionType type = (QuestionType) typeInt;
         switch(type)
         {
@@ -173,10 +178,12 @@ void Page::loadPage(std::ifstream& in)
                 break;
             }
         }
-        questions.back()->loadQuestion(in);
+        if(questions.back()->loadQuestion(in) not_eq 1)
+            return false;
     }
     std::getline(in, input, '\n');
     sscanf(input.c_str(), "}");
+    return true;
 }
 
 void Page::setPageInOrder(size_t num)

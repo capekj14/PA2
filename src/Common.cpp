@@ -8,18 +8,20 @@ bool Common::getString(std::string& str)
 {
     std::cin >> str;
     clearConsole();
+    return true;
 }
 
 bool Common::getNumber(int& num)
 {
     std::cin >> num;
     clearConsole();
+    return true;
 }
 
 bool Common::getText(std::string& text)
 {
     std::getline(std::cin, text, '\n');
-    clearConsole();
+    std::cin.clear();
     return true;
 }
 
@@ -53,21 +55,21 @@ bool Common::checkABCDSet(std::string& str)
     return true;
 }
 
-void Common::findQuizes(std::vector<std::string>& availableQuizes)
+void Common::findQuizes(std::vector<std::string>& availableQuizes, bool print)
 {
-    for(const auto& item : std::filesystem::directory_iterator{"../quizes"})
+    for(const auto& item : std::filesystem::directory_iterator{"quizes"})
     {
         std::string str = item.operator const std::filesystem::path &().filename().string();
         std::string adding(str.data(), str.size() - 4);
         availableQuizes.push_back(adding);
-        std::cout << adding << std::endl;
+        if(print)
+            std::cout << " - " << adding << std::endl;
     }
 }
 
-std::string Common::selectQuiz(const std::vector<std::string>& availableQuizes)
+std::string Common::selectQuiz(std::vector<std::string>& availableQuizes)
 {
     std::string name;
-    std::cout << "vyberte si kviz z nabidky\n";
     while (true)
     {
         Common::getString(name);
@@ -85,11 +87,21 @@ std::string Common::selectQuiz(const std::vector<std::string>& availableQuizes)
 bool Common::checkQuizName(const std::string& name)
 {
     std::vector<std::string> availableQuizes;
-    Common::findQuizes(availableQuizes);
+    Common::findQuizes(availableQuizes, false);
     for(auto& quiz : availableQuizes)
         if(quiz == name)
             return false;
     return true;
+}
+
+void Common::deleteConsole()
+{
+    std::cout << "\x1B[2J\x1B[H";
+}
+
+void Common::sleep()
+{
+    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 }
 
 #include "Common.h"

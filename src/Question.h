@@ -30,7 +30,7 @@ public:
     virtual QuestionType getType() = 0;
     virtual void createQuestion() = 0;
     virtual void saveQuestion(std::ofstream&) = 0;
-    virtual void loadQuestion(std::ifstream&) = 0;
+    virtual bool loadQuestion(std::ifstream&) = 0;
     virtual std::shared_ptr<Question> clone() const = 0;
 };
 

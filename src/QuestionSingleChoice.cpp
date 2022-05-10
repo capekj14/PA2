@@ -8,10 +8,10 @@
 void QuestionSingleChoice::showQuestion()
 {
     std::cout << text << "\t(odpovidejte \"a\", \"b\", \"c\" nebo \"d\")" << "\n"
-              << "a\t" << options[0] << "\n"
-              << "b\t" << options[1] << "\n"
-              << "c\t" << options[2] << "\n"
-              << "d\t" << options[3]
+              << "a)\t" << options[0] << "\n"
+              << "b)\t" << options[1] << "\n"
+              << "c)\t" << options[2] << "\n"
+              << "d)\t" << options[3]
               << std::endl;
 }
 
@@ -38,12 +38,14 @@ bool QuestionSingleChoice::evaluate()
     {
         correctlyAnswered = true;
         std::cout << "Spravna odpoved!" << std::endl;
+        Common::sleep();
         return true;
     }
     else
     {
         correctlyAnswered = false;
         std::cout << "Spatna odpoved!" << std::endl;
+        Common::sleep();
         return false;
     }
 }
@@ -72,17 +74,21 @@ void QuestionSingleChoice::saveQuestion(std::ofstream& out)
     out << "\t}\n";
 }
 
-void QuestionSingleChoice::loadQuestion(std::ifstream& in)
+bool QuestionSingleChoice::loadQuestion(std::ifstream& in)
 {
     std::string input;
     std::getline(in, input, '\n');
     size_t from = input.find_last_of("<<");
     size_t to = input.find_first_of(">>");
+    if(from == input.size() or to == input.size() )
+        return false;
     text = std::string(input.data() + from + 2, to - from - 3);
 
     std::getline(in, input, '\n');
     from = input.find_last_of("<<");
     to = input.find_first_of(">>");
+    if(from == input.size() or to == input.size() )
+        return false;
     correctAnswer = std::string(input.data() + from + 2, to - from - 3);
 
     for(int i = 0; i < 4; i++)
@@ -90,10 +96,13 @@ void QuestionSingleChoice::loadQuestion(std::ifstream& in)
         std::getline(in, input, '\n');
         from = input.find_last_of("<<");
         to = input.find_first_of(">>");
-        options.push_back(std::string(input.data() + from + 2, to - from - 3));
+        if(from == input.size() or to == input.size() )
+            return false;
+        options.emplace_back(input.data() + from + 2, to - from - 3);
     }
     std::getline(in, input, '\n');
     sscanf(input.c_str(), "\t}");
+    return true;
 }
 
 std::shared_ptr<Question> QuestionSingleChoice::clone() const

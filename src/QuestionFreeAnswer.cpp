@@ -7,8 +7,8 @@
 
 void QuestionFreeAnswer::showQuestion()
 {
-    std::cout << text << "\n" << "\todpovidejte slovem ci vetou, neukoncujte teckou ani zadnym jinym znakem "
-                                 "(bude hodnoceno jako spatna odpoved)" << "\n"
+    std::cout << text << "\t(odpovidejte slovem ci vetou, neukoncujte teckou ani zadnym jinym znakem "
+                                 "(bude hodnoceno jako spatna odpoved) )" << "\n"
               << std::endl;
 }
 
@@ -35,6 +35,7 @@ bool QuestionFreeAnswer::evaluate()
     {
         std::cout << "Spravna odpoved!" << std::endl;
         correctlyAnswered = true;
+        Common::sleep();
         return true;
     }
     for (const auto& str: correctAnswerSet)
@@ -42,16 +43,19 @@ bool QuestionFreeAnswer::evaluate()
         {
             std::cout << "Spravna odpoved!!" << std::endl;
             correctlyAnswered = true;
+            Common::sleep();
             return true;
         }
     if(checkByRegex())
     {
         std::cout << "Spravna odpoved!!" << std::endl;
         correctlyAnswered = true;
+        Common::sleep();
         return true;
     }
     std::cout << "Spatna odpoved!\n";
     correctlyAnswered = false;
+    Common::sleep();
     return false;
 }
 //nyni vyhledava jestli playerAnswer obsahuje regex jako substring
@@ -103,27 +107,34 @@ void QuestionFreeAnswer::saveQuestion(std::ofstream& out)
     out << "\t}\n";
 }
 
-void QuestionFreeAnswer::loadQuestion(std::ifstream& in)
+bool QuestionFreeAnswer::loadQuestion(std::ifstream& in)
 {
     std::string input;
     std::getline(in, input, '\n');
     size_t from = input.find_last_of("<<");
     size_t to = input.find_first_of(">>");
+    if(from == input.size() or to == input.size() )
+        return false;
     text = std::string(input.data() + from + 2, to - from - 3);
 
     std::getline(in, input, '\n');
     from = input.find_last_of("<<");
     to = input.find_first_of(">>");
+    if(from == input.size() or to == input.size() )
+        return false;
     correctAnswer = std::string(input.data() + from + 2, to - from - 3);
 
     std::getline(in, input, '\n');
     from = input.find_last_of("<<");
     to = input.find_first_of(">>");
+    if(from == input.size() or to == input.size() )
+        return false;
     pattern = std::string(input.data() + from + 2, to - from - 3);
 
     std::getline(in, input, '\n');
     char setCount[10] = {0};
-    sscanf(input.c_str(), "\t\t\"pocet odpovedi v setu\" : <<%s.9>>", &setCount);
+    if(sscanf(input.c_str(), "\t\t\"pocet odpovedi v setu\" : <<%s.9>>", setCount) not_eq 1)
+        return false;
     int iterateTo = strtol(setCount, nullptr, 10);
 
     for(int i = 0; i < iterateTo; i++)
@@ -131,10 +142,13 @@ void QuestionFreeAnswer::loadQuestion(std::ifstream& in)
         std::getline(in, input, '\n');
         from = input.find_last_of("<<");
         to = input.find_first_of(">>");
+        if(from == input.size() or to == input.size() )
+            return false;
         correctAnswerSet.insert(std::string(input.data() + from + 2, to - from - 3));
     }
     std::getline(in, input, '\n');
     sscanf(input.c_str(), "\t}");
+    return true;
 }
 
 std::shared_ptr<Question> QuestionFreeAnswer::clone() const
