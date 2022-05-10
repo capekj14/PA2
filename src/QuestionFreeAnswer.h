@@ -20,7 +20,7 @@ public:
     void showQuestion() override;
     std::string getAnswer() override;
     bool evaluate() override;
-    bool checkByRegex();
+    bool checkBySubstring();
     QuestionType getType() override;
     void createQuestion() override;
     void saveQuestion(std::ofstream&) override;

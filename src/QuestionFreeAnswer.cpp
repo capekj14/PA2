@@ -46,7 +46,7 @@ bool QuestionFreeAnswer::evaluate()
             Common::sleep();
             return true;
         }
-    if(checkByRegex())
+    if(checkBySubstring())
     {
         std::cout << "Spravna odpoved!!" << std::endl;
         correctlyAnswered = true;
@@ -59,8 +59,7 @@ bool QuestionFreeAnswer::evaluate()
     return false;
 }
 //nyni vyhledava jestli playerAnswer obsahuje regex jako substring
-bool QuestionFreeAnswer::checkByRegex()
-{
+bool QuestionFreeAnswer::checkBySubstring() {
     size_t i = 0;
     for (auto contIt = playerAnswer.begin(); contIt != playerAnswer.end(); ++contIt, ++i)
     {
