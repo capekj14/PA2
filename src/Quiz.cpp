@@ -6,12 +6,14 @@
 
 void Quiz::run()
 {
-    Common::deleteConsole();
+    Common::clearConsole();
     std::cout << "Hrajete kviz " << name << std::endl;
     player.askPlayerName();
     int falseStreak = 0;
+
     std::queue<Page> pageQueue;
     pushToQueue(pageQueue);
+    
     while(!pageQueue.empty())
     {
         auto page = pageQueue.front();
@@ -21,7 +23,7 @@ void Quiz::run()
             pageQueue.push(page);
         else if(result == 1)
         {
-            Common::deleteConsole();
+            Common::clearConsole();
             std::cout << "odpovedeli jste 3 po sobe spatne. Vase hra je ukoncena" << std::endl;
             break;
         }
@@ -75,7 +77,7 @@ void Quiz::createQuiz()
     QuizMaker::askPageCount(pageCount);
     for(int i = 0; i < pageCount; i++)
     {
-        Common::deleteConsole();
+        Common::clearConsole();
         std::cout << "stranka " << i + 1 << "/" << pageCount << std::endl;
         Page page;
         page.createPage();
@@ -83,7 +85,7 @@ void Quiz::createQuiz()
         page.setPageInOrder(i);
     }
     saveQuiz();
-    Common::deleteConsole();
+    Common::clearConsole();
     std::cout << "VAS KVIZ BYL USPESNE ULOZEN\n";
 }
 
@@ -100,23 +102,28 @@ bool Quiz::loadQuiz(const std::string& fileName)
 {
     std::ifstream in("quizes/"+ fileName + ".txt");
     std::string input;
-    std::getline(in, input, '\n');
-    char fakeName [200] = {0};
-    if(sscanf(input.c_str(), "\"nazev\" : << %s.199 >>", fakeName) not_eq 1)
+
+    std::getline(in, input);
+    auto skippedName = Common::skip(input, "\"nazev\" : ");
+    
+    name = Common::extractField(skippedName);
+    std::getline(in, input);
+    auto skippedPageCount = Common::skip(input, "\"pocet stran\" : ");
+
+    std::string pageCountStr = Common::extractField(skippedPageCount);
+    auto [pageCount, ok] = Common::strToInt(pageCountStr.data());
+    if(ok == false)
         return false;
-    name = fakeName;
-    std::getline(in, input, '\n');
-    char pageCountStr [10] = {0};
-    if(sscanf(input.c_str(), "\"pocet stran\" : << %s.9 >>", pageCountStr) not_eq 1)
-        return false;
-    pageCount = strtol(pageCountStr, nullptr, 10);
+
+
     for(int i = 0; i < pageCount; i++)
     {
+        std::cout << "stranka:" << i << std::endl;
         Page page;
         page.setPageInOrder(i);
         if(not page.loadPage(in))
             return false;
-        pages.push_back(page);
+        pages.push_back(std::move(page));
     }
     return true;
 }

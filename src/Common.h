@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <string>
+#include <string_view>
 #include <limits>
 #include <vector>
 #include <filesystem>
@@ -40,9 +41,9 @@ struct Common
     static bool getText(std::string& line);
 
     /**
-     * clears std::cin for enabling another input
+     * resets std::cin error state for enabling another input
      */
-    static void clearConsole();
+    static void resetConsole();
 
     /**
      * checking parameter if contains just letters a,b,c,d each maximally once
@@ -75,12 +76,26 @@ struct Common
     /**
      * clean up console for clear view
      */
-    static void deleteConsole();
+    static void clearConsole();
 
     /**
      * calls library function for sleep with parameter 3000 milliseconds
      */
     static void sleep();
+
+
+    struct ConversionState{
+        int val;
+        bool state;
+    };
+
+    static ConversionState strToInt(const char* str);
+    
+    static std::string extractBetween(std::string_view input, std::string_view before, std::string_view after);
+    static std::string_view skip(std::string_view in, const char* match);
+
+    
+    inline static std::string extractField(std::string_view input) {return extractBetween(input, "<< ", " >>");}
 };
 
 

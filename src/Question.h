@@ -75,11 +75,6 @@ public:
      * @return bool if loading was successful
      */
     virtual bool loadQuestion(std::ifstream& in) = 0;
-
-    /**
-     * @return shared pointer of base class Question created from child class
-     */
-    virtual std::shared_ptr<Question> clone() const = 0;
 };
 
 

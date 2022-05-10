@@ -38,7 +38,7 @@ void QuizMaker::askQuestionCount(int& questionCount)
     }
 }
 
-void QuizMaker::askQuestionType(QuestionType& type)
+QuestionType QuizMaker::askQuestionType()
 {
     std::cout << "Vyberte typ dalsi otazky (staci odpovedet vyberem cisla) :\n"
               << "1) single choice\n"
@@ -52,10 +52,10 @@ void QuizMaker::askQuestionType(QuestionType& type)
         {
             switch (num)
             {
-                case 1: type = QuestionType::SingleChoice; break;
-                case 2: type = QuestionType::MultiChoice; break;
-                case 3: type = QuestionType::YesNo; break;
-                default: type = QuestionType::Free; break;
+                case 1: return QuestionType::SingleChoice; break;
+                case 2: return QuestionType::MultiChoice; break;
+                case 3: return QuestionType::YesNo; break;
+                default: return QuestionType::Free; break;
             }
             break;
         }

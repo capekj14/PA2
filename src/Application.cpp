@@ -19,7 +19,7 @@ int Application::getAction()
         if (ret != 1 and ret != 2 and ret != 3)
         {
             std::cout << "Zadali jste neplatnou moznost, zkuste to znovu" << std::endl;
-            Common::clearConsole();
+            Common::resetConsole();
         }
         else
             return ret;
@@ -28,22 +28,24 @@ int Application::getAction()
 
 void Application::run()
 {
-    Common::deleteConsole();
+    Common::clearConsole();
     showMenu();
     int result = getAction();
     if(result == 1)
     {
-        Common::deleteConsole();
+        Common::clearConsole();
         quiz.createQuiz();
     }
     else if(result == 2)
     {
-        Common::deleteConsole();
+        Common::clearConsole();
         std::vector<std::string> availableQuizes;
         std::cout << "vyberte si kviz z nabidky\n";
         Common::findQuizes(availableQuizes, true);
+
         std::string quizName = Common::selectQuiz(availableQuizes);
         quiz.loadQuiz(quizName);
+    
         quiz.run();
     }
     else if(result == 3)

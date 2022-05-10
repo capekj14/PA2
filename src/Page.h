@@ -14,8 +14,6 @@
 #include "QuizMaker.h"
 #include "Common.h"
 
-#ifndef SEMESTRALKA_PAGE_H
-#define SEMESTRALKA_PAGE_H
 /**
  * represents one page in quiz
  * page can contains more questions
@@ -25,6 +23,9 @@ class Page
     std::vector<std::shared_ptr<Question>> questions;
     int questionCount = 0;
     size_t pageInOrder;
+
+    void addPage(QuestionType type);
+
 public:
     /**
      * print whole page into console
@@ -75,4 +76,3 @@ public:
 };
 
 
-#endif //SEMESTRALKA_PAGE_H

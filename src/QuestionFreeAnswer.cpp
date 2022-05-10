@@ -19,7 +19,7 @@ std::string QuestionFreeAnswer::getAnswer()
         if (playerAnswer.empty())
         {
             std::cout << "Neodpovedeli jste, zkuste to znovu" << std::endl;
-            Common::clearConsole();
+            Common::resetConsole();
         }
         else
             break;
@@ -60,28 +60,9 @@ bool QuestionFreeAnswer::evaluate()
     return false;
 }
 
-bool QuestionFreeAnswer::checkBySubstring() {
-    size_t i = 0;
-    //naive algorithm iterates through player answer and through correct substring
-    for (auto contIt = playerAnswer.begin(); contIt != playerAnswer.end(); ++contIt, ++i)
-    {
-        if(i + pattern.size() > playerAnswer.size())
-            break;
-        auto contCopy = contIt;
-        bool flek = true;
-        for (auto valIt = pattern.begin(); valIt != pattern.end(); ++valIt, ++contCopy)
-        {
-            bool is_equal = *contCopy == *valIt;
-            if(!is_equal)
-            {
-                flek = false;
-                break;
-            }
-        }
-        if(flek)
-            return true;
-    }
-    return false;
+bool QuestionFreeAnswer::checkBySubstring() 
+{
+    return playerAnswer.find(pattern) != (size_t)-1;
 }
 
 QuestionType QuestionFreeAnswer::getType()
@@ -108,53 +89,36 @@ void QuestionFreeAnswer::saveQuestion(std::ofstream& out) const
     out << "\t}\n";
 }
 
+
+
 bool QuestionFreeAnswer::loadQuestion(std::ifstream& in)
 {
     std::string input;
-    std::getline(in, input, '\n');
-    size_t from = input.find_last_of("<<");
-    size_t to = input.find_first_of(">>");
-    if(from == input.size() or to == input.size() )
-        return false;
-    text = std::string(input.data() + from + 2, to - from - 3);
+    std::getline(in, input);
+    text = Common::extractField(input);
 
-    std::getline(in, input, '\n');
-    from = input.find_last_of("<<");
-    to = input.find_first_of(">>");
-    if(from == input.size() or to == input.size() )
-        return false;
-    correctAnswer = std::string(input.data() + from + 2, to - from - 3);
+    std::getline(in, input);
+    correctAnswer = Common::extractField(input);
 
-    std::getline(in, input, '\n');
-    from = input.find_last_of("<<");
-    to = input.find_first_of(">>");
-    if(from == input.size() or to == input.size() )
-        return false;
-    pattern = std::string(input.data() + from + 2, to - from - 3);
+    std::getline(in, input);
+    pattern = Common::extractField(input);
 
-    std::getline(in, input, '\n');
-    char setCount[10] = {0};
-    if(sscanf(input.c_str(), "\t\t\"pocet odpovedi v setu\" : <<%s.9>>", setCount) not_eq 1)
+    std::getline(in, input);
+    auto useful = Common::skip(input, "\t\t\"pocet odpovedi v setu\" : ");
+    
+    std::string setCount = Common::extractField(useful);
+    auto [iterateTo, ok] = Common::strToInt(setCount.data());
+    if(ok == false)
         return false;
-    int iterateTo = strtol(setCount, nullptr, 10);
 
     for(int i = 0; i < iterateTo; i++)
     {
-        std::getline(in, input, '\n');
-        from = input.find_last_of("<<");
-        to = input.find_first_of(">>");
-        if(from == input.size() or to == input.size() )
-            return false;
-        correctAnswerSet.insert(std::string(input.data() + from + 2, to - from - 3));
+        std::getline(in, input);
+        std::string answer = Common::extractField(input);
+        correctAnswerSet.insert(std::move(answer));
     }
-    std::getline(in, input, '\n');
-    sscanf(input.c_str(), "\t}");
+    
     return true;
-}
-
-std::shared_ptr<Question> QuestionFreeAnswer::clone() const
-{
-    return std::make_shared<QuestionFreeAnswer>(*this);
 }
 
 

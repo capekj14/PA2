@@ -2,8 +2,6 @@
 // Created by Jakub Čapek on 23.04.2022.
 //
 #pragma once
-#ifndef SEMESTRALKA_QUESTIONMULTICHOICE_H
-#define SEMESTRALKA_QUESTIONMULTICHOICE_H
 
 #include "Question.h"
 #include <set>
@@ -25,8 +23,4 @@ public:
     void createQuestion() override;
     void saveQuestion(std::ofstream &) const override;
     bool loadQuestion(std::ifstream &) override;
-    std::shared_ptr<Question> clone() const override;
 };
-
-
-#endif //SEMESTRALKA_QUESTIONMULTICHOICE_H

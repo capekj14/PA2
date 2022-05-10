@@ -8,9 +8,6 @@
 #include "QuestionType.h"
 #include "Common.h"
 
-#ifndef SEMESTRALKA_QUIZMAKER_H
-#define SEMESTRALKA_QUIZMAKER_H
-
 /**
  * class for creating new quiz
  * asks user for quiz data
@@ -39,9 +36,9 @@ public:
 
     /**
      * asks user for question type
-     * @param[out] type stores inputted type
+     * return question type  
      */
-    static void askQuestionType(QuestionType& type);
+    static QuestionType askQuestionType();
 
     /**
      * asks user for question text
@@ -82,6 +79,3 @@ public:
     static void askCorrectAnswerSingle(std::string &correctAnswer);
 
 };
-
-
-#endif //SEMESTRALKA_QUIZMAKER_H

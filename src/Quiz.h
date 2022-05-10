@@ -11,9 +11,6 @@
 #include "LeaderBoard.h"
 #include "QuizMaker.h"
 
-#ifndef SEMESTRALKA_QUIZ_H
-#define SEMESTRALKA_QUIZ_H
-
 /**
  * represents quiz, which is main class of this whole application
  */
@@ -69,6 +66,3 @@ public:
     bool loadQuiz(const std::string& str);
 
 };
-
-
-#endif //SEMESTRALKA_QUIZ_H

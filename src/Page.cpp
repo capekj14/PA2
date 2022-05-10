@@ -30,7 +30,7 @@ int Page::getScore() const
 
 int Page::run(int& falseStreak)
 {
-    Common::deleteConsole();
+    Common::clearConsole();
     showPage();
     std::cout << "Pokud chcete na otazky odpovidat zadejte \"go\" pokud chcete stranku preskocit zadejte \"skip\"\n";
     while(true)
@@ -39,30 +39,46 @@ int Page::run(int& falseStreak)
         Common::getString(input);
         if(input == "go")
             break;
+        
         if(input == "skip") //2 is state of skipped page
             return 2;
         else
-        {
             std::cout << "Nezvolili jste zadnou validni moznost, zkuste to znovu\n";
-        }
     }
+
     std::cout << "Muzete zacit odpovidat, postupujte shora dolu" << std::endl;
     for(auto& question : questions)
     {
         bool goodAnswer = question->run();
         if(goodAnswer)
-        {
             falseStreak = 0;
-        }
         else
             falseStreak++;
+        
         if(falseStreak >= 3)
-        {
             return 1; //1 is state of exceeded failstreak
-        }
     }
-    Common::deleteConsole();
+    Common::clearConsole();
     return 0; //ok state
+}
+
+void Page::addPage(QuestionType type)
+{
+    switch(type)
+    {
+        case QuestionType::Free: 
+            questions.push_back(std::make_shared<QuestionFreeAnswer>());
+            break;
+        case QuestionType::SingleChoice: 
+            questions.push_back(std::make_shared<QuestionSingleChoice>());
+            break;        
+        case QuestionType::MultiChoice: 
+            questions.push_back(std::make_shared<QuestionMultiChoice>());
+            break;
+        case QuestionType::YesNo: 
+            questions.push_back(std::make_shared<QuestionYesNo>());
+            break;
+    }
 }
 
 void Page::createPage()
@@ -70,39 +86,8 @@ void Page::createPage()
     QuizMaker::askQuestionCount(questionCount);
     for(int i = 0; i < questionCount; i++)
     {
-        QuestionType type;
-        QuizMaker::askQuestionType(type);
-        switch (type)
-        {
-            case QuestionType::Free:
-            {
-                QuestionFreeAnswer question;
-                question.createQuestion();
-                questions.push_back(std::make_shared<QuestionFreeAnswer>(question));
-                break;
-            }
-            case QuestionType::SingleChoice:
-            {
-                QuestionSingleChoice question;
-                question.createQuestion();
-                questions.push_back(std::make_shared<QuestionSingleChoice>(question));
-                break;
-            }
-            case QuestionType::MultiChoice:
-            {
-                QuestionMultiChoice question;
-                question.createQuestion();
-                questions.push_back(std::make_shared<QuestionMultiChoice>(question));
-                break;
-            }
-            case QuestionType::YesNo:
-            {
-                QuestionYesNo question;
-                question.createQuestion();
-                questions.push_back(std::make_shared<QuestionYesNo>(question));
-                break;
-            }
-        }
+        addPage(QuizMaker::askQuestionType());
+        questions.back()->createQuestion();
     }
 }
 
@@ -117,59 +102,44 @@ void Page::savePage(std::ofstream& out) const
 
 bool Page::loadPage(std::ifstream& in)
 {
+    const auto enforceLineChar = [](auto& in, auto& str, char c){
+        std::getline(in, str, '\n');
+        return str.find(c) != (size_t)-1;
+    };
     std::string input;
-    std::getline(in, input, '\n');
-    sscanf(input.c_str(), "{");
-    std::getline(in, input, '\n');
-    char loading [10] = {0};
-    int readCount = sscanf(input.c_str(), "\t\"pocet otazek\" : << %s.9 >>", loading);
-    if(readCount not_eq 1)
+    if(enforceLineChar(in, input, '{') == false)
         return false;
-    questionCount = strtol(loading, nullptr, 10);
 
-    for(int i = 0; i < questionCount; i++)
+    std::getline(in, input);
+    auto useful = Common::skip(input, "\t\"pocet otazek\" : ");    
+    std::string questionCount = Common::extractField(useful);
+    auto [iterateTo, ok] = Common::strToInt(questionCount.data());
+    if(ok == false)
+        return false;
+
+    for(int i = 0; i < iterateTo; i++)
     {
-        std::getline(in, input, '\n');
-        sscanf(input.c_str(), "\t{");
-        std::getline(in, input, '\n');
-        if(sscanf(input.c_str(), "\t\t\"typ\" : << %s >>", loading) not_eq 1)
+        if(enforceLineChar(in, input, '{') == false)
             return false;
-        int typeInt = strtol(loading, nullptr, 10);
-        if(typeInt < 0 or typeInt > 3)
+
+        std::getline(in, input);
+        std::string loaded = Common::extractField(input);
+        auto [typeInt, ok] = Common::strToInt(loaded.data());
+        if(not ok or typeInt < 0 or typeInt > 3)
             return false;
+
         QuestionType type = (QuestionType) typeInt;
-        switch(type)
-        {
-            case QuestionType::Free :
-            {
-                QuestionFreeAnswer question;
-                questions.push_back(question.clone());
-                break;
-            }
-            case QuestionType::SingleChoice :
-            {
-                QuestionSingleChoice question;
-                questions.push_back(question.clone());
-                break;
-            }
-            case QuestionType::MultiChoice :
-            {
-                QuestionMultiChoice question;
-                questions.push_back(question.clone());
-                break;
-            }
-            case QuestionType::YesNo :
-            {
-                QuestionYesNo question;
-                questions.push_back(question.clone());
-                break;
-            }
-        }
+        addPage(type);
+        
         if(questions.back()->loadQuestion(in) not_eq 1)
             return false;
+        
+        if(enforceLineChar(in, input, '}') == false)
+            return false;
     }
-    std::getline(in, input, '\n');
-    sscanf(input.c_str(), "}");
+
+    if(enforceLineChar(in, input, '}') == false)
+        return false;
     return true;
 }
 

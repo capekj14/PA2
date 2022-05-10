@@ -85,35 +85,17 @@ void QuestionMultiChoice::saveQuestion(std::ofstream& out) const
 bool QuestionMultiChoice::loadQuestion(std::ifstream& in)
 {
     std::string input;
-    std::getline(in, input, '\n');
-    size_t from = input.find_last_of("<<");
-    size_t to = input.find_first_of(">>");
-    if(from == input.size() or to == input.size() )
-        return false;
-    text = std::string(input.data() + from + 2, to - from - 3);
-    std::getline(in, input, '\n');
-    from = input.find_last_of("<<");
-    to = input.find_first_of(">>");
-    if(from == input.size() or to == input.size() )
-        return false;
-    correctAnswer = std::string(input.data() + from + 2, to - from - 3);
+    std::getline(in, input);
+    text = Common::extractField(input);
+
+    std::getline(in, input);
+    correctAnswer = Common::extractField(input);
+
     for(int i = 0; i < 4; i++)
     {
-        std::getline(in, input, '\n');
-        from = input.find_last_of("<<");
-        to = input.find_first_of(">>");
-        if(from == input.size() or to == input.size() )
-            return false;
-        std::string option = std::string(input.data() + from + 2, to - from - 3);
+        std::getline(in, input);
+        std::string option = Common::extractField(input);
         options.push_back(std::move(option));
     }
-    std::getline(in, input, '\n');
-    sscanf(input.c_str(), "\t}");
     return true;
 }
-
-std::shared_ptr<Question> QuestionMultiChoice::clone() const
-{
-    return std::make_shared<QuestionMultiChoice>(*this);
-}
-

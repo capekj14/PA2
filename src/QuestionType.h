@@ -6,9 +6,9 @@
  * enum class representing all question types this application supports
  */
 enum class QuestionType{
-    Free,
-    MultiChoice,
-    SingleChoice,
-    YesNo
+    Free = 0,
+    MultiChoice = 1,
+    SingleChoice = 2,
+    YesNo = 3
 };
 

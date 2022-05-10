@@ -65,25 +65,13 @@ void QuestionYesNo::saveQuestion(std::ofstream& out) const
 bool QuestionYesNo::loadQuestion(std::ifstream& in)
 {
     std::string input;
-    std::getline(in, input, '\n');
-    size_t from = input.find_last_of("<<");
-    size_t to = input.find_first_of(">>");
-    if(from == input.size() or to == input.size() )
-        return false;
-    text = std::string(input.data() + from + 2, to - from - 3);
+    std::getline(in, input);
+    text = Common::extractField(input);
+    
+    std::getline(in, input);
+    auto useful = Common::skip(input, "\t\t\"spravna odpoved\" : ");
+    
+    correctAnswer = Common::extractField(useful);
 
-    std::getline(in, input, '\n');
-    char corrAnswer [5] = {0};
-    if(sscanf(input.c_str(), "\t\t\"spravna odpoved\" : <<%s.4>>", corrAnswer) not_eq 1)
-        return false;
-    correctAnswer = corrAnswer;
-
-    std::getline(in, input, '\n');
-    sscanf(input.c_str(), "\t}");
     return true;
-}
-
-std::shared_ptr<Question> QuestionYesNo::clone() const
-{
-    return std::make_shared<QuestionYesNo>(*this);
 }
