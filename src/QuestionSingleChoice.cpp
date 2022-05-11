@@ -2,7 +2,6 @@
 // Created by Jakub Čapek on 23.04.2022.
 //
 
-#include <limits>
 #include "QuestionSingleChoice.h"
 
 void QuestionSingleChoice::showQuestion() const

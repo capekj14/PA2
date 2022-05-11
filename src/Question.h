@@ -2,8 +2,6 @@
 // Created by Jakub Čapek on 22.04.2022.
 //
 #pragma once
-#ifndef SEMESTRALKA_QUESTION_H
-#define SEMESTRALKA_QUESTION_H
 
 
 #include <string>
@@ -15,7 +13,7 @@
 #include <memory>
 
 /**
- * abtract class of question from which derive four children classes
+ * abstract class of question from which derive four children classes
  */
 class Question
 {
@@ -78,4 +76,3 @@ public:
 };
 
 
-#endif //SEMESTRALKA_QUESTION_H

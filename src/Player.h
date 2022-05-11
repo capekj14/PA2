@@ -2,9 +2,6 @@
 // Created by Jakub Čapek on 23.04.2022.
 //
 #pragma once
-#ifndef SEMESTRALKA_PLAYER_H
-#define SEMESTRALKA_PLAYER_H
-
 
 #include <string>
 #include <utility>
@@ -47,7 +44,7 @@ public:
 
     /**
      * @param other another player
-     * @return bool if this players score is lower than others player score
+     * @return bool if this players score is higher than others player score (on purpose opposite behaviour)
      */
     bool operator < (const Player& other) const;
 
@@ -58,4 +55,3 @@ public:
 };
 
 
-#endif //SEMESTRALKA_PLAYER_H

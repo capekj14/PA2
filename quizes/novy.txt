@@ -1,0 +1,10 @@
+"nazev" : << novy >>
+"pocet stran" : << 1 >>
+{
+	"pocet otazek" : << 1 >>
+	{
+		"typ" : << 3 >>
+		"text" : << ano? >>
+		"spravna odpoved" : << ano >>
+	}
+}

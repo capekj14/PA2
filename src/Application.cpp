@@ -44,7 +44,11 @@ void Application::run()
         Common::findQuizes(availableQuizes, true);
 
         std::string quizName = Common::selectQuiz(availableQuizes);
-        quiz.loadQuiz(quizName);
+        if(not quiz.loadQuiz(quizName) )
+        {
+            std::cout << "\nNASTALA CHYBA V NACITANI SOUBORU " << std::endl;
+            return;
+        }
     
         quiz.run();
     }

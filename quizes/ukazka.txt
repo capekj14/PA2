@@ -1,0 +1,76 @@
+"nazev" : << ukazka >>
+"pocet stran" : << 6 >>
+{
+	"pocet otazek" : << 2 >>
+	{
+		"typ" : << 1 >>
+		"text" : << kolik je 2+2 ? >>
+		"spravna odpoved" : << ab >>
+		"moznost" : << 4 >>
+		"moznost" : << 8-4 >>
+		"moznost" : << odmocnina z 9 >>
+		"moznost" : << neco kolem 10 >>
+	}
+	{
+		"typ" : << 3 >>
+		"text" : << je FIT jedna z fakult CVUT ? >>
+		"spravna odpoved" : << ano >>
+	}
+}
+{
+	"pocet otazek" : << 1 >>
+	{
+		"typ" : << 0 >>
+		"text" : << kolik (velkych) progtestovych uloh v tomto semestru bylo? >>
+		"spravna odpoved" : << 7 >>
+		"regularni vyraz" : << sedm >>
+		"pocet odpovedi v setu" : << 3 >>
+		"uznavana odpoved" : << 7 >>
+		"uznavana odpoved" : << sedm >>
+		"uznavana odpoved" : << seven >>
+	}
+}
+{
+	"pocet otazek" : << 1 >>
+	{
+		"typ" : << 1 >>
+		"text" : << Kolik dni je v tydnu ? >>
+		"spravna odpoved" : << ac >>
+		"moznost" : << 7 >>
+		"moznost" : << 6 >>
+		"moznost" : << sedm >>
+		"moznost" : << 8 >>
+	}
+}
+{
+	"pocet otazek" : << 1 >>
+	{
+		"typ" : << 2 >>
+		"text" : << Kolik tydnu ma semestr na FIT CVUT ? >>
+		"spravna odpoved" : << d >>
+		"moznost" : << 12 >>
+		"moznost" : << 11 >>
+		"moznost" : << 10 >>
+		"moznost" : << 13 >>
+	}
+}
+{
+	"pocet otazek" : << 1 >>
+	{
+		"typ" : << 3 >>
+		"text" : << Bylo na vsech letosnich prednaskach PA2 pres 100 lidi ? >>
+		"spravna odpoved" : << ne >>
+	}
+}
+{
+	"pocet otazek" : << 1 >>
+	{
+		"typ" : << 2 >>
+		"text" : << Co s uvedeneho je ovoce >>
+		"spravna odpoved" : << d >>
+		"moznost" : << paprika >>
+		"moznost" : << cihla >>
+		"moznost" : << kolo >>
+		"moznost" : << jablko >>
+	}
+}

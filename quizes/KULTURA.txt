@@ -1,0 +1,68 @@
+"nazev" : << KULTURA >>
+"pocet stran" : << 5 >>
+{
+	"pocet otazek" : << 1 >>
+	{
+		"typ" : << 2 >>
+		"text" : << Ktera televize natocila reportaz s cyklistou >>
+		"spravna odpoved" : << a >>
+		"moznost" : << Nova >>
+		"moznost" : << Prima >>
+		"moznost" : << Barandov >>
+		"moznost" : << JOJ >>
+	}
+}
+{
+	"pocet otazek" : << 2 >>
+	{
+		"typ" : << 2 >>
+		"text" : << Kolik mel cyklista promile >>
+		"spravna odpoved" : << d >>
+		"moznost" : << 0.5 >>
+		"moznost" : << 0.69 >>
+		"moznost" : << 1.15 >>
+		"moznost" : << 1.42 >>
+	}
+	{
+		"typ" : << 1 >>
+		"text" : << Kdo se zucastnil svatby Jirky Kary >>
+		"spravna odpoved" : << ab >>
+		"moznost" : << pani Zdena >>
+		"moznost" : << Stranskej vyprcanej >>
+		"moznost" : << pepa z depa >>
+		"moznost" : << karel karpisek >>
+	}
+}
+{
+	"pocet otazek" : << 1 >>
+	{
+		"typ" : << 0 >>
+		"text" : << Jakou zemi Jirka Kare zminoval >>
+		"spravna odpoved" : << Anglie >>
+		"regularni vyraz" : << anglie >>
+		"pocet odpovedi v setu" : << 0 >>
+	}
+}
+{
+	"pocet otazek" : << 1 >>
+	{
+		"typ" : << 0 >>
+		"text" : << Kolikrat zazni "pa" v jedne casti utiekli na cize pasy v pisnicce spreyer frajer >>
+		"spravna odpoved" : << 7 >>
+		"regularni vyraz" : << sedm >>
+		"pocet odpovedi v setu" : << 3 >>
+		"uznavana odpoved" : << 7 >>
+		"uznavana odpoved" : << sedum >>
+		"uznavana odpoved" : << seven >>
+	}
+}
+{
+	"pocet otazek" : << 1 >>
+	{
+		"typ" : << 0 >>
+		"text" : << Doplnte hlasku: Typkove s kamerama nee ze mi tam  >>
+		"spravna odpoved" : << slohnete to kolo >>
+		"regularni vyraz" : << kolo >>
+		"pocet odpovedi v setu" : << 0 >>
+	}
+}

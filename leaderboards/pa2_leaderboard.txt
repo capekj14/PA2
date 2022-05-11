@@ -1,0 +1,4 @@
+3
+xvagner 3
+karel 1
+xvagner 1

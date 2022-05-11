@@ -1,0 +1,14 @@
+"nazev" : << kebab >>
+"pocet stran" : << 1 >>
+{
+	"pocet otazek" : << 1 >>
+	{
+		"typ" : << 2 >>
+		"text" : << llll >>
+		"spravna odpoved" : << a >>
+		"moznost" : << pavel >>
+		"moznost" : << pepa >>
+		"moznost" : << ss >>
+		"moznost" : << ss >>
+	}
+}

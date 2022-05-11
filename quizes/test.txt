@@ -1,0 +1,22 @@
+"nazev" : << test >>
+"pocet stran" : << 2 >>
+{
+	"pocet otazek" : << 1 >>
+	{
+		"typ" : << 1 >>
+		"text" : << jaky je nejlepsi programovaci jazyk >>
+		"spravna odpoved" : << cd >>
+		"moznost" : << java >>
+		"moznost" : << javascript >>
+		"moznost" : << c >>
+		"moznost" : << c++ >>
+	}
+}
+{
+	"pocet otazek" : << 1 >>
+	{
+		"typ" : << 3 >>
+		"text" : << ano? >>
+		"spravna odpoved" : << ano >>
+	}
+}

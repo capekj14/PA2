@@ -1,0 +1,34 @@
+"nazev" : << pa2 >>
+"pocet stran" : << 3 >>
+{
+	"pocet otazek" : << 1 >>
+	{
+		"typ" : << 3 >>
+		"text" : << 2+2=4 >>
+		"spravna odpoved" : << ano >>
+	}
+}
+{
+	"pocet otazek" : << 1 >>
+	{
+		"typ" : << 2 >>
+		"text" : << Jaky cesky hokejista ma v teto sezone nejvice golu v NHL >>
+		"spravna odpoved" : << a >>
+		"moznost" : << David Pastrnak >>
+		"moznost" : << Roman Cervenka >>
+		"moznost" : << Jaromir Jagr >>
+		"moznost" : << Filip Hronek >>
+	}
+}
+{
+	"pocet otazek" : << 1 >>
+	{
+		"typ" : << 1 >>
+		"text" : << kdo prednasi pa2 >>
+		"spravna odpoved" : << ab >>
+		"moznost" : << Lada Vagner >>
+		"moznost" : << Travnicek >>
+		"moznost" : << Tomas Kalvoda >>
+		"moznost" : << Trdlicka >>
+	}
+}

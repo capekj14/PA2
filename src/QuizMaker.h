@@ -18,7 +18,7 @@ class QuizMaker
 public:
     /**
      * asks user for numbers of pages in quiz
-     * @param[in,out] num stores inputted number
+     * @param[out] num stores inputted number
      */
     static void askPageCount(int& num);
 
@@ -36,7 +36,7 @@ public:
 
     /**
      * asks user for question type
-     * return question type  
+     * @return question type
      */
     static QuestionType askQuestionType();
 
@@ -68,13 +68,13 @@ public:
 
     /**
      * asks for correct answer
-     * @param correctAnswer correct answer
+     * @param[out] correctAnswer correct answer
      */
     static void askCorrectAnswerYesNo(std::string &correctAnswer);
 
     /**
      * asks for correct option
-     * @param correctAnswer correct option
+     * @param[out] correctAnswer correct option
      */
     static void askCorrectAnswerSingle(std::string &correctAnswer);
 

@@ -27,7 +27,6 @@ public:
      * checks player answer if it contains substring "pattern"
      * @return true or false if player answer contains substring
      */
-
     bool checkBySubstring();
     QuestionType getType() override;
     void createQuestion() override;

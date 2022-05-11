@@ -4,8 +4,6 @@ BIN = capekj14
 
 compile: $(BIN)
 
-dec: src/*.h README.md
-	doxygen Doxyfile
 
 run: compile
 	./$(BIN)
@@ -17,8 +15,11 @@ build/%.o: src/%.cpp
 	mkdir -p build
 	$(CXX) $(CXX_FLAGS) $< -c -o $@
 
+doc: src/Application.h src/Common.h src/LeaderBoard.h src/Page.h src/Player.h src/Question.h src/QuestionFreeAnswer.h src/QuestionMultiChoice.h src/QuestionSingleChoice.h src/QuestionYesNo.h src/QuestionType.h src/Quiz.h src/QuizMaker.h README.md
+	doxygen Doxyfile
+
 clean:
-	rm -rf $(BIN) build/ 2>/dev/null
+	rm -rf $(BIN) build/ doc/ 2>/dev/null
 
 build/Application.o: src/Application.cpp src/Application.h src/Quiz.h src/Page.h src/Question.h src/QuestionType.h src/QuizMaker.h src/Common.h src/QuestionFreeAnswer.h src/QuestionMultiChoice.h src/QuestionSingleChoice.h src/QuestionYesNo.h src/Player.h src/LeaderBoard.h
 build/Common.o: src/Common.cpp src/Common.h
