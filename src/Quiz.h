@@ -65,4 +65,8 @@ public:
      */
     bool loadQuiz(const std::string& str);
 
+    /**
+     * method for visual things
+     */
+    void doFakeLoadingScreen();
 };

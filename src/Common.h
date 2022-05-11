@@ -82,7 +82,7 @@ struct Common
      * calls library function for sleep with parameter 3000 milliseconds
      */
     static void sleep();
-
+    static void shortSleep();
     /**
      * helper struct for converting string into number
      */

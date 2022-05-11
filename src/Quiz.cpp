@@ -28,6 +28,8 @@ void Quiz::run()
             break;
         }
     }
+    doFakeLoadingScreen();
+    Common::clearConsole();
     player.setScore(getScore());
     printPlayerResult();
 }
@@ -126,4 +128,31 @@ bool Quiz::loadQuiz(const std::string& fileName)
         pages.push_back(std::move(page));
     }
     return true;
+}
+
+void Quiz::doFakeLoadingScreen()
+{
+    Common::clearConsole();
+    std::cout << "probiha hodnoceni ." << std::endl;
+    Common::shortSleep();
+
+    Common::clearConsole();
+    std::cout << "probiha hodnoceni .." << std::endl;
+    Common::shortSleep();
+
+    Common::clearConsole();
+    std::cout << "probiha hodnoceni ..." << std::endl;
+    Common::shortSleep();
+
+    Common::clearConsole();
+    std::cout << "probiha hodnoceni ." << std::endl;
+    Common::shortSleep();
+
+    Common::clearConsole();
+    std::cout << "probiha hodnoceni .." << std::endl;
+    Common::shortSleep();
+
+    Common::clearConsole();
+    std::cout << "probiha hodnoceni ..." << std::endl;
+    Common::shortSleep();
 }

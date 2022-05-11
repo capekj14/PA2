@@ -21,6 +21,12 @@ doc: src/Application.h src/Common.h src/LeaderBoard.h src/Page.h src/Player.h sr
 clean:
 	rm -rf $(BIN) build/ doc/ 2>/dev/null
 
+zip: Makefile Doxyfile README.md zadani.txt prohlaseni.txt leaderboards/* quizes/* examples/
+	mkdir -p .archive/capekj14
+	cp -r Makefile Doxyfile README.md zadani.txt prohlaseni.txt src/ leaderboards/ quizes/ examples/ .archive/capekj14
+	cd .archive/; zip -r ../capekj14.zip capekj14
+	rm -r .archive/
+
 build/Application.o: src/Application.cpp src/Application.h src/Quiz.h src/Page.h src/Question.h src/QuestionType.h src/QuizMaker.h src/Common.h src/QuestionFreeAnswer.h src/QuestionMultiChoice.h src/QuestionSingleChoice.h src/QuestionYesNo.h src/Player.h src/LeaderBoard.h
 build/Common.o: src/Common.cpp src/Common.h
 build/LeaderBoard.o: src/LeaderBoard.cpp src/LeaderBoard.h src/Player.h src/Common.h
