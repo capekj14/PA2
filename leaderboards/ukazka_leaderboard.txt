@@ -1,6 +1,7 @@
-5
+6
 ll 7
 capla 7
+bernak 5
 ll 0
 ll 0
 pepa 0

@@ -37,7 +37,7 @@
 	"pocet otazek" : << 1 >>
 	{
 		"typ" : << 0 >>
-		"text" : << Jakou zemi Jirka Kare zminoval >>
+		"text" : << Jakou zemi Jirka Kara zminoval >>
 		"spravna odpoved" : << Anglie >>
 		"regularni vyraz" : << anglie >>
 		"pocet odpovedi v setu" : << 0 >>

@@ -1,0 +1,59 @@
+"nazev" : << pa3 >>
+"pocet stran" : << 3 >>
+{
+	"pocet otazek" : << 2 >>
+	{
+		"typ" : << 0 >>
+		"text" : << jakou barvu ma pomeranc >>
+		"spravna odpoved" : << oranzova >>
+		"regularni vyraz" : << oranz >>
+		"pocet odpovedi v setu" : << 0 >>
+	}
+	{
+		"typ" : << 2 >>
+		"text" : << co z uvedeneho je hudebni nastroj >>
+		"spravna odpoved" : << c >>
+		"moznost" : << koroptev >>
+		"moznost" : << oposum >>
+		"moznost" : << kytara >>
+		"moznost" : << topol >>
+	}
+}
+{
+	"pocet otazek" : << 3 >>
+	{
+		"typ" : << 3 >>
+		"text" : << je zem plocha? >>
+		"spravna odpoved" : << ne >>
+	}
+	{
+		"typ" : << 1 >>
+		"text" : << Jake predmety jsou povinne na fitu >>
+		"spravna odpoved" : << ad >>
+		"moznost" : << pa2 >>
+		"moznost" : << bi-tur >>
+		"moznost" : << tjv >>
+		"moznost" : << zma >>
+	}
+	{
+		"typ" : << 0 >>
+		"text" : << kam se nahravaji domaci ulohy z pa2 >>
+		"spravna odpoved" : << progtest >>
+		"regularni vyraz" : << progtest >>
+		"pocet odpovedi v setu" : << 2 >>
+		"uznavana odpoved" : << do progtestu >>
+		"uznavana odpoved" : << na progtest >>
+	}
+}
+{
+	"pocet otazek" : << 1 >>
+	{
+		"typ" : << 2 >>
+		"text" : << jakou barvu ma obvykle banan >>
+		"spravna odpoved" : << d >>
+		"moznost" : << fialovou >>
+		"moznost" : << cervenou >>
+		"moznost" : << modrou >>
+		"moznost" : << zlutou >>
+	}
+}

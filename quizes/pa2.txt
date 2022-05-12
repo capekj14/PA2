@@ -26,9 +26,9 @@
 		"typ" : << 1 >>
 		"text" : << kdo prednasi pa2 >>
 		"spravna odpoved" : << ab >>
-		"moznost" : << Lada Vagner >>
-		"moznost" : << Travnicek >>
+		"moznost" : << Ladislav Vagner >>
+		"moznost" : << Jan Travnicek >>
 		"moznost" : << Tomas Kalvoda >>
-		"moznost" : << Trdlicka >>
+		"moznost" : << Ludek Kleprlik>>
 	}
 }
